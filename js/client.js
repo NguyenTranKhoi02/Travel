@@ -8,9 +8,9 @@
   function sendEmailJSNotification(orderType, data) {
     return new Promise((resolve) => {
       // BƯỚC 1: BẠN HÃY TẠO TÀI KHOẢN TẠI EMAILJS.COM VÀ ĐIỀN 3 MÃ CỦA BẠN VÀO ĐÂY:
-      const SERVICE_ID = 'YOUR_SERVICE_ID'; // Thay bằng Service ID của bạn
-      const TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Thay bằng Template ID của bạn
-      const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Thay bằng Public Key của bạn
+      const SERVICE_ID = 'service_5u17dnp'; // Thay bằng Service ID của bạn
+      const TEMPLATE_ID = 'template_mjffxvr'; // Thay bằng Template ID của bạn
+      const PUBLIC_KEY = 'krvraVV2898MIJzkq'; // Thay bằng Public Key của bạn
 
       if (SERVICE_ID === 'YOUR_SERVICE_ID') {
         console.warn('EmailJS chưa được cấu hình. Đang bỏ qua gửi email...');
@@ -35,7 +35,11 @@
           message = `Tên khách: ${data.name}\nSĐT: ${data.phone}\nXe: ${data.bikeName}\nTừ: ${data.from} Đến: ${data.to}\nNơi nhận: ${data.pickup}\nTổng tiền: ${new Intl.NumberFormat('vi-VN').format(data.total)} đ`;
         }
 
-        emailjs.send(SERVICE_ID, TEMPLATE_ID, { message: message })
+        emailjs.send(SERVICE_ID, TEMPLATE_ID, { 
+          message: message,
+          name: data.name || 'Khách hàng',
+          email: 'horsetravel23@gmail.com'
+        }, PUBLIC_KEY)
           .then(() => resolve())
           .catch((err) => { console.error('Lỗi gửi email:', err); resolve(); });
       }
@@ -382,6 +386,10 @@
 
         await window.VibeEast.sendTelegramNotification(msg);
 
+        orderData.tourName = tour.title;
+        orderData.mode = orderData.vehicle;
+        await sendEmailJSNotification('tour', orderData);
+
         location.href = 'index.html?booking=success';
       });
     }
@@ -527,6 +535,9 @@
 
       const msg = `🛵 <b>CÓ KHÁCH THUÊ XE!</b>\n👤 Tên: ${orderData.name}\n📞 SĐT: ${orderData.phone}\n🗓 Nhận: ${orderData.from} - Trả: ${orderData.to}\n📍 Giao xe tại: ${orderData.pickup}\n💰 Tổng: ${money(orderData.total)}\n🏷 Xe: ${bike.name}`;
       await window.VibeEast.sendTelegramNotification(msg);
+
+      orderData.bikeName = bike.name;
+      await sendEmailJSNotification('bike', orderData);
 
       location.href = 'index.html?booking=success';
     });

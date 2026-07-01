@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin | AnTravel</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -239,8 +240,8 @@
             <h2>Ảnh Nền Trang Chủ</h2>
           </div>
           <form id="settingsVideoForm" style="display:flex;flex-direction:column;gap:16px;">
-            <div>
-              <label style="display:block;margin-bottom:8px;font-weight:600;">Đường dẫn Ảnh nền (Hero Image)</label>
+            <div class="form-group">
+              <label class="admin-label">Đường dẫn Ảnh nền (Hero Image)</label>
               <div style="display:flex;gap:8px;">
                 <input id="setHeroPoster" readonly style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;" placeholder="Ảnh thu nhỏ chỉ được lấy từ chức năng tải lên..." />
                 <input type="file" id="setHeroPosterUpload" accept="image/*" style="display:none" />
@@ -260,19 +261,22 @@
     <div class="modal-box">
       <h2 id="modalTitle">Thêm sản phẩm</h2>
       <form id="productForm" class="grid-2">
-        <input id="pfTitle" placeholder="Tên" required />
-        <input id="pfMeta1" placeholder="Loại xe" />
-        <select id="pfTourLocation" style="display:none"></select>
-        <input id="pfMeta2" placeholder="Số ngày / Trạng thái" required />
-        <input id="pfPriceBase" placeholder="Giá Tour Cơ bản (VND / Khách)" type="text" required />
-        <input id="pfSurchargeMotorbike" placeholder="Giá Xe máy (VND / Khách)" type="text" />
-        <input id="pfDiscountSelfDrive" placeholder="Giảm giá nếu Tự lái (VND / Khách)" type="text" />
-        <input id="pfSurcharge7Seat" placeholder="Giá NGUYÊN Ô tô 7 chỗ (VND / Chuyến)" type="text" />
-        <input id="pfSurchargeJeep" placeholder="Giá NGUYÊN Xe Jeep (VND / Chuyến)" type="text" />
-        <div class="full" style="display:flex;gap:8px;">
-          <input id="pfImage" style="flex:1;background:#f8fafc;" placeholder="Ảnh URL chỉ được lấy từ chức năng tải lên..." readonly required />
-          <input type="file" id="pfImageUpload" style="display:none" accept="image/*" />
-          <button type="button" class="btn" onclick="document.getElementById('pfImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+        <div class="form-group"><label class="admin-label">Tên</label><input id="pfTitle" placeholder="Tên" required /></div>
+        <div class="form-group"><label class="admin-label">Loại xe / Mô tả ngắn</label><input id="pfMeta1" placeholder="Loại xe" /></div>
+        <div class="form-group"><label class="admin-label">Tỉnh / Điểm đến</label><select id="pfTourLocation" style="display:none"></select></div>
+        <div class="form-group"><label class="admin-label">Số ngày / Trạng thái</label><input id="pfMeta2" placeholder="Số ngày / Trạng thái" required /></div>
+        <div class="form-group"><label class="admin-label">Giá Tour Cơ bản (VND / Khách)</label><input id="pfPriceBase" placeholder="Giá Tour Cơ bản (VND / Khách)" type="text" required /></div>
+        <div class="form-group"><label class="admin-label">Giá Xe máy (VND / Khách)</label><input id="pfSurchargeMotorbike" placeholder="Giá Xe máy (VND / Khách)" type="text" /></div>
+        <div class="form-group"><label class="admin-label">Giảm giá nếu Tự lái (VND / Khách)</label><input id="pfDiscountSelfDrive" placeholder="Giảm giá nếu Tự lái (VND / Khách)" type="text" /></div>
+        <div class="form-group"><label class="admin-label">Giá NGUYÊN Ô tô 7 chỗ (VND / Chuyến)</label><input id="pfSurcharge7Seat" placeholder="Giá NGUYÊN Ô tô 7 chỗ (VND / Chuyến)" type="text" /></div>
+        <div class="form-group"><label class="admin-label">Giá NGUYÊN Xe Jeep (VND / Chuyến)</label><input id="pfSurchargeJeep" placeholder="Giá NGUYÊN Xe Jeep (VND / Chuyến)" type="text" /></div>
+        <div class="full form-group">
+          <label class="admin-label">Đường dẫn Ảnh (URL)</label>
+          <div style="display:flex;gap:8px;">
+            <input id="pfImage" style="flex:1;background:#f8fafc;" placeholder="Ảnh URL chỉ được lấy từ chức năng tải lên..." readonly required />
+            <input type="file" id="pfImageUpload" style="display:none" accept="image/*" />
+            <button type="button" class="btn" onclick="document.getElementById('pfImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+          </div>
         </div>
         <div class="full" id="itineraryBuilderWrap" style="display:none; flex-direction:column; gap:12px; margin-top:8px;">
           <label style="font-weight:600;">Lịch trình chi tiết (Mỗi ô tương ứng 1 ngày)</label>
@@ -292,14 +296,20 @@
     <div class="modal-box" style="max-width:500px">
       <h2>Thêm Ảnh Mới</h2>
       <form id="photoForm" style="display:flex;flex-direction:column;gap:16px;">
-        <div style="display:flex;gap:8px;">
-          <input id="phUrl" placeholder="Ảnh chỉ được lấy từ chức năng tải lên..." required readonly
-            style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;" />
-          <input type="file" id="phImageUpload" accept="image/*" style="display:none" />
-          <button type="button" class="btn" onclick="document.getElementById('phImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+        <div class="form-group">
+          <label class="admin-label">Đường dẫn Ảnh (URL)</label>
+          <div style="display:flex;gap:8px;">
+            <input id="phUrl" placeholder="Ảnh chỉ được lấy từ chức năng tải lên..." required readonly
+              style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;" />
+            <input type="file" id="phImageUpload" accept="image/*" style="display:none" />
+            <button type="button" class="btn" onclick="document.getElementById('phImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+          </div>
         </div>
-        <input id="phCaption" placeholder="Mô tả ảnh (Ví dụ: Khách đi Mã Pí Lèng)" required
-          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;" />
+        <div class="form-group">
+          <label class="admin-label">Mô tả ảnh</label>
+          <input id="phCaption" placeholder="Mô tả ảnh (Ví dụ: Khách đi Mã Pí Lèng)" required
+            style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;" />
+        </div>
         <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;">
           <button class="btn btn-primary" type="submit">Lưu Ảnh</button>
           <button class="btn btn-secondary" type="button" id="closePhotoModal">Đóng</button>
