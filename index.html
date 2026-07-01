@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AnTravel | Du lịch trải nghiệm Đông Bắc</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AN</span>
+        <span class="brand-text">
+          <strong>AnTravel</strong>
+          <small>Đông Bắc bụi, chất, thật</small>
+        </span>
+      </a>
+
+
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active" data-lang="vi">VN</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="mainNav">
+        <a href="index.html" class="active" data-i18n="nav_home">Trang chủ</a>
+        <a href="about.html" data-i18n="nav_about">Giới thiệu</a>
+        <a href="tours.html" data-i18n="nav_tours">Tour</a>
+        <a href="rental.html" data-i18n="nav_rental">Thuê xe</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero hero--elementor">
+      <img id="heroImageEl" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        alt="Hero Image" class="hero-bg-img" />
+      <div class="hero-overlay-dark"></div>
+
+      <div class="container hero-content hero--elementor-content">
+        <div class="hero-copy animate-up hero-copy--elementor">
+          <h1 class="title--home hero-title--elementor" data-i18n="hero_title">
+            TOUR VÒNG QUANH HÀ GIANG BẰNG<br />XE MÁY, JEEP &<br /><span class='text-orange'>EASY RIDER</span>
+          </h1>
+          <p class="text-sapo hero-desc--elementor" data-i18n="hero_desc">
+            Chuyến phiêu lưu 2 đến 6 ngày từ TP Hà Giang. Hướng dẫn viên bản địa, nhóm nhỏ, khởi hành hàng ngày quanh năm.
+          </p>
+          <div class="hero-actions">
+            <a href="#bookingSection" class="btn btn-primary btn-book-now">
+              <span data-i18n="hero_btn_book">Đặt Ngay</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                class="icon-book-now">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 16 16 12 12 8"></polyline>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shape Divider Mountains -->
+      <div class="custom-shape-divider-bottom">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+          <path class="elementor-shape-fill" opacity="0.33"
+            d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z">
+          </path>
+          <path class="elementor-shape-fill" opacity="0.66"
+            d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z">
+          </path>
+          <path class="elementor-shape-fill"
+            d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z">
+          </path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT SECTION (NEW) ========== -->
+    <section class="section yen-about-section" id="aboutSection">
+      <div class="container">
+        <div class="yen-about-grid animate-up">
+          <div class="yen-about-text">
+            <h2 class="yen-section-title" data-i18n="sec_about_title">Về AnTravel</h2>
+            <p class="yen-about-subtitle" data-i18n="sec_about_sub">Hành trình Đông Bắc — Nơi đá nở hoa</p>
+            <p class="yen-about-desc">
+              <span data-i18n="sec_about_desc1">AnTravel được thành lập bởi những người yêu thiên nhiên và đam mê khám
+                phá vùng cao Đông Bắc. Chúng tôi chuyên tổ chức tour phượt Hà Giang, Cao Bằng với phong cách trải nghiệm
+                chân thực — từ tự lái xe máy chinh phục đèo Mã Pí Lèng đến Easy Rider cùng tài xế bản địa am hiểu từng
+                khúc cua.</span>
+            </p>
+            <p class="yen-about-desc">
+              <span data-i18n="sec_about_desc2">Mỗi chuyến đi không chỉ là ngắm cảnh, mà là cơ hội hòa mình vào văn hóa,
+                ẩm thực và cuộc sống của đồng bào vùng cao. AnTravel cam kết mang đến trải nghiệm an toàn, chất lượng và
+                đầy cảm hứng.</span>
+            </p>
+            <a href="about.html" class="btn btn-outline-yen" data-i18n="sec_about_btn">Tìm hiểu thêm →</a>
+          </div>
+          <div class="yen-about-image">
+            <img src="https://res.cloudinary.com/teahouse/image/upload/v1782377742/grqhvoa4tlvqoqh8ihp7.jpg"
+              alt="Hà Giang landscape" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED TOURS (REDESIGNED) ========== -->
+    <section class="section yen-tours-section" id="featuredToursSection">
+      <div class="container">
+        <h2 class="yen-section-title animate-up" data-i18n="sec_tours_title">Tour Nổi Bật</h2>
+        <p class="yen-section-sub animate-up" data-i18n="sec_tours_sub">Khám phá những hành trình được yêu thích nhất
+        </p>
+        <div class="yen-tours-grid animate-up delay-200" id="featuredTours"></div>
+        <div class="yen-center animate-up delay-200">
+          <a href="tours.html" class="btn btn-outline-yen" data-i18n="sec_tours_btn">Xem tất cả tour</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EXPLORE BY DESTINATION ========== -->
+    <section class="section yen-dest-section">
+      <div class="container">
+        <h2 class="yen-section-title animate-up" data-i18n="sec_dest_title">Khám phá theo điểm đến</h2>
+        <div class="swiper province-swiper animate-up delay-200">
+          <div class="swiper-wrapper" id="provinceGrid"></div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== MOTORBIKE RENTAL (REDESIGNED) ========== -->
+    <section class="section yen-bike-section" id="bikeRentalSection">
+      <div class="container">
+        <h2 class="yen-section-title animate-up" data-i18n="sec_bike_title">Thuê Xe Máy</h2>
+        <p class="yen-section-sub animate-up" data-i18n="sec_bike_sub">Xe chất lượng, sẵn sàng cho mọi cung đèo</p>
+        <div class="yen-bike-grid animate-up delay-200" id="bikePreview"></div>
+        <div class="yen-center animate-up delay-200">
+          <a href="rental.html" class="btn btn-outline-yen" data-i18n="sec_bike_btn">Xem tất cả xe</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TRAVEL WITH ANTRAVEL (NEW) ========== -->
+    <section class="section yen-travel-section" id="travelWithSection">
+      <div class="container">
+        <div class="yen-travel-box animate-up">
+          <div class="yen-travel-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="#1E3A2F">
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+            </svg>
+          </div>
+          <h2 class="yen-travel-title" data-i18n="sec_travel_title">Đồng Hành Cùng AnTravel</h2>
+          <p class="yen-travel-subtitle"><em data-i18n="sec_travel_sub">Trải nghiệm chân thực, an toàn và có trách
+              nhiệm</em></p>
+          <p class="yen-travel-desc">
+            <span data-i18n="sec_travel_desc">Chúng tôi không chỉ tổ chức tour — chúng tôi mang đến những hành trình có
+              ý nghĩa. AnTravel cam kết du lịch bền vững, hỗ trợ cộng đồng địa phương và bảo vệ môi trường vùng cao Đông
+              Bắc cho thế hệ tương lai.</span>
+          </p>
+          <div class="yen-values-grid">
+            <div class="yen-value-item">
+              <div class="yen-value-icon yen-value-eco">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 22c1.25-1.25 2.5-2 4-2 3 0 3 2 6 2s3-2 6-2c1.5 0 2.75.75 4 2" />
+                  <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5" />
+                  <path d="M22 12c0-1.8-.5-3.5-1.3-5" />
+                  <path d="M12 2v10" />
+                  <path d="M12 12l4-4" />
+                  <path d="M12 12l-3-3" />
+                </svg>
+              </div>
+              <h4 data-i18n="sec_travel_v1_title">Trải nghiệm thực</h4>
+              <p data-i18n="sec_travel_v1_desc">Lộ trình độc đáo, tài xế bản địa, ăn ở cùng người dân vùng cao</p>
+            </div>
+            <div class="yen-value-item">
+              <div class="yen-value-icon yen-value-safe">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
+              <h4 data-i18n="sec_travel_v2_title">An toàn tuyệt đối</h4>
+              <p data-i18n="sec_travel_v2_desc">Xe bảo dưỡng kỹ, giáp bảo hộ đầy đủ, cứu hộ 24/7</p>
+            </div>
+            <div class="yen-value-item">
+              <div class="yen-value-icon yen-value-community">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </div>
+              <h4 data-i18n="sec_travel_v3_title">Hỗ trợ cộng đồng</h4>
+              <p data-i18n="sec_travel_v3_desc">Một phần doanh thu hỗ trợ giáo dục trẻ em vùng cao</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ SECTION (NEW) ========== -->
+    <section class="section yen-faq-section" id="faqSection">
+      <div class="container">
+        <h2 class="yen-section-title yen-center-text animate-up" data-i18n="sec_faq_title">Câu Hỏi Thường Gặp</h2>
+        <div class="yen-faq-list animate-up delay-200">
+          <div class="yen-faq-item">
+            <button class="yen-faq-question" type="button">
+              <span data-i18n="sec_faq_q1">AnTravel có gì khác biệt so với các đơn vị tour khác?</span>
+              <span class="yen-faq-icon">+</span>
+            </button>
+            <div class="yen-faq-answer">
+              <p><span data-i18n="sec_faq_a1">AnTravel tập trung vào trải nghiệm chân thực — bạn sẽ đi cùng tài xế bản
+                  địa am hiểu từng con đèo, ở homestay với người dân, ăn những món ăn địa phương thật sự. Chúng tôi
+                  không chạy tour đại trà mà thiết kế hành trình phù hợp với từng nhóm khách.</span></p>
+            </div>
+          </div>
+          <div class="yen-faq-item">
+            <button class="yen-faq-question" type="button">
+              <span>Tôi chưa biết đi xe máy, có tham gia tour được không?</span>
+              <span class="yen-faq-icon">+</span>
+            </button>
+            <div class="yen-faq-answer">
+              <p>Hoàn toàn được! Chúng tôi có dịch vụ Easy Rider — tài xế bản địa kinh nghiệm sẽ chở bạn trên
+                toàn bộ hành trình. Bạn chỉ cần ngồi sau và tận hưởng cảnh đẹp.</p>
+            </div>
+          </div>
+          <div class="yen-faq-item">
+            <button class="yen-faq-question" type="button">
+              <span>Thuê xe máy tại AnTravel có an toàn không?</span>
+              <span class="yen-faq-icon">+</span>
+            </button>
+            <div class="yen-faq-answer">
+              <p>Tất cả xe của AnTravel đều được bảo dưỡng kỹ trước mỗi chuyến đi. Chúng tôi tặng kèm giáp bảo hộ,
+                mũ 3/4 chất lượng cao và gói cứu hộ đèo dốc 24/7. Nếu xe gặp sự cố, đội ngũ kỹ thuật sẽ có mặt
+                trong thời gian nhanh nhất.</p>
+            </div>
+          </div>
+          <div class="yen-faq-item">
+            <button class="yen-faq-question" type="button">
+              <span>Tôi cần chuẩn bị gì khi đi Hà Giang?</span>
+              <span class="yen-faq-icon">+</span>
+            </button>
+            <div class="yen-faq-answer">
+              <p>Bạn cần mang theo: CMND/CCCD, bằng lái xe (nếu tự lái), quần áo giữ ấm (vùng cao lạnh hơn),
+                kem chống nắng, thuốc cá nhân. Phần còn lại — từ xe, mũ, giáp, bản đồ — AnTravel lo hết!</p>
+            </div>
+          </div>
+          <div class="yen-faq-item">
+            <button class="yen-faq-question" type="button">
+              <span>Làm thế nào để đặt tour hoặc thuê xe?</span>
+              <span class="yen-faq-icon">+</span>
+            </button>
+            <div class="yen-faq-answer">
+              <p>Bạn có thể đặt trực tiếp trên website — chọn tour hoặc xe, điền thông tin và bấm đặt.
+                Đội ngũ AnTravel sẽ liên hệ xác nhận trong vòng 1 giờ. Hoặc gọi hotline 0357164502 để được tư vấn ngay.
+              </p>
+            </div>
+          </div>
+          <div class="yen-faq-item">
+            <button class="yen-faq-question" type="button">
+              <span>Thời điểm nào đẹp nhất để đi Hà Giang và Cao Bằng?</span>
+              <span class="yen-faq-icon">+</span>
+            </button>
+            <div class="yen-faq-answer">
+              <p>Hà Giang đẹp nhất vào tháng 9-11 (mùa lúa chín + hoa tam giác mạch) và tháng 2-4 (hoa đào, hoa mận).
+                Cao Bằng với Thác Bản Giốc đẹp nhất từ tháng 5-9 khi nước nhiều. Tuy nhiên, mỗi mùa đều có vẻ đẹp riêng!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BOOKING SECTION ========== -->
+    <section class="section" id="bookingSection" style="padding-top: 60px; padding-bottom: 60px;">
+      <div class="hgl-booking-header-wrapper">
+        <h2 class="hgl-booking-headline">
+          <span class="hgl-booking-plain-text" data-i18n="sec_booking_heading">Đặt Tour Hà Giang Của Bạn</span>
+          <span class="hgl-booking-dynamic-wrapper">
+            <span class="hgl-booking-dynamic-text" data-i18n="sec_booking_highlight">Khám Phá Ngay</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" preserveAspectRatio="none" aria-hidden="true">
+              <path
+                d="M9.3,127.3c49.3-3,150.7-7.6,199.7-7.4c121.9,0.4,189.9,0.4,282.3,7.2C380.1,129.6,181.2,130.6,70,139 c82.6-2.9,254.2-1,335.9,1.3c-56,1.4-137.2-0.3-197.1,9">
+              </path>
+            </svg>
+          </span>
+        </h2>
+      </div>
+      <div class="container" style="max-width: 800px; margin: 0 auto;">
+        <aside class="panel" id="bookingPanel">
+          <form class="hgl-form hgl-booking" id="tourBookingForm">
+            <div class="hgl-header">
+              <h2 data-i18n="form_title">Đặt tour vòng quanh Hà Giang ngay hôm nay!</h2>
+              <p data-i18n="form_subtitle">Những cuộc phiêu lưu đang chờ đón bạn ở vùng núi phía Bắc Việt Nam.</p>
+            </div>
+            <div class="hgl-body">
+
+              <div class="hgl-section">
+                <div class="hgl-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    <polyline points="9,22 9,12 15,12 15,22" />
+                  </svg>
+                  Chi tiết Tour
+                </div>
+                <div class="hgl-grid hgl-grid-2">
+                  <div class="hgl-field full">
+                    <label class="hgl-label" data-i18n="form_select_tour">Chọn Tour</label>
+                    <select class="hgl-select" id="tourSelect" name="tourSelect">
+                      <!-- Populated by JS -->
+                    </select>
+                  </div>
+                  <div class="hgl-field full">
+                    <label class="hgl-label" data-i18n="form_vehicle_label">Lựa chọn đi xe</label>
+                    <div class="hgl-radio-group">
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="vehicle" value="Xe máy" checked>
+                        <span class="hgl-radio-card-content" data-i18n="form_veh_moto">Xe máy</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="vehicle" value="Xe Jeep">
+                        <span class="hgl-radio-card-content" data-i18n="form_veh_jeep">Xe Jeep</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="vehicle" value="Ô tô 7 chỗ">
+                        <span class="hgl-radio-card-content" data-i18n="form_veh_car">Ô tô 7 chỗ</span>
+                      </label>
+                    </div>
+                    <p class="hgl-hint" style="color: var(--orange); font-weight: 500; margin-top: 8px;">(Lưu ý: Bạn sẽ
+                      tiết kiệm được nhiều chi phí hơn khi đi từ 2 người trở lên do được chia sẻ chung tiền xe)</p>
+                  </div>
+                  <div class="hgl-field full" id="experienceWrap">
+                    <label class="hgl-label" data-i18n="form_exp_label">Kinh nghiệm</label>
+                    <div class="hgl-radio-group">
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="experience" value="Người lái xe dễ dàng" checked>
+                        <span class="hgl-radio-card-content" data-i18n="form_exp_easy">Người lái xe dễ dàng</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="experience" value="Tự lái">
+                        <span class="hgl-radio-card-content" data-i18n="form_exp_self">Tự lái</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="hgl-field full">
+                    <label class="hgl-label" data-i18n="form_acc_label">Chỗ ở</label>
+                    <select class="hgl-select" id="accommodation" name="accommodation">
+                      <option value="Phòng riêng" data-price="300000" data-i18n="form_acc_opt1">Phòng Riêng (1-2 người)
+                        +300.000đ/đêm</option>
+                      <option value="Phòng gia đình" data-price="500000">Phòng Gia đình (3-4 người) +500.000đ/đêm
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-section">
+                <div class="hgl-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="3" width="16" height="13" rx="2" />
+                    <circle cx="7.5" cy="18" r="1.5" />
+                    <circle cx="16.5" cy="18" r="1.5" />
+                    <path d="M4 16h16M6 7h12" />
+                  </svg>
+                  Dịch vụ xe Bus
+                </div>
+                <div class="hgl-bus-grid">
+                  <div class="hgl-bus-col">
+                    <div class="hgl-bus-col-title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      Bus chiều đi
+                    </div>
+                    <div class="hgl-field">
+                      <select class="hgl-select" id="pickupBus" name="pickupBus">
+                        <option value="" data-price="0">-- Chọn điểm đi --</option>
+                        <option value="Hà Nội" data-price="350000">Hà Nội (Phố Cổ) - 350.000đ</option>
+                        <option value="Sân bay Nội Bài" data-price="400000">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Sapa" data-price="450000">Sapa - 450.000đ</option>
+                        <option value="Tự túc" data-price="0">Tôi tự di chuyển</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="hgl-bus-col">
+                    <div class="hgl-bus-col-title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="10" r="3" />
+                        <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
+                      </svg>
+                      Bus chiều về
+                    </div>
+                    <div class="hgl-field">
+                      <select class="hgl-select" id="returnBus" name="returnBus">
+                        <option value="" data-price="0">-- Chọn điểm về --</option>
+                        <option value="Hà Nội" data-price="350000">Hà Nội (Phố Cổ) - 350.000đ</option>
+                        <option value="Sân bay Nội Bài" data-price="400000">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Sapa" data-price="450000">Sapa - 450.000đ</option>
+                        <option value="Tự túc" data-price="0">Tôi tự di chuyển</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-section">
+                <div class="hgl-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  Thông tin của bạn
+                </div>
+                <div class="hgl-grid hgl-grid-2">
+                  <div class="hgl-field">
+                    <label class="hgl-label">Họ tên <span class="hgl-required">*</span></label>
+                    <input type="text" class="hgl-input" id="tourName" name="name" required>
+                  </div>
+                  <div class="hgl-field">
+                    <label class="hgl-label">Số lượng người <span class="hgl-required">*</span></label>
+                    <input type="number" class="hgl-input" id="peopleCount" name="people" min="1" value="1" required>
+                  </div>
+                  <div class="hgl-field">
+                    <label class="hgl-label">SĐT / Zalo <span class="hgl-required">*</span></label>
+                    <input type="tel" class="hgl-input" id="tourPhone" name="phone" required>
+                  </div>
+                  <div class="hgl-field">
+                    <label class="hgl-label">Ngày khởi hành <span class="hgl-required">*</span></label>
+                    <input type="date" class="hgl-input" id="startDate" name="startDate" required>
+                  </div>
+                  <div class="hgl-field full">
+                    <label class="hgl-label" data-i18n="form_info_req">Yêu cầu đặc biệt</label>
+                    <textarea class="hgl-textarea" id="specialRequest" name="specialRequest"
+                      placeholder="Bạn có yêu cầu ăn chay, giờ giấc đón xe, hay có lưu ý gì thêm không?"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-section">
+                <div class="hgl-summary">
+                  <div class="hgl-summary-title" data-i18n="form_sum_sec">Tóm tắt đặt tour</div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label">Giá Tour:</span>
+                    <span class="hgl-summary-value" id="sumTour">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row" id="discountRow" style="display: none; color: var(--orange);">
+                    <span class="hgl-summary-label">Giảm giá (25%):</span>
+                    <span class="hgl-summary-value" id="sumDiscount">-0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label">Phụ thu xe (nếu có):</span>
+                    <span class="hgl-summary-value" id="sumVehicle">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label">Nâng cấp phòng:</span>
+                    <span class="hgl-summary-value" id="sumAccommodation">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label">Bus chiều đi:</span>
+                    <span class="hgl-summary-value" id="sumPickup">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label">Bus chiều về:</span>
+                    <span class="hgl-summary-value" id="sumReturn">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row total">
+                    <span class="hgl-summary-label">Tổng tiền:</span>
+                    <span class="hgl-summary-value" id="tourTotal">0 đ</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-submit-section">
+                <button type="submit" class="hgl-submit-btn">
+                  <span>Xác nhận Đặt Tour
+                    <svg class="hgl-submit-icon" viewBox="0 0 24 24" aria-hidden="true" style="margin-left: 4px;">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="13 6 19 12 13 18"></polyline>
+                    </svg>
+                  </span>
+                </button>
+                <div class="hgl-trust-badges">
+                  <div class="hgl-trust-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Bảo mật
+                  </div>
+                  <div class="hgl-trust-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                      <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                    </svg>
+                    Xác nhận nhanh
+                  </div>
+                  <div class="hgl-trust-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z">
+                      </path>
+                    </svg>
+                    Hỗ trợ 24/7
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ========== CUSTOMER GALLERY ========== -->
+    <section class="about-gallery-section">
+      <div class="container">
+        <div class="about-gallery-heading animate-up">
+          <span class="about-eyebrow text-green">AnTravel x Khách Hàng</span>
+          <h2 class="about-h2">Lưu giữ thanh xuân</h2>
+          <p class="about-gallery-desc">Những khoảnh khắc chân thực nhất của các "phượt thủ" trên cung đường Đông Bắc.
+            Hãy để chúng tôi đồng hành cùng bạn.</p>
+        </div>
+        <div class="masonry-gallery animate-up delay-200" id="customerGallery">
+          <!-- Render dynamically via JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong>AnTravel</strong>
+        <p>Đông Bắc bụi bặm nhưng hiện đại.</p>
+      </div>
+      <div>
+        <strong>Liên hệ</strong>
+        <p>Hotline: 0357164502</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/client.js?v=2"></script>
+</body>
+
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chi tiết tour | VibeEast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AN</span>
+        <span class="brand-text"><strong>AnTravel</strong><small>Chi tiết tour</small></span>
+      </a>
+
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active" data-lang="vi">VN</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false"
+        aria-controls="mainNav"><span></span><span></span><span></span></button>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" data-i18n="nav_home">Trang chủ</a>
+        <a href="about.html" data-i18n="nav_about">Giới thiệu</a>
+        <a href="tours.html" data-i18n="nav_tours">Tour</a>
+        <a href="rental.html" data-i18n="nav_rental">Thuê xe</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="detail-hero-section">
+      <div class="detail-hero-bg-wrapper">
+        <img id="detailHeroBg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+          class="detail-hero-bg-img" />
+      </div>
+      <div class="container detail-hero-content">
+        <div class="detail-hero-copy animate-up">
+          <span class="text">
+            Ha Giang Travel
+          </span>
+          <h1 class="detail-hero-title" id="detailHeroTitle">
+            Đang tải...
+          </h1>
+          <div class="hero-actions" style="justify-content: flex-start; margin-top: 30px;">
+            <a href="#bookingPanel" class="btn btn-primary btn-book-now">
+              <span data-i18n="hero_btn_book">Đặt Ngay</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                class="icon-book-now">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 16 16 12 12 8"></polyline>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="about-services-section">
+      <div class="container">
+        <h2 class="about-section-title" data-i18n="about_svc_title">Dịch vụ của chúng tôi</h2>
+        <div class="services-grid">
+          <div class="service-item">
+            <div class="service-icon icon-badge--orange" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 18l6-8 5 6 2-3 5 5H3z" />
+                <path d="M12 13l2-3" />
+              </svg>
+            </div>
+            <h4 data-i18n="about_svc_t1">Adventure &amp; Cultural Tours</h4>
+            <p data-i18n="about_svc_d1">Sự kết hợp độc đáo giữa du lịch mạo hiểm và hòa mình vào văn hóa vùng Hà Giang
+              và Cao Bằng</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon icon-badge--forest" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 11a3 3 0 1 0-3-3 3 3 0 0 0 3 3z" />
+                <path d="M17 12a3 3 0 1 0-3-3 3 3 0 0 0 3 3z" />
+                <path d="M2 21a6 6 0 0 1 10-4" />
+                <path d="M12 21a6 6 0 0 1 10-4" />
+              </svg>
+            </div>
+            <h4 data-i18n="about_svc_t2">Tour theo nhóm &amp; Riêng tư</h4>
+            <p data-i18n="about_svc_d2">Trải nghiệm được thiết kế riêng cho người đi du lịch một mình, các cặp đôi, gia
+              đình và nhóm nhỏ</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon icon-badge--ink" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="7" cy="17" r="3" />
+                <circle cx="17" cy="17" r="3" />
+                <path d="M7 17h6l3-5h3" />
+                <path d="M10 12l-2 3" />
+                <path d="M13 10l2 2" />
+              </svg>
+            </div>
+            <h4 data-i18n="about_svc_t3">Cho thuê xe máy</h4>
+            <p data-i18n="about_svc_d3">Xe chất lượng cao kèm đầy đủ trang bị an toàn bao gồm mũ bảo hiểm và đồ bảo hộ
+            </p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon icon-badge--sun" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 18V8a2 2 0 0 1 2-2h14v12" />
+                <path d="M3 14h18" />
+                <path d="M6 14v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+              </svg>
+            </div>
+            <h4 data-i18n="about_svc_t4">Dịch vụ lưu trú</h4>
+            <p data-i18n="about_svc_d4">Phòng nghỉ thoải mái tại các nhà nghỉ bản địa và hỗ trợ đặt chỗ trong suốt hành
+              trình</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon icon-badge--sea" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="6" width="18" height="10" rx="2" />
+                <circle cx="7" cy="17" r="1.5" />
+                <circle cx="17" cy="17" r="1.5" />
+              </svg>
+            </div>
+            <h4 data-i18n="about_svc_t5">Đặt vé di chuyển</h4>
+            <p data-i18n="about_svc_d5">Dịch vụ đặt vé xe khách tiện lợi và hỗ trợ đưa đón tận nơi</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon icon-badge--pink" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z" />
+                <path d="M9 4v14M15 6v14" />
+                <path d="M12 9l2 2-2 2-2-2 2-2z" />
+              </svg>
+            </div>
+            <h4 data-i18n="about_svc_t6">Tour liên tỉnh</h4>
+            <p data-i18n="about_svc_d6">Kết nối liền mạch các chặng hành trình tuyệt đẹp giữa Hà Giang và Cao Bằng</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section tour-detail-section" id="bookingSection">
+      <div class="container" style="display: flex; flex-direction: column; gap: 40px; margin-bottom: 40px;">
+        <section id="tourDetailMount"></section>
+        <div class="hgl-booking-header-wrapper detail--header">
+          <h2 class="hgl-booking-headline">
+            <span class="hgl-booking-plain-text" data-i18n="sec_booking_heading">Đặt Tour Hà Giang Của Bạn</span>
+            <span class="hgl-booking-dynamic-wrapper">
+              <span class="hgl-booking-dynamic-text" data-i18n="sec_booking_highlight">Khám Phá Ngay</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" preserveAspectRatio="none"
+                aria-hidden="true">
+                <path
+                  d="M9.3,127.3c49.3-3,150.7-7.6,199.7-7.4c121.9,0.4,189.9,0.4,282.3,7.2C380.1,129.6,181.2,130.6,70,139 c82.6-2.9,254.2-1,335.9,1.3c-56,1.4-137.2-0.3-197.1,9">
+                </path>
+              </svg>
+            </span>
+          </h2>
+        </div>
+        <aside class="panel" id="bookingPanel">
+          <form class="hgl-form hgl-booking" id="tourBookingForm">
+            <div class="hgl-header">
+              <h2>Đặt tour vòng quanh Hà Giang ngay hôm nay!</h2>
+              <p>Những cuộc phiêu lưu đang chờ đón bạn ở vùng núi phía Bắc Việt Nam.</p>
+            </div>
+            <div class="hgl-body">
+
+              <div class="hgl-section">
+                <div class="hgl-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                    <polyline points="9,22 9,12 15,12 15,22" />
+                  </svg>
+                  Chi tiết Tour
+                </div>
+                <div class="hgl-grid hgl-grid-2">
+                  <div class="hgl-field full">
+                    <label class="hgl-label" data-i18n="form_vehicle_label">Lựa chọn đi xe</label>
+                    <div class="hgl-radio-group">
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="vehicle" value="Xe máy" checked>
+                        <span class="hgl-radio-card-content" data-i18n="form_veh_moto">Xe máy</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="vehicle" value="Xe Jeep">
+                        <span class="hgl-radio-card-content" data-i18n="form_veh_jeep">Xe Jeep</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="vehicle" value="Ô tô 7 chỗ">
+                        <span class="hgl-radio-card-content" data-i18n="form_veh_car">Ô tô 7 chỗ</span>
+                      </label>
+                    </div>
+                    <p class="hgl-hint" style="color: var(--orange); font-weight: 500; margin-top: 8px;">(Lưu ý: Bạn sẽ
+                      tiết kiệm được nhiều chi phí hơn khi đi từ 2 người trở lên do được chia sẻ chung tiền xe)</p>
+                  </div>
+                  <div class="hgl-field full" id="experienceWrap">
+                    <label class="hgl-label" data-i18n="form_exp_label">Kinh nghiệm</label>
+                    <div class="hgl-radio-group">
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="experience" value="Người lái xe dễ dàng" checked>
+                        <span class="hgl-radio-card-content" data-i18n="form_exp_easy">Người lái xe dễ dàng</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="experience" value="Tự lái">
+                        <span class="hgl-radio-card-content" data-i18n="form_exp_self">Tự lái</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="hgl-field full">
+                    <label class="hgl-label" data-i18n="form_acc_label">Chỗ ở</label>
+                    <select class="hgl-select" id="accommodation" name="accommodation">
+                      <option value="Phòng riêng" data-price="300000" data-i18n="form_acc_opt1">Phòng Riêng (1-2 người)
+                        +300.000đ/đêm</option>
+                      <option value="Phòng gia đình" data-price="500000" data-i18n="form_acc_opt2">Phòng Gia đình (3-4
+                        người) +500.000đ/đêm</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-section">
+                <div class="hgl-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="3" width="16" height="13" rx="2" />
+                    <circle cx="7.5" cy="18" r="1.5" />
+                    <circle cx="16.5" cy="18" r="1.5" />
+                    <path d="M4 16h16M6 7h12" />
+                  </svg>
+                  Dịch vụ xe Bus
+                </div>
+                <div class="hgl-bus-grid">
+                  <div class="hgl-bus-col">
+                    <div class="hgl-bus-col-title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      Bus chiều đi
+                    </div>
+                    <div class="hgl-field">
+                      <select class="hgl-select" id="pickupBus" name="pickupBus">
+                        <option value="" data-price="0">-- Chọn điểm đi --</option>
+                        <option value="Hà Nội" data-price="350000">Hà Nội (Phố Cổ) - 350.000đ</option>
+                        <option value="Sân bay Nội Bài" data-price="400000">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Sapa" data-price="450000">Sapa - 450.000đ</option>
+                        <option value="Tự túc" data-price="0">Tôi tự di chuyển</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="hgl-bus-col">
+                    <div class="hgl-bus-col-title">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="10" r="3" />
+                        <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
+                      </svg>
+                      Bus chiều về
+                    </div>
+                    <div class="hgl-field">
+                      <select class="hgl-select" id="returnBus" name="returnBus">
+                        <option value="" data-price="0">-- Chọn điểm về --</option>
+                        <option value="Hà Nội" data-price="350000">Hà Nội (Phố Cổ) - 350.000đ</option>
+                        <option value="Sân bay Nội Bài" data-price="400000">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Sapa" data-price="450000">Sapa - 450.000đ</option>
+                        <option value="Tự túc" data-price="0">Tôi tự di chuyển</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-section">
+                <div class="hgl-section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  Thông tin của bạn
+                </div>
+                <div class="hgl-grid hgl-grid-2">
+                  <div class="hgl-field">
+                    <label class="hgl-label">Họ tên <span class="hgl-required">*</span></label>
+                    <input type="text" class="hgl-input" id="tourName" name="name" required>
+                  </div>
+                  <div class="hgl-field">
+                    <label class="hgl-label">Số lượng người <span class="hgl-required">*</span></label>
+                    <input type="number" class="hgl-input" id="peopleCount" name="people" min="1" value="1" required>
+                  </div>
+                  <div class="hgl-field">
+                    <label class="hgl-label">SĐT / Zalo <span class="hgl-required">*</span></label>
+                    <input type="tel" class="hgl-input" id="tourPhone" name="phone" required>
+                  </div>
+                  <div class="hgl-field">
+                    <label class="hgl-label">Ngày khởi hành <span class="hgl-required">*</span></label>
+                    <input type="date" class="hgl-input" id="startDate" name="startDate" required>
+                  </div>
+                  <div class="hgl-field full">
+                    <label class="hgl-label" data-i18n="form_info_req">Yêu cầu đặc biệt</label>
+                    <textarea class="hgl-textarea" id="specialRequest" name="specialRequest"
+                      placeholder="Bạn có yêu cầu ăn chay, giờ giấc đón xe, hay có lưu ý gì thêm không?"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-section">
+                <div class="hgl-summary">
+                  <div class="hgl-summary-title" data-i18n="form_sum_sec">Tóm tắt đặt tour</div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label" data-i18n="form_sum_tour">Giá Tour:</span>
+                    <span class="hgl-summary-value" id="sumTour">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row" id="discountRow" style="display: none; color: var(--orange);">
+                    <span class="hgl-summary-label" data-i18n="form_sum_discount">Giảm giá (25%):</span>
+                    <span class="hgl-summary-value" id="sumDiscount">-0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label" data-i18n="form_sum_vehicle">Phụ thu xe (nếu có):</span>
+                    <span class="hgl-summary-value" id="sumVehicle">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label" data-i18n="form_sum_acc">Nâng cấp phòng:</span>
+                    <span class="hgl-summary-value" id="sumAccommodation">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label" data-i18n="form_sum_pickup">Bus chiều đi:</span>
+                    <span class="hgl-summary-value" id="sumPickup">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row">
+                    <span class="hgl-summary-label" data-i18n="form_sum_return">Bus chiều về:</span>
+                    <span class="hgl-summary-value" id="sumReturn">0 đ</span>
+                  </div>
+                  <div class="hgl-summary-row total">
+                    <span class="hgl-summary-label">Tổng tiền:</span>
+                    <span class="hgl-summary-value" id="tourTotal">0 đ</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hgl-submit-section">
+                <button type="submit" class="hgl-submit-btn">
+                  <span>Xác nhận Đặt Tour
+                    <svg class="hgl-submit-icon" viewBox="0 0 24 24" aria-hidden="true" style="margin-left: 4px;">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="13 6 19 12 13 18"></polyline>
+                    </svg>
+                  </span>
+                </button>
+                <div class="hgl-trust-badges">
+                  <div class="hgl-trust-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                    Bảo mật
+                  </div>
+                  <div class="hgl-trust-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+                      <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                    </svg>
+                    Xác nhận nhanh
+                  </div>
+                  <div class="hgl-trust-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z">
+                      </path>
+                    </svg>
+                    Hỗ trợ 24/7
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>AnTravel</strong>
+        <p data-i18n="ft_desc">Đông Bắc bụi bặm nhưng hiện đại.</p>
+      </div>
+      <div><strong data-i18n="ft_contact">Liên hệ</strong>
+        <p>Hotline: 0357164502</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/client.js?v=2"></script>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thuê xe máy | VibeEast</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AN</span>
+        <span class="brand-text"><strong>AnTravel</strong><small>Thuê xe phượt</small></span>
+      </a>
+      
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active" data-lang="vi">VN</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false"
+        aria-controls="mainNav"><span></span><span></span><span></span></button>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" data-i18n="nav_home">Trang chủ</a>
+        <a href="about.html" data-i18n="nav_about">Giới thiệu</a>
+        <a href="tours.html" data-i18n="nav_tours">Tour</a>
+        <a href="rental.html" class="active" data-i18n="nav_rental">Thuê xe</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <!-- ========== RENTAL HERO ========== -->
+    <section class="yen-tours-hero">
+      <div class="container">
+        <h1 class="yen-tours-hero-title" data-i18n="rental_pg_title">Thuê Xe Máy</h1>
+        <p class="yen-tours-hero-sub" data-i18n="rental_pg_sub">Chọn bạn đồng hành cho những cung đường đèo</p>
+      </div>
+    </section>
+
+    <!-- ========== RENTAL CONTENT ========== -->
+    <section class="yen-tours-content">
+      <div class="container yen-tours-layout">
+        <!-- SIDEBAR FILTERS -->
+        <aside class="yen-tours-sidebar" id="bikesSidebar">
+          <button class="yen-sidebar-close" id="bikeSidebarClose" aria-label="Đóng bộ lọc">×</button>
+
+          <div class="yen-filter-group">
+            <h3 class="yen-filter-title" data-i18n="filter_cartype">Loại xe</h3>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="bike_type" value="Xe số" /> <span data-i18n="car_num">Xe số</span>
+            </label>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="bike_type" value="Xe côn tay" /> <span data-i18n="car_manual">Xe côn tay</span>
+            </label>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="bike_type" value="Tay ga" /> Xe tay ga
+            </label>
+          </div>
+
+          <button class="yen-clear-filters" id="clearBikeFilters" type="button">Xóa bộ lọc</button>
+        </aside>
+
+        <!-- BIKES GRID -->
+        <div class="yen-tours-main">
+          <!-- Mobile filter toggle -->
+          <button class="yen-filter-toggle" id="bikeFilterToggle" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="16" y2="12"></line>
+              <line x1="4" y1="18" x2="12" y2="18"></line>
+            </svg>
+            <span data-i18n="filter_btn">Bộ lọc</span>
+          </button>
+
+          <div class="yen-tours-grid" id="bikeGrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="bikeBookingModal">
+    <div class="modal-box bike-modal-box">
+      <h2 class="bike-modal-title">Xác nhận đặt xe</h2>
+      <form id="bikeBookingForm" class="bike-booking-form">
+        <div class="bike-form-grid-2">
+          <label class="bike-form-label">Họ tên<input id="bikeName" class="bike-form-input" required></label>
+          <label class="bike-form-label">SĐT<input id="bikePhone" class="bike-form-input" required></label>
+        </div>
+        <div class="bike-form-grid-2">
+          <label class="bike-form-label">Ngày nhận<input id="rentFrom" type="date" class="bike-form-input" required></label>
+          <label class="bike-form-label">Ngày trả<input id="rentTo" type="date" class="bike-form-input" required></label>
+        </div>
+        <label class="bike-form-label">Xe muốn thuê<select id="bikeSelect" class="bike-form-input"></select></label>
+        <label class="bike-form-label">Nơi nhận xe<input id="pickupPlace" class="bike-form-input" placeholder="VD: Bến xe, KS..."></label>
+        
+        <div class="bike-form-total-wrap">
+          <strong>Tổng tiền:</strong>
+          <span class="form-total" id="bikeTotal"></span>
+        </div>
+        
+        <div class="bike-form-actions">
+          <button class="btn btn-secondary bike-btn-cancel" type="button" onclick="document.getElementById('bikeBookingModal').classList.remove('active')">Hủy</button>
+          <button class="btn btn-primary bike-btn-submit" type="submit">Đặt xe ngay</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>AnTravel</strong>
+        <p data-i18n="ft_desc">Đông Bắc bụi bặm nhưng hiện đại.</p>
+      </div>
+      <div><strong data-i18n="ft_contact">Liên hệ</strong>
+        <p>Hotline: 0357164502</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/client.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+const STORAGE_KEY = 'vibeeast_db';
+
+const initialData = {
+  tours: [
+    { id: 'tour-hg-01', title: 'Hà Giang Loop: Chinh Phục Mã Pí Lèng', location: 'Hà Giang', price_base: 3200000, duration: '3 Ngày 2 Đêm', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80', is_featured: true, style: 'Self-ride', itinerary: ['Ngày 1: TP. Hà Giang - Quản Bạ - Yên Minh (100km)', 'Ngày 2: Yên Minh - Đồng Văn - Đèo Mã Pí Lèng - Mèo Vạc (80km)', 'Ngày 3: Mèo Vạc - Sông Nho Quế - TP. Hà Giang (140km)'], gallery: ['https://images.unsplash.com/photo-1549106486-1f819d7a1c33?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1539650116574-75c0c6d7347a?auto=format&fit=crop&w=1200&q=80'] },
+    { id: 'tour-cb-01', title: 'Cao Bằng Bản Giốc: Nơi Biên Cương Kỳ Vĩ', location: 'Cao Bằng', price_base: 2800000, duration: '3 Ngày 2 Đêm', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31qU9EKSVAqmOz-XuKmkvjx4Llq22B5Ino33hXRud0EBn0ZfkQqJ4O4k&s=10', is_featured: true, style: 'Easy Rider', itinerary: ['Ngày 1: TP. Cao Bằng - Đèo Khau Cốc Chà - Bảo Lạc', 'Ngày 2: Bảo Lạc - Trùng Khánh - Thác Bản Giốc', 'Ngày 3: Thác Bản Giốc - Mắt Thần Núi - TP. Cao Bằng'], gallery: ['https://images.unsplash.com/photo-1542304779-1e7c4b3b2f4d?auto=format&fit=crop&w=1200&q=80', 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80', 'https://vstatic.vietnam.vn/vietnam/resource/IMAGE/2025/7/26/c80529321d4b437ab6695e7344e6bf16'] }
+  ],
+  bikes: [
+    { id: 'bike-01', name: 'Honda XR 150cc (Cào Cào)', type: 'Côn tay', price_per_day: 350000, image: 'https://cafefcdn.com/203337114487263232/2026/5/2/hondacuve100-1728877048-3746-1728877135-11zon-1777448657292146252803-0-0-720-1152-crop-17774486603301426784818-1777685495776-1777685502768184833782.jpg', status: 'Sẵn sàng' },
+    { id: 'bike-02', name: 'Honda Wave Alpha 110cc', type: 'Xe số', price_per_day: 150000, image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80', status: 'Đang cho thuê' },
+    { id: 'bike-03', name: 'Yamaha Exciter 155', type: 'Côn tay', price_per_day: 300000, image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80', status: 'Sẵn sàng' }
+  ],
+  bookings_tour: [],
+  bookings_bike: [],
+  booking_logs: [],
+  destinations: [
+    { id: 'dest-01', name: 'Hà Giang', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80', description: 'Điểm đến lý tưởng cho chuyến đi của bạn.' },
+    { id: 'dest-02', name: 'Cao Bằng', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31qU9EKSVAqmOz-XuKmkvjx4Llq22B5Ino33hXRud0EBn0ZfkQqJ4O4k&s=10', description: 'Điểm đến lý tưởng cho chuyến đi của bạn.' }
+  ],
+  customer_gallery: [
+    { id: 1, url: 'https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=1200&q=80', caption: 'Khách chinh phục Đèo Khau Cốc Chà' },
+    { id: 2, url: 'https://images.unsplash.com/photo-1549106486-1f819d7a1c33?auto=format&fit=crop&w=1200&q=80', caption: 'Trên dòng sông Nho Quế' },
+    { id: 3, url: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80', caption: 'Khoảnh khắc bình minh Mã Pí Lèng' }
+  ],
+  settings: {
+    heroVideoUrl: '',
+    heroPosterUrl: ''
+  }
+};
+
+async function loadDBAsync() {
+  if (window.db) return window.db;
+
+  if (window.FirebaseAPI && window.FirebaseAPI.db) {
+    try {
+      const docRef = window.FirebaseAPI.db.collection('system').doc('database');
+      const doc = await docRef.get();
+      const saved = localStorage.getItem(STORAGE_KEY);
+      const localDb = saved ? JSON.parse(saved) : null;
+
+      if (doc.exists) {
+        window.db = { ...initialData, ...doc.data() };
+        
+        // Auto-migration: If local storage has MORE data than Firebase, it means Firebase was just initialized with dummy data, but user has real data locally.
+        if (localDb) {
+          const localCount = (localDb.tours?.length || 0) + (localDb.bikes?.length || 0);
+          const cloudCount = (window.db.tours?.length || 0) + (window.db.bikes?.length || 0);
+          if (localCount > cloudCount) {
+            window.db = { ...initialData, ...localDb };
+            await docRef.set(window.db);
+            console.log("Migrated local data to Firebase");
+          }
+        }
+        
+        ['tours', 'bikes', 'bookings_tour', 'bookings_bike', 'booking_logs', 'destinations', 'customer_gallery'].forEach(k => {
+          if (!Array.isArray(window.db[k])) window.db[k] = initialData[k] || [];
+        });
+        if (!window.db.settings) window.db.settings = initialData.settings;
+      } else {
+        window.db = localDb ? { ...initialData, ...localDb } : structuredClone(initialData);
+        await docRef.set(window.db);
+      }
+    } catch (e) {
+      console.error("Firebase load error, falling back to local:", e);
+      const saved = localStorage.getItem(STORAGE_KEY);
+      window.db = saved ? { ...initialData, ...JSON.parse(saved) } : structuredClone(initialData);
+    }
+  } else {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    window.db = saved ? { ...initialData, ...JSON.parse(saved) } : structuredClone(initialData);
+  }
+  return window.db;
+}
+
+function saveDB(db) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+  
+  if (window.FirebaseAPI && window.FirebaseAPI.db) {
+    window.FirebaseAPI.db.collection('system').doc('database').set(db)
+      .catch(e => console.error("Firebase save error:", e));
+  }
+}
+
+async function sendTelegramNotification(message) {
+  const token = "8798940856:AAEwFHbwZ8Jo5l_Lc638VlzAFLd239dX51c";
+  const chatId = "8266678111";
+  const url = `https://api.telegram.org/bot${token}/sendMessage`;
+  try {
+    await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: "HTML" })
+    });
+  } catch (e) {
+    console.error("Telegram error:", e);
+  }
+}
+
+function downloadJSON(filename, data) {
+  const file = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  const url = URL.createObjectURL(file);
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { document.body.removeChild(a); window.URL.revokeObjectURL(url); }, 0);
+}
+
+window.VibeEast = {
+  loadDBAsync,
+  saveDB,
+  sendTelegramNotification,
+  downloadJSON,
+  loadDB: () => { console.warn("Sync loadDB called, use loadDBAsync"); return window.db || initialData; }
+};

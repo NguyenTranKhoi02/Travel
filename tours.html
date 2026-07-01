@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khám phá Tour | AnTravel - Tour Hà Giang & Cao Bằng</title>
+  <meta name="description" content="Khám phá các tour du lịch Hà Giang, Cao Bằng chất lượng cùng AnTravel. Tự lái, Easy Rider, phượt đèo núi." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/i18n.js"></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AN</span>
+        <span class="brand-text"><strong>AnTravel</strong><small>Tour Hà Giang - Cao Bằng</small></span>
+      </a>
+      
+      <div class="lang-switcher">
+        <a href="#" class="lang-btn active" data-lang="vi">VN</a>
+        <a href="#" class="lang-btn" data-lang="en">EN</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false"
+        aria-controls="mainNav"><span></span><span></span><span></span></button>
+      <nav class="nav" id="mainNav">
+        <a href="index.html" data-i18n="nav_home">Trang chủ</a>
+        <a href="about.html" data-i18n="nav_about">Giới thiệu</a>
+        <a href="tours.html" class="active" data-i18n="nav_tours">Tour</a>
+        <a href="rental.html" data-i18n="nav_rental">Thuê xe</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== TOURS HERO ========== -->
+    <section class="yen-tours-hero">
+      <div class="container">
+        <h1 class="yen-tours-hero-title" data-i18n="tour_pg_title">Khám Phá Tour</h1>
+        <p class="yen-tours-hero-sub" data-i18n="tour_pg_sub">Những hành trình đáng nhớ dành riêng cho bạn</p>
+      </div>
+    </section>
+
+    <!-- ========== TOURS CONTENT ========== -->
+    <section class="yen-tours-content">
+      <div class="container yen-tours-layout">
+        <!-- SIDEBAR FILTERS -->
+        <aside class="yen-tours-sidebar" id="toursSidebar">
+          <button class="yen-sidebar-close" id="sidebarClose" aria-label="Đóng bộ lọc">×</button>
+
+          <div class="yen-filter-group">
+            <h3 class="yen-filter-title" data-i18n="filter_dest">Điểm đến</h3>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="location" value="Hà Giang" /> <span data-i18n="loc_hagiang">Hà Giang</span>
+            </label>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="location" value="Cao Bằng" /> <span data-i18n="loc_caobang">Cao Bằng</span>
+            </label>
+          </div>
+
+          <div class="yen-filter-group">
+            <h3 class="yen-filter-title" data-i18n="filter_type">Loại tour</h3>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="duration" value="2 Ngày" /> <span data-i18n="dur_2d1n">2 Ngày 1 Đêm</span>
+            </label>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="duration" value="3 Ngày" /> <span data-i18n="dur_3d2n">3 Ngày 2 Đêm</span>
+            </label>
+            <label class="yen-filter-item">
+              <input type="checkbox" name="duration" value="4 Ngày" /> <span data-i18n="dur_4d3n">4 Ngày 3 Đêm</span>
+            </label>
+          </div>
+
+          <button class="yen-clear-filters" id="clearFilters" type="button" data-i18n="filter_clear">Xóa bộ lọc</button>
+        </aside>
+
+        <!-- TOURS GRID -->
+        <div class="yen-tours-main">
+          <!-- Mobile filter toggle -->
+          <button class="yen-filter-toggle" id="filterToggle" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="4" y1="12" x2="16" y2="12"></line>
+              <line x1="4" y1="18" x2="12" y2="18"></line>
+            </svg>
+            <span data-i18n="filter_btn">Bộ lọc</span>
+          </button>
+
+          <div class="yen-tours-grid" id="tourGrid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>AnTravel</strong>
+        <p data-i18n="ft_desc">Đông Bắc bụi bặm nhưng hiện đại.</p>
+      </div>
+      <div><strong data-i18n="ft_contact">Liên hệ</strong>
+        <p>Hotline: 0357164502</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/client.js"></script>
+</body>
+
+</html>

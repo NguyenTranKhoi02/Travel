@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | AnTravel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+
+<body>
+  <!-- Login Screen -->
+  <div id="loginScreen"
+    style="position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;color:#fff;background:url('https://hanoistour.com/wp-content/uploads/2024/12/dulichhagiang-3060.jpg') center/cover no-repeat;">
+    <div
+      style="position:absolute;inset:0;background:rgba(15,23,18,0.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);">
+    </div>
+    <div
+      style="position:relative;z-index:2;background:rgba(255,255,255,0.1);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);padding:48px;border-radius:32px;box-shadow:0 24px 48px rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.2);width:100%;max-width:420px;text-align:center;">
+      <div
+        style="width:64px;height:64px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-weight:900;font-size:1.5rem;box-shadow:0 8px 16px rgba(217,119,6,0.4);">
+        AN</div>
+      <h2 style="margin:0 0 8px;font-size:1.8rem;font-weight:800;letter-spacing:-0.5px;">AnTravel Admin</h2>
+      <p style="color:rgba(255,255,255,0.8);margin:0 0 32px;font-size:0.95rem;">Hệ thống quản trị nội bộ</p>
+      <form id="loginForm" style="display:flex;flex-direction:column;gap:16px;">
+        <input type="email" id="loginUser" placeholder="Tên đăng nhập (Email)" required
+          style="padding:16px 20px;border-radius:16px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#fff;outline:none;font-size:1rem;transition:all 0.3s;"
+          onfocus="this.style.background='rgba(0,0,0,0.4)';this.style.borderColor='var(--orange)';"
+          onblur="this.style.background='rgba(0,0,0,0.2)';this.style.borderColor='rgba(255,255,255,0.2)';" />
+        <input type="password" id="loginPass" placeholder="Mật khẩu" required
+          style="padding:16px 20px;border-radius:16px;border:1px solid rgba(255,255,255,0.2);background:rgba(0,0,0,0.2);color:#fff;outline:none;font-size:1rem;transition:all 0.3s;"
+          onfocus="this.style.background='rgba(0,0,0,0.4)';this.style.borderColor='var(--orange)';"
+          onblur="this.style.background='rgba(0,0,0,0.2)';this.style.borderColor='rgba(255,255,255,0.2)';" />
+        <button type="submit" class="btn btn-primary"
+          style="margin-top:8px;width:100%;padding:16px;border-radius:16px;font-size:1rem;">Đăng nhập hệ thống</button>
+      </form>
+      <a href="index.html"
+        style="display:inline-flex;align-items:center;gap:8px;margin-top:28px;color:rgba(255,255,255,0.7);text-decoration:none;font-weight:600;transition:color 0.3s;"
+        onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">&larr; Về trang
+        khách</a>
+    </div>
+  </div>
+
+  <div class="admin-layout" id="adminApp" style="display:none;">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <span class="admin-brand-mark">AN</span>
+        <div>
+          <strong>AnTravel Admin</strong>
+          <small>Quản trị tour & xe máy</small>
+        </div>
+      </div>
+      <nav class="admin-menu">
+        <a href="#" class="admin-menu-item active" data-tab="dashboard">Dashboard</a>
+        <a href="#" class="admin-menu-item" data-tab="products">Quản lý Sản phẩm</a>
+        <a href="#" class="admin-menu-item" data-tab="orders">Quản lý Đơn hàng</a>
+        <a href="#" class="admin-menu-item" data-tab="gallery">Thư viện Ảnh</a>
+        <a href="#" class="admin-menu-item" data-tab="settings">Cài đặt chung</a>
+      </nav>
+      <button class="admin-exit" id="quickExit" type="button">← Về trang Client</button>
+    </aside>
+
+    <main class="admin-content">
+      <div class="admin-topbar">
+        <div>
+          <h1>Trang quản trị</h1>
+          <p>Thêm, sửa, xoá tour/xe và xử lý đơn hàng.</p>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-secondary" id="exportDataBtn" type="button">Xuất JSON</button>
+          <label class="btn btn-secondary file-btn">
+            Nhập JSON
+            <input id="importDataInput" type="file" accept="application/json" hidden />
+          </label>
+          <a class="btn btn-primary" href="index.html">Về Client</a>
+        </div>
+      </div>
+
+      <section id="dashboard" class="admin-tab active">
+        <div class="page-head">
+          <h1>Dashboard</h1>
+          <p>Tổng quan nhanh về hoạt động của AnTravel.</p>
+        </div>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div class="chart-grid">
+          <div class="panel">
+            <h2>Doanh thu theo loại đơn</h2>
+            <div class="chart-bars" id="revenueBars"></div>
+          </div>
+          <div class="panel">
+            <h2>Trạng thái đơn hàng</h2>
+            <div class="chart-bars" id="statusBars"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="products" class="admin-tab">
+        <div class="page-head">
+          <h1>Quản lý Sản phẩm</h1>
+          <p>Danh sách tour và xe máy mẫu.</p>
+        </div>
+        <div class="panel filter-panel">
+          <input id="productSearch" class="admin-search" placeholder="Tìm tour/xe theo tên..." />
+          <div class="filter-actions">
+            <button class="filter-chip active" data-filter="all" type="button">Tất cả</button>
+            <button class="filter-chip" data-filter="tour" type="button">Tour</button>
+            <button class="filter-chip" data-filter="bike" type="button">Xe máy</button>
+            <button class="filter-chip" data-filter="destination" type="button">Điểm đến</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Tour</h2><button class="btn btn-primary" id="addTourBtn" type="button">+ Thêm Tour</button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Tên tour</th>
+                  <th>Tỉnh</th>
+                  <th>Giá gốc</th>
+                  <th>Số ngày</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="tourTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Xe máy</h2><button class="btn btn-primary" id="addBikeBtn" type="button">+ Thêm Xe</button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Tên xe</th>
+                  <th>Loại xe</th>
+                  <th>Giá/ngày</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="bikeTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Điểm đến</h2><button class="btn btn-primary" id="addDestinationBtn" type="button">+ Thêm Điểm đến</button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Tên Tỉnh / Điểm đến</th>
+                  <th>Mô tả</th>
+                  <th>Hình ảnh</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="destinationTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="orders" class="admin-tab">
+        <div class="page-head">
+          <h1>Quản lý Đơn hàng</h1>
+          <p>Đọc dữ liệu đơn hàng từ localStorage và cập nhật trạng thái trực tiếp.</p>
+        </div>
+        <div class="panel filter-panel">
+          <input id="orderSearch" class="admin-search" placeholder="Tìm theo tên khách, tour, xe..." />
+          <div class="filter-actions">
+            <button class="filter-chip active" data-order-filter="all" type="button">Tất cả</button>
+            <button class="filter-chip" data-order-filter="Chờ xác nhận" type="button">Chờ xác nhận</button>
+            <button class="filter-chip" data-order-filter="Đã đặt cọc" type="button">Đã đặt cọc</button>
+            <button class="filter-chip" data-order-filter="Đang đi tour" type="button">Đang đi tour</button>
+            <button class="filter-chip" data-order-filter="Đã hoàn thành" type="button">Đã hoàn thành</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Loại</th>
+                  <th>Khách hàng</th>
+                  <th>Sản phẩm</th>
+                  <th>Ngày đi / Nhận xe</th>
+                  <th>Tổng tiền</th>
+                  <th>Trạng thái</th>
+                  <th>Chi tiết</th>
+                </tr>
+              </thead>
+              <tbody id="orderTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="admin-tab">
+        <div class="page-head">
+          <h1>Thư viện Ảnh</h1>
+          <p>Quản lý hình ảnh khách hàng được hiển thị trên trang Giới thiệu.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Danh sách Ảnh</h2><button class="btn btn-primary" id="addPhotoBtn" type="button">+ Thêm Ảnh Mới</button>
+          </div>
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Hình ảnh</th>
+                  <th>Mô tả (Caption)</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="galleryTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings" class="admin-tab">
+        <div class="page-head">
+          <h1>Cài đặt chung</h1>
+          <p>Cấu hình các thành phần giao diện trên trang web.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Ảnh Nền Trang Chủ</h2>
+          </div>
+          <form id="settingsVideoForm" style="display:flex;flex-direction:column;gap:16px;">
+            <div>
+              <label style="display:block;margin-bottom:8px;font-weight:600;">Đường dẫn Ảnh nền (Hero Image)</label>
+              <div style="display:flex;gap:8px;">
+                <input id="setHeroPoster" readonly style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;" placeholder="Ảnh thu nhỏ chỉ được lấy từ chức năng tải lên..." />
+                <input type="file" id="setHeroPosterUpload" accept="image/*" style="display:none" />
+                <button type="button" class="btn" onclick="document.getElementById('setHeroPosterUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+              </div>
+            </div>
+            <div>
+              <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="productModal">
+    <div class="modal-box">
+      <h2 id="modalTitle">Thêm sản phẩm</h2>
+      <form id="productForm" class="grid-2">
+        <input id="pfTitle" placeholder="Tên" required />
+        <input id="pfMeta1" placeholder="Loại xe" />
+        <select id="pfTourLocation" style="display:none"></select>
+        <input id="pfMeta2" placeholder="Số ngày / Trạng thái" required />
+        <input id="pfPriceBase" placeholder="Giá Tour Cơ bản (VND / Khách)" type="text" required />
+        <input id="pfSurchargeMotorbike" placeholder="Giá Xe máy (VND / Khách)" type="text" />
+        <input id="pfDiscountSelfDrive" placeholder="Giảm giá nếu Tự lái (VND / Khách)" type="text" />
+        <input id="pfSurcharge7Seat" placeholder="Giá NGUYÊN Ô tô 7 chỗ (VND / Chuyến)" type="text" />
+        <input id="pfSurchargeJeep" placeholder="Giá NGUYÊN Xe Jeep (VND / Chuyến)" type="text" />
+        <div class="full" style="display:flex;gap:8px;">
+          <input id="pfImage" style="flex:1;background:#f8fafc;" placeholder="Ảnh URL chỉ được lấy từ chức năng tải lên..." readonly required />
+          <input type="file" id="pfImageUpload" style="display:none" accept="image/*" />
+          <button type="button" class="btn" onclick="document.getElementById('pfImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+        </div>
+        <div class="full" id="itineraryBuilderWrap" style="display:none; flex-direction:column; gap:12px; margin-top:8px;">
+          <label style="font-weight:600;">Lịch trình chi tiết (Mỗi ô tương ứng 1 ngày)</label>
+          <div id="itineraryBuilder" style="display:flex;flex-direction:column;gap:8px;"></div>
+          <button type="button" class="btn" id="addItineraryDayBtn" style="align-self:flex-start;padding:8px 16px;background:#e2e8f0;border-radius:8px;">+ Thêm ngày</button>
+        </div>
+        <label class="full" id="pfFeaturedWrap" style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" id="pfFeatured" /> <strong>Tour Nổi bật (Hiển thị trang chủ)</strong>
+        </label>
+        <div class="modal-actions"><button class="btn btn-primary" type="submit">Lưu</button><button class="btn"
+            type="button" id="closeModal">Đóng</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="photoModal">
+    <div class="modal-box" style="max-width:500px">
+      <h2>Thêm Ảnh Mới</h2>
+      <form id="photoForm" style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:8px;">
+          <input id="phUrl" placeholder="Ảnh chỉ được lấy từ chức năng tải lên..." required readonly
+            style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;" />
+          <input type="file" id="phImageUpload" accept="image/*" style="display:none" />
+          <button type="button" class="btn" onclick="document.getElementById('phImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+        </div>
+        <input id="phCaption" placeholder="Mô tả ảnh (Ví dụ: Khách đi Mã Pí Lèng)" required
+          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;" />
+        <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;">
+          <button class="btn btn-primary" type="submit">Lưu Ảnh</button>
+          <button class="btn btn-secondary" type="button" id="closePhotoModal">Đóng</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="orderDetailModal">
+    <div class="modal-box">
+      <div class="panel-head">
+        <h2>Chi tiết đơn hàng</h2><button class="btn" id="closeOrderDetail" type="button">Đóng</button>
+      </div>
+      <div id="orderDetailBody"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><strong>AnTravel</strong>
+        <p>Đông Bắc bụi bặm nhưng hiện đại.</p>
+      </div>
+      <div><strong>Liên hệ</strong>
+        <p>Hotline: 0357164502</p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+
+</html>
