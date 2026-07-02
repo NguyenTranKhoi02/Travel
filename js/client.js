@@ -76,8 +76,8 @@
     const provinceGrid = qs('#provinceGrid');
     if (provinceGrid) {
       const tourCounts = {};
-      db.tours.forEach(t => {
-        tourCounts[t.location] = (tourCounts[t.location] || 0) + 1;
+      db.tours.forEach(tour => {
+        tourCounts[tour.location] = (tourCounts[tour.location] || 0) + 1;
       });
 
       provinceGrid.innerHTML = (db.destinations || []).map(dest => {
@@ -85,7 +85,7 @@
         return `
       <a class="swiper-slide province-card" href="tours.html?location=${encodeURIComponent(dest.name)}">
         <img src="${dest.image}" alt="${dest.name}" />
-        <div class="card-overlay"><span class="badge">${count} tour đang có</span><h3>${dest.name}</h3><p>${dest.description}</p></div>
+        <div class="card-overlay"><span class="badge">${count} ${t('js_tours_available')}</span><h3>${dest.name}</h3><p>${dest.description}</p></div>
       </a>`;
       }).join('');
 
@@ -110,27 +110,27 @@
 
     const featuredTours = qs('#featuredTours');
     if (featuredTours) {
-      let fList = db.tours.filter(t => t.is_featured);
+      let fList = db.tours.filter(tour => tour.is_featured);
       if (fList.length === 0) fList = db.tours.slice(0, 6);
-      featuredTours.innerHTML = fList.map(t => {
-        const booked = getBookedCount(t.id);
+      featuredTours.innerHTML = fList.map(tour => {
+        const booked = getBookedCount(tour.id);
         return `
       <article class="yen-tour-card">
         <div class="yen-tour-card-img-wrap">
-          <img class="yen-tour-card-img" src="${t.image}" alt="${t.title}" loading="lazy" />
-          <span class="yen-tour-card-badge">${t.style || 'Tour Hot'}</span>
+          <img class="yen-tour-card-img" src="${tour.image}" alt="${tour.title}" loading="lazy" />
+          <span class="yen-tour-card-badge">${tour.style || t('js_tour_style_default')}</span>
         </div>
         <div class="yen-tour-card-body">
-          <h3 class="yen-tour-card-title">${t.title}</h3>
+          <h3 class="yen-tour-card-title">${tour.title}</h3>
           <div class="yen-tour-card-meta">
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${t.location}</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${tour.location}</span>
             <span>•</span>
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${t.duration}</span>
-            ${booked > 0 ? `<span>• <strong style="color:var(--orange)">🔥 ${booked} người đã đi</strong></span>` : ''}
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${tour.duration}</span>
+            ${booked > 0 ? `<span>• <strong style="color:var(--orange)">🔥 ${booked} ${t('js_people_joined')}</strong></span>` : ''}
           </div>
           <div class="yen-tour-card-footer">
-            <span class="yen-tour-card-price">${money(t.price_base)}</span>
-            <a class="yen-tour-card-btn" href="tour-detail.html?id=${t.id}">ĐẶT NGAY</a>
+            <span class="yen-tour-card-price">${money(tour.price_base)}</span>
+            <a class="yen-tour-card-btn" href="tour-detail.html?id=${tour.id}">${t('js_book_now')}</a>
           </div>
         </div>
       </article>`;
@@ -156,7 +156,7 @@
             ${engineCC ? `<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> ${engineCC} Engine</span>` : ''}
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg> ${b.type}</span>
           </div>
-          <div class="yen-bike-card-price">${money(b.price_per_day)} <small>/ ngày</small></div>
+          <div class="yen-bike-card-price">${money(b.price_per_day)} <small>${t('js_per_day')}</small></div>
         </div>
       </article>`;
       }).join('');
@@ -184,34 +184,34 @@
     const render = () => {
       const locations = qsa('input[name="location"]:checked').map(i => i.value);
       const durations = qsa('input[name="duration"]:checked').map(i => i.value);
-      const filtered = db.tours.filter(t =>
-        (!locations.length || locations.some(l => (t.location || '').toLowerCase().includes(l.toLowerCase()))) &&
+      const filtered = db.tours.filter(tour =>
+        (!locations.length || locations.some(l => (tour.location || '').toLowerCase().includes(l.toLowerCase()))) &&
         (!durations.length || durations.some(d => {
           const dNum = d.match(/\d+/)?.[0];
-          const tNum = (t.duration || '').match(/\d+/)?.[0];
+          const tNum = (tour.duration || '').match(/\d+/)?.[0];
           return dNum && tNum && dNum === tNum;
         }))
       );
-      grid.innerHTML = filtered.map(t => {
-        const booked = getBookedCount(t.id);
+      grid.innerHTML = filtered.map(tour => {
+        const booked = getBookedCount(tour.id);
         return `
       <article class="yen-tour-card">
         <div class="yen-tour-card-img-wrap">
-          <img class="yen-tour-card-img" src="${t.image}" alt="${t.title}" loading="lazy" />
-          <span class="yen-tour-card-price-badge">${money(t.price_base)}</span>
+          <img class="yen-tour-card-img" src="${tour.image}" alt="${tour.title}" loading="lazy" />
+          <span class="yen-tour-card-price-badge">${money(tour.price_base)}</span>
         </div>
         <div class="yen-tour-card-body">
-          <h3 class="yen-tour-card-title">${t.title}</h3>
+          <h3 class="yen-tour-card-title">${tour.title}</h3>
           <div class="yen-tour-card-meta">
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${t.duration}</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${tour.duration}</span>
             <span>•</span>
-            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${t.location}</span>
+            <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${tour.location}</span>
             ${booked > 0 ? `<span>• <strong style="color:var(--orange)">🔥 ${booked}</strong></span>` : ''}
           </div>
-          <a class="yen-tour-card-book" href="tour-detail.html?id=${t.id}">ĐẶT NGAY</a>
+          <a class="yen-tour-card-book" href="tour-detail.html?id=${tour.id}">${t('js_book_now')}</a>
         </div>
       </article>`;
-      }).join('') || '<p class="yen-no-result">Không có tour phù hợp bộ lọc.</p>';
+      }).join('') || `<p class="yen-no-result">${t('js_no_tour')}</p>`;
     };
 
     [...locationFilters, ...qsa('input[name="duration"]')].forEach(el => el.addEventListener('input', render));
@@ -245,7 +245,7 @@
     if (form) {
       const tourSelect = qs('#tourSelect');
       if (tourSelect) {
-        tourSelect.innerHTML = db.tours.map(t => `<option value="${t.id}" ${t.id === tour.id ? 'selected' : ''}>${t.title}</option>`).join('');
+        tourSelect.innerHTML = db.tours.map(item => `<option value="${item.id}" ${item.id === tour.id ? 'selected' : ''}>${item.title}</option>`).join('');
         tourSelect.addEventListener('change', (e) => {
           tour = db.tours.find(t => t.id === e.target.value) || db.tours[0];
           updateTotalPrice();
@@ -346,7 +346,7 @@
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = form.querySelector('button[type="submit"]');
-        btn.textContent = 'Đang xử lý...'; btn.disabled = true;
+        btn.textContent = t('js_processing'); btn.disabled = true;
 
         const prices = updateTotalPrice();
         const orderData = {
@@ -405,9 +405,9 @@
     mount.innerHTML = `
     <div class="panel detail-pan">
       <div class="slider" id="tourSlider">${(() => { let imgs = tour.gallery && tour.gallery.length ? [...tour.gallery] : []; if (!imgs.includes(tour.image)) imgs.unshift(tour.image); if (imgs.length === 0) imgs = [tour.image]; return imgs.map((img, idx) => `<img src="${img}" class="${idx === 0 ? 'active' : ''}" alt="${tour.title}">`).join(''); })()}</div>
-      <div class="slider-controls"><span>${tour.location} • ${tour.duration} ${booked > 0 ? `• <strong style="color:var(--orange)">🔥 ${booked} người đã tham gia</strong>` : ''}</span><strong>${money(tour.price_base)}</strong></div>
-      <h2>${tour.title}</h2><p class="muted">${tour.style || 'Tour Hot'} • Lộ trình đèo núi dành cho người mê trải nghiệm.</p>
-      <div style="margin-top: 24px;"><h3>Lịch trình tương tác</h3><div id="itineraryList" class="yen-itinerary-list"></div></div>
+      <div class="slider-controls"><span>${tour.location} • ${tour.duration} ${booked > 0 ? `• <strong style="color:var(--orange)">🔥 ${booked} ${t('js_people_participated')}</strong>` : ''}</span><strong>${money(tour.price_base)}</strong></div>
+      <h2>${tour.title}</h2><p class="muted">${tour.style || t('js_tour_style_default')} • ${t('js_route_desc')}</p>
+      <div style="margin-top: 24px;"><h3>${t('js_itinerary_title')}</h3><div id="itineraryList" class="yen-itinerary-list"></div></div>
     </div>`;
 
     const sliderImgs = qsa('#tourSlider img', mount);
@@ -429,7 +429,7 @@
               <span>${idx + 1}</span>
             </div>
             <div class="yen-itinerary-title-wrap">
-              <h3 class="yen-itinerary-title">Ngày ${idx + 1}</h3>
+              <h3 class="yen-itinerary-title">${t('js_day')} ${idx + 1}</h3>
               <p class="yen-itinerary-subtitle">Day ${idx + 1}</p>
             </div>
           </div>
@@ -481,10 +481,10 @@
             <span>•</span>
             <span class="${statusClass}">${b.status}</span>
           </div>
-          <button class="yen-tour-card-book book-bike-btn bike-book-btn" data-id="${b.id}">ĐẶT XE</button>
+          <button class="yen-tour-card-book book-bike-btn bike-book-btn" data-id="${b.id}">${t('js_book_bike')}</button>
         </div>
       </article>`;
-      }).join('') || '<p class="yen-no-result">Không có xe phù hợp bộ lọc.</p>';
+      }).join('') || `<p class="yen-no-result">${t('js_no_bike')}</p>`;
 
       // Bind book buttons
       qsa('.book-bike-btn', grid).forEach(btn => btn.addEventListener('click', () => {
@@ -526,7 +526,7 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
-      btn.textContent = 'Đang xử lý...'; btn.disabled = true;
+      btn.textContent = t('js_processing'); btn.disabled = true;
 
       const { bike, days, total } = calc();
       const orderData = { id: Date.now(), bikeId: bike.id, name: qs('#bikeName').value, phone: qs('#bikePhone').value, from: qs('#rentFrom').value, to: qs('#rentTo').value, pickup: qs('#pickupPlace').value, days, total, status: 'Chờ xác nhận' };
@@ -572,9 +572,9 @@
     popup.innerHTML = `
     <div class="modal-box" style="max-width: 400px; text-align: center; padding: 40px 24px;">
       <div style="width: 64px; height: 64px; background: #dcfce7; color: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px;">✓</div>
-      <h2 style="margin-bottom: 12px; font-size: 1.5rem;">Đặt thành công!</h2>
-      <p class="muted" style="margin-bottom: 24px;">Cảm ơn bạn đã tin tưởng VibeEast. Đội ngũ của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận.</p>
-      <button class="btn btn-primary" style="width: 100%" onclick="this.closest('.modal').remove(); history.replaceState(null, '', location.pathname);">Đóng</button>
+      <h2 style="margin-bottom: 12px; font-size: 1.5rem;">${t('js_success_title')}</h2>
+      <p class="muted" style="margin-bottom: 24px;">${t('js_success_msg')}</p>
+      <button class="btn btn-primary" style="width: 100%" onclick="this.closest('.modal').remove(); history.replaceState(null, '', location.pathname);">${t('js_close')}</button>
     </div>
   `;
     document.body.appendChild(popup);

@@ -19,11 +19,11 @@
     <div class="nav-wrap">
       <a class="brand" href="index.html">
         <span class="brand-mark">AN</span>
-        <span class="brand-text"><strong>AnTravel</strong><small>Thuê xe phượt</small></span>
+        <span class="brand-text"><strong>AnTravel</strong><small data-i18n="brand_rental">Thuê xe phượt</small></span>
       </a>
       
       <div class="lang-switcher">
-        <a href="#" class="lang-btn active" data-lang="vi">VN</a>
+        <a href="#" class="lang-btn" data-lang="vi">VN</a>
         <a href="#" class="lang-btn" data-lang="en">EN</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false"
@@ -62,11 +62,11 @@
               <input type="checkbox" name="bike_type" value="Xe côn tay" /> <span data-i18n="car_manual">Xe côn tay</span>
             </label>
             <label class="yen-filter-item">
-              <input type="checkbox" name="bike_type" value="Tay ga" /> Xe tay ga
+              <input type="checkbox" name="bike_type" value="Tay ga" /> <span data-i18n="car_scooter">Xe tay ga</span>
             </label>
           </div>
 
-          <button class="yen-clear-filters" id="clearBikeFilters" type="button">Xóa bộ lọc</button>
+          <button class="yen-clear-filters" id="clearBikeFilters" type="button" data-i18n="filter_clear">Xóa bộ lọc</button>
         </aside>
 
         <!-- BIKES GRID -->
@@ -89,27 +89,27 @@
 
   <div class="modal" id="bikeBookingModal">
     <div class="modal-box bike-modal-box">
-      <h2 class="bike-modal-title">Xác nhận đặt xe</h2>
+      <h2 class="bike-modal-title" data-i18n="modal_rental_title">Xác nhận đặt xe</h2>
       <form id="bikeBookingForm" class="bike-booking-form">
         <div class="bike-form-grid-2">
-          <label class="bike-form-label">Họ tên<input id="bikeName" class="bike-form-input" required></label>
-          <label class="bike-form-label">SĐT<input id="bikePhone" class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_name">Họ tên</span><input id="bikeName" class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_phone">SĐT</span><input id="bikePhone" class="bike-form-input" required></label>
         </div>
         <div class="bike-form-grid-2">
-          <label class="bike-form-label">Ngày nhận<input id="rentFrom" type="date" class="bike-form-input" required></label>
-          <label class="bike-form-label">Ngày trả<input id="rentTo" type="date" class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_pickup_date">Ngày nhận</span><input id="rentFrom" type="date" class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_drop_date">Ngày trả</span><input id="rentTo" type="date" class="bike-form-input" required></label>
         </div>
-        <label class="bike-form-label">Xe muốn thuê<select id="bikeSelect" class="bike-form-input"></select></label>
-        <label class="bike-form-label">Nơi nhận xe<input id="pickupPlace" class="bike-form-input" placeholder="VD: Bến xe, KS..."></label>
+        <label class="bike-form-label"><span data-i18n="modal_car">Xe muốn thuê</span><select id="bikeSelect" class="bike-form-input"></select></label>
+        <label class="bike-form-label"><span data-i18n="modal_pickup_loc">Nơi nhận xe</span><input id="pickupPlace" class="bike-form-input" placeholder="VD: Bến xe, KS..." data-i18n-placeholder="modal_pickup_loc_placeholder"></label>
         
         <div class="bike-form-total-wrap">
-          <strong>Tổng tiền:</strong>
+          <strong data-i18n="modal_total">Tổng tiền:</strong>
           <span class="form-total" id="bikeTotal"></span>
         </div>
         
         <div class="bike-form-actions">
-          <button class="btn btn-secondary bike-btn-cancel" type="button" onclick="document.getElementById('bikeBookingModal').classList.remove('active')">Hủy</button>
-          <button class="btn btn-primary bike-btn-submit" type="submit">Đặt xe ngay</button>
+          <button class="btn btn-secondary bike-btn-cancel" type="button" onclick="document.getElementById('bikeBookingModal').classList.remove('active')" data-i18n="modal_cancel">Hủy</button>
+          <button class="btn btn-primary bike-btn-submit" type="submit" data-i18n="modal_confirm">Đặt xe ngay</button>
         </div>
       </form>
     </div>

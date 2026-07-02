@@ -5,7 +5,14 @@ const translations = {
     nav_about: "Giới thiệu",
     nav_tours: "Tour",
     nav_rental: "Thuê xe",
-    
+
+    // Brand subtitles
+    brand_slogan: "Đông Bắc bụi, chất, thật",
+    brand_about: "Giới thiệu",
+    brand_tours: "Tour Hà Giang - Cao Bằng",
+    brand_rental: "Thuê xe phượt",
+    brand_detail: "Chi tiết tour",
+
     // Hero
     hero_title: "TOUR VÒNG QUANH HÀ GIANG BẰNG<br/>XE MÁY, JEEP &<br/><span class='text-orange'>EASY RIDER</span>",
     hero_desc: "Chuyến phiêu lưu 2 đến 6 ngày từ TP Hà Giang. Hướng dẫn viên bản địa, nhóm nhỏ, khởi hành hàng ngày quanh năm.",
@@ -14,8 +21,6 @@ const translations = {
     // Booking Form
     sec_booking_heading: "Đặt Tour Hà Giang Của Bạn",
     sec_booking_highlight: "Khám Phá Ngay",
-    sec_booking_heading: "Book Your Ha Giang Loop Tours",
-    sec_booking_highlight: "Adventure Now",
     form_title: "Đặt tour vòng quanh Hà Giang ngay hôm nay!",
     form_subtitle: "Những cuộc phiêu lưu đang chờ đón bạn ở vùng núi phía Bắc Việt Nam.",
     form_sec_details: "Chi tiết Tour",
@@ -24,6 +29,7 @@ const translations = {
     form_veh_moto: "Xe máy",
     form_veh_jeep: "Xe Jeep",
     form_veh_car: "Ô tô 7 chỗ",
+    form_veh_note: "(Lưu ý: Bạn sẽ tiết kiệm được nhiều chi phí hơn khi đi từ 2 người trở lên do được chia sẻ chung tiền xe)",
     form_exp_label: "Kinh nghiệm",
     form_exp_easy: "Người lái xe dễ dàng",
     form_exp_self: "Tự lái",
@@ -34,23 +40,32 @@ const translations = {
     form_bus_sec: "Dịch vụ xe Bus",
     form_bus_pickup: "Bus chiều đi",
     form_bus_return: "Bus chiều về",
+    form_bus_choose_pickup: "-- Chọn điểm đi --",
+    form_bus_choose_return: "-- Chọn điểm về --",
+    form_bus_hanoi: "Hà Nội (Phố Cổ) - 350.000đ",
+    form_bus_noibai: "Sân bay Nội Bài - 400.000đ",
+    form_bus_sapa: "Sapa - 450.000đ",
+    form_bus_self: "Tôi tự di chuyển",
     form_info_sec: "Thông tin của bạn",
-    form_info_name: "Họ tên *",
-    form_info_people: "Số người *",
-    form_info_phone: "SĐT / Zalo *",
-    form_info_date: "Ngày đi *",
+    form_info_name: "Họ tên",
+    form_info_people: "Số lượng người",
+    form_info_phone: "SĐT / Zalo",
+    form_info_date: "Ngày khởi hành",
     form_info_req: "Yêu cầu đặc biệt",
+    form_info_req_placeholder: "Bạn có yêu cầu ăn chay, giờ giấc đón xe, hay có lưu ý gì thêm không?",
     form_sum_sec: "Tóm tắt đặt tour",
     form_sum_tour: "Giá Tour:",
     form_sum_discount: "Giảm giá:",
     form_sum_vehicle: "Phụ thu xe:",
     form_sum_acc: "Nâng cấp phòng:",
-    form_sum_pickup: "Bus đi:",
-    form_sum_return: "Bus về:",
+    form_sum_pickup: "Bus chiều đi:",
+    form_sum_return: "Bus chiều về:",
     form_sum_total: "Tổng tiền:",
     form_btn_submit: "Xác nhận Đặt Tour",
+    form_badge_secure: "Bảo mật",
+    form_badge_fast: "Xác nhận nhanh",
+    form_badge_support: "Hỗ trợ 24/7",
 
-    
     // Tours page
     tour_pg_title: "Khám Phá Tour",
     tour_pg_sub: "Những hành trình đáng nhớ dành riêng cho bạn",
@@ -64,7 +79,7 @@ const translations = {
     filter_clear: "Xóa bộ lọc",
     filter_btn: "Bộ lọc",
     ft_contact: "Liên hệ",
-    
+
     // Rental page
     rental_pg_title: "Thuê Xe Máy",
     rental_pg_sub: "Chọn bạn đồng hành cho những cung đường đèo",
@@ -72,21 +87,22 @@ const translations = {
     car_num: "Xe số",
     car_scooter: "Xe tay ga",
     car_manual: "Xe côn tay",
-    modal_rental_title: "Thuê xe phượt",
+    modal_rental_title: "Xác nhận đặt xe",
     modal_name: "Họ tên",
     modal_phone: "SĐT",
     modal_car: "Xe muốn thuê",
     modal_pickup_date: "Ngày nhận",
     modal_drop_date: "Ngày trả",
     modal_pickup_loc: "Nơi nhận xe",
+    modal_pickup_loc_placeholder: "VD: Bến xe, KS...",
     modal_total: "Tổng tiền:",
     modal_cancel: "Hủy",
-    modal_confirm: "Xác nhận đặt xe",
+    modal_confirm: "Đặt xe ngay",
 
-    
+
     // About Services
     about_svc_title: "Dịch vụ của chúng tôi",
-    about_svc_t1: "Adventure & Cultural Tours",
+    about_svc_t1: "Tour Phiêu Lưu & Văn Hóa",
     about_svc_d1: "Sự kết hợp độc đáo giữa du lịch mạo hiểm và hòa mình vào văn hóa vùng Hà Giang và Cao Bằng",
     about_svc_t2: "Tour theo nhóm & Riêng tư",
     about_svc_d2: "Trải nghiệm được thiết kế riêng cho người đi du lịch một mình, các cặp đôi, gia đình và nhóm nhỏ",
@@ -120,13 +136,17 @@ const translations = {
     dest_cb_6: "Làng rèn Phúc Sen",
     dest_cb_7: "Làng hương Phia Thắp",
 
-    // About page
+    // About page hero
     about_pg_title: "Giới thiệu",
     about_pg_sub: "Hành trình không khoảng cách",
+    about_hero_eyebrow: "Hành trình không khoảng cách",
+    about_hero_h1: "Đông Bắc Bộ<br /><span class='text-orange'>Nơi Đá Nở Hoa</span>",
+    about_hero_sapo: "Đến với Hà Giang và Cao Bằng, bạn không chỉ đang tham gia một chuyến đi, mà là đang dấn thân vào một cuộc phiêu lưu qua những cung đường đèo hiểm trở và hùng vĩ nhất Việt Nam. Tại <strong>AnTravel</strong>, chúng tôi tin rằng mỗi khúc cua Mã Pí Lèng, mỗi bọt nước tung trắng xóa tại Thác Bản Giốc đều mang trong mình một câu chuyện.",
     about_pg_desc: "Đến với Hà Giang và Cao Bằng, bạn không chỉ đang tham gia một chuyến đi, mà là đang dấn thân vào một cuộc phiêu lưu qua những cung đường đèo hiểm trở và hùng vĩ nhất Việt Nam. Tại <strong>Đông Bắc Bộ</strong>, chúng tôi tin rằng mỗi khúc cua Mã Pí Lèng, mỗi bọt nước tung trắng xóa tại Thác Bản Giốc đều mang trong mình một câu chuyện.",
-    
+
     // Tour detail page
     tour_detail_title: "Chi tiết tour",
+    detail_hero_label: "Ha Giang Travel",
 
     // Home Sections
     sec_about_title: "Về AnTravel",
@@ -134,19 +154,18 @@ const translations = {
     sec_about_desc1: "AnTravel được thành lập bởi những người yêu thiên nhiên và đam mê khám phá vùng cao Đông Bắc. Chúng tôi chuyên tổ chức tour phượt Hà Giang, Cao Bằng với phong cách trải nghiệm chân thực — từ tự lái xe máy chinh phục đèo Mã Pí Lèng đến Easy Rider cùng tài xế bản địa am hiểu từng khúc cua.",
     sec_about_desc2: "Mỗi chuyến đi không chỉ là ngắm cảnh, mà là cơ hội hòa mình vào văn hóa, ẩm thực và cuộc sống của đồng bào vùng cao. AnTravel cam kết mang đến trải nghiệm an toàn, chất lượng và đầy cảm hứng.",
     sec_about_btn: "Tìm hiểu thêm →",
-    
+
     sec_tours_title: "Tour Nổi Bật",
     sec_tours_sub: "Khám phá những hành trình được yêu thích nhất",
     sec_tours_btn: "Xem tất cả tour",
-    
+
     sec_dest_title: "Khám phá theo điểm đến",
-    
+
     sec_bike_title: "Thuê Xe Máy",
     sec_bike_sub: "Xe chất lượng, sẵn sàng cho mọi cung đèo",
     sec_bike_btn: "Xem tất cả xe",
 
-    
-    // Extra Sections
+    // Extra Sections - Travel With AnTravel
     sec_travel_title: "Đồng Hành Cùng AnTravel",
     sec_travel_sub: "Trải nghiệm chân thực, an toàn và có trách nhiệm",
     sec_travel_desc: "Chúng tôi không chỉ tổ chức tour — chúng tôi mang đến những hành trình có ý nghĩa. AnTravel cam kết du lịch bền vững, hỗ trợ cộng đồng địa phương và bảo vệ môi trường vùng cao Đông Bắc cho thế hệ tương lai.",
@@ -156,39 +175,52 @@ const translations = {
     sec_travel_v2_desc: "Xe bảo dưỡng kỹ, giáp bảo hộ đầy đủ, cứu hộ 24/7",
     sec_travel_v3_title: "Hỗ trợ cộng đồng",
     sec_travel_v3_desc: "Một phần doanh thu hỗ trợ giáo dục trẻ em vùng cao",
-    
+
+    // FAQ
     sec_faq_title: "Câu Hỏi Thường Gặp",
     sec_faq_q1: "AnTravel có gì khác biệt so với các đơn vị tour khác?",
     sec_faq_a1: "AnTravel tập trung vào trải nghiệm chân thực — bạn sẽ đi cùng tài xế bản địa am hiểu từng con đèo, ở homestay với người dân, ăn những món ăn địa phương thật sự. Chúng tôi không chạy tour đại trà mà thiết kế hành trình phù hợp với từng nhóm khách.",
-    
-    sec_gallery_title: "Khoảnh Khắc Đẹp",
-    sec_gallery_sub: "Những hành trình khó quên cùng AnTravel",
+    sec_faq_q2: "Tôi chưa biết đi xe máy, có tham gia tour được không?",
+    sec_faq_a2: "Hoàn toàn được! Chúng tôi có dịch vụ Easy Rider — tài xế bản địa kinh nghiệm sẽ chở bạn trên toàn bộ hành trình. Bạn chỉ cần ngồi sau và tận hưởng cảnh đẹp.",
+    sec_faq_q3: "Thuê xe máy tại AnTravel có an toàn không?",
+    sec_faq_a3: "Tất cả xe của AnTravel đều được bảo dưỡng kỹ trước mỗi chuyến đi. Chúng tôi tặng kèm giáp bảo hộ, mũ 3/4 chất lượng cao và gói cứu hộ đèo dốc 24/7. Nếu xe gặp sự cố, đội ngũ kỹ thuật sẽ có mặt trong thời gian nhanh nhất.",
+    sec_faq_q4: "Tôi cần chuẩn bị gì khi đi Hà Giang?",
+    sec_faq_a4: "Bạn cần mang theo: CMND/CCCD, bằng lái xe (nếu tự lái), quần áo giữ ấm (vùng cao lạnh hơn), kem chống nắng, thuốc cá nhân. Phần còn lại — từ xe, mũ, giáp, bản đồ — AnTravel lo hết!",
+    sec_faq_q5: "Làm thế nào để đặt tour hoặc thuê xe?",
+    sec_faq_a5: "Bạn có thể đặt trực tiếp trên website — chọn tour hoặc xe, điền thông tin và bấm đặt. Đội ngũ AnTravel sẽ liên hệ xác nhận trong vòng 1 giờ. Hoặc gọi hotline 0357164502 để được tư vấn ngay.",
+    sec_faq_q6: "Thời điểm nào đẹp nhất để đi Hà Giang và Cao Bằng?",
+    sec_faq_a6: "Hà Giang đẹp nhất vào tháng 9-11 (mùa lúa chín + hoa tam giác mạch) và tháng 2-4 (hoa đào, hoa mận). Cao Bằng với Thác Bản Giốc đẹp nhất từ tháng 5-9 khi nước nhiều. Tuy nhiên, mỗi mùa đều có vẻ đẹp riêng!",
 
-    
-    // Extra Sections
-    sec_travel_title: "Travel With AnTravel",
-    sec_travel_sub: "Authentic, safe and responsible experience",
-    sec_travel_desc: "We don't just organize tours — we deliver meaningful journeys. AnTravel is committed to sustainable tourism, supporting local communities and protecting the Northeast environment for future generations.",
-    sec_travel_v1_title: "Authentic Experience",
-    sec_travel_v1_desc: "Unique routes, local drivers, staying and eating with highland locals",
-    sec_travel_v2_title: "Absolute Safety",
-    sec_travel_v2_desc: "Well-maintained bikes, full protective gear, 24/7 rescue",
-    sec_travel_v3_title: "Community Support",
-    sec_travel_v3_desc: "A portion of revenue supports education for highland children",
-    
-    sec_faq_title: "Frequently Asked Questions",
-    sec_faq_q1: "What makes AnTravel different from other tour operators?",
-    sec_faq_a1: "AnTravel focuses on authentic experiences — you will travel with local drivers who know every pass, stay in homestays with locals, and eat truly local food. We don't run mass tours but design itineraries suited for each group.",
-    
-    sec_gallery_title: "Customer Gallery",
-    sec_gallery_sub: "Unforgettable journeys with AnTravel",
+    // Gallery
+    sec_gallery_eyebrow: "AnTravel x Khách Hàng",
+    sec_gallery_title: "Lưu giữ thanh xuân",
+    sec_gallery_desc: "Những khoảnh khắc chân thực nhất của các \"phượt thủ\" trên cung đường Đông Bắc. Hãy để chúng tôi đồng hành cùng bạn.",
 
     // Footer
-    ft_desc: "AnTravel - Đông Bắc bụi, chất, thật",
+    ft_desc: "Đông Bắc bụi bặm nhưng hiện đại.",
     ft_sub_title: "Đăng ký nhận tin",
     ft_sub_btn: "Đăng ký",
     ft_links: "Liên kết",
-    ft_admin: "Đăng nhập Admin"
+    ft_admin: "Đăng nhập Admin",
+
+    // JS dynamic content
+    js_book_now: "ĐẶT NGAY",
+    js_book_bike: "ĐẶT XE",
+    js_tours_available: "tour đang có",
+    js_people_joined: "người đã đi",
+    js_people_participated: "người đã tham gia",
+    js_per_day: "/ ngày",
+    js_no_tour: "Không có tour phù hợp bộ lọc.",
+    js_no_bike: "Không có xe phù hợp bộ lọc.",
+    js_day: "Ngày",
+    js_itinerary_title: "Lịch trình tương tác",
+    js_tour_style_default: "Tour Hot",
+    js_route_desc: "Lộ trình đèo núi dành cho người mê trải nghiệm.",
+    js_processing: "Đang xử lý...",
+    js_success_title: "Đặt thành công!",
+    js_success_msg: "Cảm ơn bạn đã tin tưởng AnTravel. Đội ngũ của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận.",
+    js_close: "Đóng",
+    js_required: "*"
   },
   en: {
     // Nav
@@ -196,7 +228,14 @@ const translations = {
     nav_about: "About Us",
     nav_tours: "Tours",
     nav_rental: "Rental",
-    
+
+    // Brand subtitles
+    brand_slogan: "Authentic, raw, and real Northeast",
+    brand_about: "About Us",
+    brand_tours: "Ha Giang - Cao Bang Tours",
+    brand_rental: "Motorbike Rental",
+    brand_detail: "Tour Details",
+
     // Hero
     hero_title: "HA GIANG LOOP TOURS BY<br/>MOTORBIKE, JEEP &<br/><span class='text-orange'>EASY RIDER</span>",
     hero_desc: "2 to 6 day adventures from Ha Giang City. Certified local guides, small groups, all-inclusive daily departures year-round.",
@@ -213,6 +252,7 @@ const translations = {
     form_veh_moto: "Motorbike",
     form_veh_jeep: "Jeep",
     form_veh_car: "7-Seater Car",
+    form_veh_note: "(Note: You will save more when traveling with 2+ people as vehicle cost is shared)",
     form_exp_label: "Experience",
     form_exp_easy: "Easy Rider",
     form_exp_self: "Self Drive",
@@ -223,12 +263,19 @@ const translations = {
     form_bus_sec: "Bus Transfer",
     form_bus_pickup: "Bus to Ha Giang",
     form_bus_return: "Bus from Ha Giang",
+    form_bus_choose_pickup: "-- Select pickup --",
+    form_bus_choose_return: "-- Select drop-off --",
+    form_bus_hanoi: "Hanoi (Old Quarter) - 350,000₫",
+    form_bus_noibai: "Noi Bai Airport - 400,000₫",
+    form_bus_sapa: "Sapa - 450,000₫",
+    form_bus_self: "I'll arrange my own transport",
     form_info_sec: "Your Information",
-    form_info_name: "Full Name *",
-    form_info_people: "Number of People *",
-    form_info_phone: "Phone / WhatsApp *",
-    form_info_date: "Start Date *",
+    form_info_name: "Full Name",
+    form_info_people: "Number of People",
+    form_info_phone: "Phone / WhatsApp",
+    form_info_date: "Start Date",
     form_info_req: "Special Request",
+    form_info_req_placeholder: "Any dietary requirements, pickup time preferences, or other notes?",
     form_sum_sec: "Booking Summary",
     form_sum_tour: "Tour Price:",
     form_sum_discount: "Discount:",
@@ -238,8 +285,11 @@ const translations = {
     form_sum_return: "Bus from:",
     form_sum_total: "Total Price:",
     form_btn_submit: "Confirm Booking",
+    form_badge_secure: "Secure",
+    form_badge_fast: "Fast Confirmation",
+    form_badge_support: "24/7 Support",
 
-    
+
     // Tours page
     tour_pg_title: "Explore Tours",
     tour_pg_sub: "Memorable journeys just for you",
@@ -253,7 +303,7 @@ const translations = {
     filter_clear: "Clear filters",
     filter_btn: "Filters",
     ft_contact: "Contact",
-    
+
     // Rental page
     rental_pg_title: "Motorbike Rental",
     rental_pg_sub: "Choose your companion for the mountain passes",
@@ -261,18 +311,19 @@ const translations = {
     car_num: "Semi-automatic",
     car_scooter: "Scooter",
     car_manual: "Manual",
-    modal_rental_title: "Rent a Motorbike",
+    modal_rental_title: "Confirm Bike Booking",
     modal_name: "Full Name",
     modal_phone: "Phone Number",
     modal_car: "Bike to rent",
     modal_pickup_date: "Pickup Date",
     modal_drop_date: "Drop-off Date",
     modal_pickup_loc: "Pickup Location",
+    modal_pickup_loc_placeholder: "E.g: Bus station, Hotel...",
     modal_total: "Total Price:",
     modal_cancel: "Cancel",
     modal_confirm: "Confirm Booking",
 
-    
+
     // About Services
     about_svc_title: "Our Services",
     about_svc_t1: "Adventure & Cultural Tours",
@@ -309,13 +360,17 @@ const translations = {
     dest_cb_6: "Phuc Sen Village",
     dest_cb_7: "Phia Thap",
 
-    // About page
+    // About page hero
     about_pg_title: "About Us",
     about_pg_sub: "Journey with no distance",
+    about_hero_eyebrow: "Journey with no distance",
+    about_hero_h1: "Northeast Vietnam<br /><span class='text-orange'>Where Stones Bloom</span>",
+    about_hero_sapo: "Coming to Ha Giang and Cao Bang, you are not just taking a trip, but embarking on an adventure through the most rugged and majestic mountain passes in Vietnam. At <strong>AnTravel</strong>, we believe that every curve of Ma Pi Leng, every splash of white water at Ban Gioc Waterfall carries a story within.",
     about_pg_desc: "Coming to Ha Giang and Cao Bang, you are not just taking a trip, but embarking on an adventure through the most rugged and majestic mountain passes in Vietnam. In the <strong>Northeast</strong>, we believe that every curve of Ma Pi Leng, every splash of white water at Ban Gioc Waterfall carries a story within.",
 
     // Tour detail page
     tour_detail_title: "Tour Details",
+    detail_hero_label: "Ha Giang Travel",
 
     // Home Sections
     sec_about_title: "About AnTravel",
@@ -323,19 +378,18 @@ const translations = {
     sec_about_desc1: "AnTravel was founded by nature lovers passionate about exploring the Northeast highlands. We specialize in organizing Ha Giang and Cao Bang tours with an authentic experience — from self-driving motorbikes conquering Ma Pi Leng pass to Easy Riders with knowledgeable local drivers.",
     sec_about_desc2: "Every trip is not just sightseeing, but an opportunity to immerse yourself in the culture, cuisine, and life of the highland people. AnTravel is committed to providing safe, high-quality, and inspiring experiences.",
     sec_about_btn: "Learn more →",
-    
+
     sec_tours_title: "Featured Tours",
     sec_tours_sub: "Explore our most popular journeys",
     sec_tours_btn: "View all tours",
-    
+
     sec_dest_title: "Explore by Destination",
-    
+
     sec_bike_title: "Motorbike Rental",
     sec_bike_sub: "High-quality bikes, ready for every mountain pass",
     sec_bike_btn: "View all bikes",
 
-    
-    // Extra Sections
+    // Extra Sections - Travel With AnTravel
     sec_travel_title: "Travel With AnTravel",
     sec_travel_sub: "Authentic, safe and responsible experience",
     sec_travel_desc: "We don't just organize tours — we deliver meaningful journeys. AnTravel is committed to sustainable tourism, supporting local communities and protecting the Northeast environment for future generations.",
@@ -345,42 +399,90 @@ const translations = {
     sec_travel_v2_desc: "Well-maintained bikes, full protective gear, 24/7 rescue",
     sec_travel_v3_title: "Community Support",
     sec_travel_v3_desc: "A portion of revenue supports education for highland children",
-    
+
+    // FAQ
     sec_faq_title: "Frequently Asked Questions",
     sec_faq_q1: "What makes AnTravel different from other tour operators?",
     sec_faq_a1: "AnTravel focuses on authentic experiences — you will travel with local drivers who know every pass, stay in homestays with locals, and eat truly local food. We don't run mass tours but design itineraries suited for each group.",
-    
-    sec_gallery_title: "Customer Gallery",
-    sec_gallery_sub: "Unforgettable journeys with AnTravel",
+    sec_faq_q2: "I can't ride a motorbike, can I still join?",
+    sec_faq_a2: "Absolutely! We offer Easy Rider service — an experienced local driver will take you on the entire journey. You just sit back and enjoy the scenery.",
+    sec_faq_q3: "Is renting a motorbike at AnTravel safe?",
+    sec_faq_a3: "All AnTravel bikes are thoroughly maintained before each trip. We include protective armor, quality 3/4 helmets, and 24/7 mountain rescue support. If the bike has an issue, our technical team will be there as quickly as possible.",
+    sec_faq_q4: "What should I prepare when going to Ha Giang?",
+    sec_faq_a4: "You need: ID/passport, driving license (if self-driving), warm clothes (highlands are colder), sunscreen, personal medicine. The rest — bikes, helmets, armor, maps — AnTravel has it covered!",
+    sec_faq_q5: "How do I book a tour or rent a bike?",
+    sec_faq_a5: "You can book directly on our website — choose a tour or bike, fill in your information and click book. AnTravel team will confirm within 1 hour. Or call hotline 0357164502 for immediate consultation.",
+    sec_faq_q6: "When is the best time to visit Ha Giang and Cao Bang?",
+    sec_faq_a6: "Ha Giang is most beautiful in September-November (rice harvest + buckwheat flowers) and February-April (peach, plum blossoms). Cao Bang with Ban Gioc Waterfall is best from May-September when water is abundant. However, every season has its own beauty!",
+
+    // Gallery
+    sec_gallery_eyebrow: "AnTravel x Customers",
+    sec_gallery_title: "Preserve Your Youth",
+    sec_gallery_desc: "The most authentic moments of adventurers on the Northeast routes. Let us accompany you.",
 
     // Footer
     ft_desc: "AnTravel - Authentic, raw, and real Northeast",
     ft_sub_title: "Newsletter Signup",
     ft_sub_btn: "Subscribe",
     ft_links: "Quick Links",
-    ft_admin: "Admin Login"
+    ft_admin: "Admin Login",
+
+    // JS dynamic content
+    js_book_now: "BOOK NOW",
+    js_book_bike: "BOOK BIKE",
+    js_tours_available: "tours available",
+    js_people_joined: "people joined",
+    js_people_participated: "people participated",
+    js_per_day: "/ day",
+    js_no_tour: "No tours match your filters.",
+    js_no_bike: "No bikes match your filters.",
+    js_day: "Day",
+    js_itinerary_title: "Interactive Itinerary",
+    js_tour_style_default: "Hot Tour",
+    js_route_desc: "Mountain pass route for adventure seekers.",
+    js_processing: "Processing...",
+    js_success_title: "Booking Successful!",
+    js_success_msg: "Thank you for trusting AnTravel. Our team will contact you as soon as possible to confirm.",
+    js_close: "Close",
+    js_required: "*"
   }
 };
+
+// Helper to get current language translation
+function t(key) {
+  const lang = localStorage.getItem('lang') || 'vi';
+  return (translations[lang] && translations[lang][key]) || (translations.vi[key]) || key;
+}
 
 function changeLanguage(lang) {
   localStorage.setItem('lang', lang);
   document.documentElement.lang = lang;
-  
-  // Update texts
+
+  // Update elements with data-i18n attribute
   const elements = document.querySelectorAll('[data-i18n]');
   elements.forEach(el => {
     const key = el.getAttribute('data-i18n');
     if (translations[lang] && translations[lang][key]) {
-      // If element contains HTML, use innerHTML, else textContent
-      if (translations[lang][key].includes('<')) {
-        el.innerHTML = translations[lang][key];
+      const value = translations[lang][key];
+      // If value contains HTML tags, use innerHTML
+      if (value.includes('<')) {
+        el.innerHTML = value;
       } else {
-        if (el.tagName === 'INPUT' && el.type === 'button') {
-          el.value = translations[lang][key];
+        if (el.tagName === 'INPUT' && (el.type === 'button' || el.type === 'submit')) {
+          el.value = value;
         } else {
-          el.textContent = translations[lang][key];
+          el.textContent = value;
         }
       }
+    }
+  });
+
+  // Update elements with data-i18n-placeholder attribute
+  const placeholderEls = document.querySelectorAll('[data-i18n-placeholder]');
+  placeholderEls.forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (translations[lang] && translations[lang][key]) {
+      el.placeholder = translations[lang][key];
     }
   });
 

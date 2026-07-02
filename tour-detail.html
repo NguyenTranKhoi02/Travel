@@ -18,11 +18,11 @@
     <div class="nav-wrap">
       <a class="brand" href="index.html">
         <span class="brand-mark">AN</span>
-        <span class="brand-text"><strong>AnTravel</strong><small>Chi tiết tour</small></span>
+        <span class="brand-text"><strong>AnTravel</strong><small data-i18n="brand_detail">Chi tiết tour</small></span>
       </a>
 
       <div class="lang-switcher">
-        <a href="#" class="lang-btn active" data-lang="vi">VN</a>
+        <a href="#" class="lang-btn" data-lang="vi">VN</a>
         <a href="#" class="lang-btn" data-lang="en">EN</a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false"
@@ -44,7 +44,7 @@
       </div>
       <div class="container detail-hero-content">
         <div class="detail-hero-copy animate-up">
-          <span class="text">
+          <span class="text" data-i18n="detail_hero_label">
             Ha Giang Travel
           </span>
           <h1 class="detail-hero-title" id="detailHeroTitle">
@@ -166,8 +166,8 @@
         <aside class="panel" id="bookingPanel">
           <form class="hgl-form hgl-booking" id="tourBookingForm">
             <div class="hgl-header">
-              <h2>Đặt tour vòng quanh Hà Giang ngay hôm nay!</h2>
-              <p>Những cuộc phiêu lưu đang chờ đón bạn ở vùng núi phía Bắc Việt Nam.</p>
+              <h2 data-i18n="form_title">Đặt tour vòng quanh Hà Giang ngay hôm nay!</h2>
+              <p data-i18n="form_subtitle">Những cuộc phiêu lưu đang chờ đón bạn ở vùng núi phía Bắc Việt Nam.</p>
             </div>
             <div class="hgl-body">
 
@@ -177,7 +177,7 @@
                     <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                     <polyline points="9,22 9,12 15,12 15,22" />
                   </svg>
-                  Chi tiết Tour
+                  <span data-i18n="form_sec_details">Chi tiết Tour</span>
                 </div>
                 <div class="hgl-grid hgl-grid-2">
                   <div class="hgl-field full">
@@ -196,8 +196,7 @@
                         <span class="hgl-radio-card-content" data-i18n="form_veh_car">Ô tô 7 chỗ</span>
                       </label>
                     </div>
-                    <p class="hgl-hint" style="color: var(--orange); font-weight: 500; margin-top: 8px;">(Lưu ý: Bạn sẽ
-                      tiết kiệm được nhiều chi phí hơn khi đi từ 2 người trở lên do được chia sẻ chung tiền xe)</p>
+                    <p class="hgl-hint" style="color: var(--orange); font-weight: 500; margin-top: 8px;" data-i18n="form_veh_note">(Lưu ý: Bạn sẽ tiết kiệm được nhiều chi phí hơn khi đi từ 2 người trở lên do được chia sẻ chung tiền xe)</p>
                   </div>
                   <div class="hgl-field full" id="experienceWrap">
                     <label class="hgl-label" data-i18n="form_exp_label">Kinh nghiệm</label>
@@ -233,7 +232,7 @@
                     <circle cx="16.5" cy="18" r="1.5" />
                     <path d="M4 16h16M6 7h12" />
                   </svg>
-                  Dịch vụ xe Bus
+                  <span data-i18n="form_bus_sec">Dịch vụ xe Bus</span>
                 </div>
                 <div class="hgl-bus-grid">
                   <div class="hgl-bus-col">
@@ -242,15 +241,15 @@
                         <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
-                      Bus chiều đi
+                      <span data-i18n="form_bus_pickup">Bus chiều đi</span>
                     </div>
                     <div class="hgl-field">
                       <select class="hgl-select" id="pickupBus" name="pickupBus">
-                        <option value="" data-price="0">-- Chọn điểm đi --</option>
-                        <option value="Hà Nội" data-price="350000">Hà Nội (Phố Cổ) - 350.000đ</option>
-                        <option value="Sân bay Nội Bài" data-price="400000">Sân bay Nội Bài - 400.000đ</option>
-                        <option value="Sapa" data-price="450000">Sapa - 450.000đ</option>
-                        <option value="Tự túc" data-price="0">Tôi tự di chuyển</option>
+                        <option value="" data-price="0" data-i18n="form_bus_choose_pickup">-- Chọn điểm đi --</option>
+                        <option value="Hà Nội" data-price="350000" data-i18n="form_bus_hanoi">Hà Nội (Phố Cổ) - 350.000đ</option>
+                        <option value="Sân bay Nội Bài" data-price="400000" data-i18n="form_bus_noibai">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Sapa" data-price="450000" data-i18n="form_bus_sapa">Sapa - 450.000đ</option>
+                        <option value="Tự túc" data-price="0" data-i18n="form_bus_self">Tôi tự di chuyển</option>
                       </select>
                     </div>
                   </div>
@@ -260,15 +259,15 @@
                         <circle cx="12" cy="10" r="3" />
                         <path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z" />
                       </svg>
-                      Bus chiều về
+                      <span data-i18n="form_bus_return">Bus chiều về</span>
                     </div>
                     <div class="hgl-field">
                       <select class="hgl-select" id="returnBus" name="returnBus">
-                        <option value="" data-price="0">-- Chọn điểm về --</option>
-                        <option value="Hà Nội" data-price="350000">Hà Nội (Phố Cổ) - 350.000đ</option>
-                        <option value="Sân bay Nội Bài" data-price="400000">Sân bay Nội Bài - 400.000đ</option>
-                        <option value="Sapa" data-price="450000">Sapa - 450.000đ</option>
-                        <option value="Tự túc" data-price="0">Tôi tự di chuyển</option>
+                        <option value="" data-price="0" data-i18n="form_bus_choose_return">-- Chọn điểm về --</option>
+                        <option value="Hà Nội" data-price="350000" data-i18n="form_bus_hanoi">Hà Nội (Phố Cổ) - 350.000đ</option>
+                        <option value="Sân bay Nội Bài" data-price="400000" data-i18n="form_bus_noibai">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Sapa" data-price="450000" data-i18n="form_bus_sapa">Sapa - 450.000đ</option>
+                        <option value="Tự túc" data-price="0" data-i18n="form_bus_self">Tôi tự di chuyển</option>
                       </select>
                     </div>
                   </div>
@@ -281,29 +280,29 @@
                     <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
-                  Thông tin của bạn
+                  <span data-i18n="form_info_sec">Thông tin của bạn</span>
                 </div>
                 <div class="hgl-grid hgl-grid-2">
                   <div class="hgl-field">
-                    <label class="hgl-label">Họ tên <span class="hgl-required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_name">Họ tên</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="text" class="hgl-input" id="tourName" name="name" required>
                   </div>
                   <div class="hgl-field">
-                    <label class="hgl-label">Số lượng người <span class="hgl-required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_people">Số lượng người</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="number" class="hgl-input" id="peopleCount" name="people" min="1" value="1" required>
                   </div>
                   <div class="hgl-field">
-                    <label class="hgl-label">SĐT / Zalo <span class="hgl-required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_phone">SĐT / Zalo</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="tel" class="hgl-input" id="tourPhone" name="phone" required>
                   </div>
                   <div class="hgl-field">
-                    <label class="hgl-label">Ngày khởi hành <span class="hgl-required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_date">Ngày khởi hành</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="date" class="hgl-input" id="startDate" name="startDate" required>
                   </div>
                   <div class="hgl-field full">
                     <label class="hgl-label" data-i18n="form_info_req">Yêu cầu đặc biệt</label>
                     <textarea class="hgl-textarea" id="specialRequest" name="specialRequest"
-                      placeholder="Bạn có yêu cầu ăn chay, giờ giấc đón xe, hay có lưu ý gì thêm không?"></textarea>
+                      placeholder="Bạn có yêu cầu ăn chay, giờ giấc đón xe, hay có lưu ý gì thêm không?" data-i18n-placeholder="form_info_req_placeholder"></textarea>
                   </div>
                 </div>
               </div>
@@ -336,7 +335,7 @@
                     <span class="hgl-summary-value" id="sumReturn">0 đ</span>
                   </div>
                   <div class="hgl-summary-row total">
-                    <span class="hgl-summary-label">Tổng tiền:</span>
+                    <span class="hgl-summary-label" data-i18n="form_sum_total">Tổng tiền:</span>
                     <span class="hgl-summary-value" id="tourTotal">0 đ</span>
                   </div>
                 </div>
@@ -344,7 +343,7 @@
 
               <div class="hgl-submit-section">
                 <button type="submit" class="hgl-submit-btn">
-                  <span>Xác nhận Đặt Tour
+                  <span><span data-i18n="form_btn_submit">Xác nhận Đặt Tour</span>
                     <svg class="hgl-submit-icon" viewBox="0 0 24 24" aria-hidden="true" style="margin-left: 4px;">
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                       <polyline points="13 6 19 12 13 18"></polyline>
@@ -356,14 +355,14 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                     </svg>
-                    Bảo mật
+                    <span data-i18n="form_badge_secure">Bảo mật</span>
                   </div>
                   <div class="hgl-trust-badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
                       <polyline points="22,4 12,14.01 9,11.01"></polyline>
                     </svg>
-                    Xác nhận nhanh
+                    <span data-i18n="form_badge_fast">Xác nhận nhanh</span>
                   </div>
                   <div class="hgl-trust-badge">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -371,7 +370,7 @@
                         d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z">
                       </path>
                     </svg>
-                    Hỗ trợ 24/7
+                    <span data-i18n="form_badge_support">Hỗ trợ 24/7</span>
                   </div>
                 </div>
               </div>
