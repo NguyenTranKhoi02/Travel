@@ -14,7 +14,7 @@
 
   const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2200); };
   const persist = () => window.VibeEast.saveDB(db);
-  const refresh = () => { renderDashboard(); renderProducts(); renderOrders(); renderGallery(); renderSettings(); };
+  const refresh = () => { renderDashboard(); renderProducts(); renderOrders(); renderGallery(); renderSettings(); renderReviews(); };
   const initTabs = () => { const items = $$('.admin-menu-item'); const tabs = $$('.admin-tab'); items.forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); items.forEach(i => i.classList.remove('active')); tabs.forEach(t => t.classList.remove('active')); link.classList.add('active'); $('#' + link.dataset.tab).classList.add('active'); })); };
   const calcRevenue = () => ({ tour: db.bookings_tour.reduce((s, b) => s + (b.total || 0), 0), bike: db.bookings_bike.reduce((s, b) => s + (b.total || 0), 0) });
   const ordersAll = () => [...db.bookings_tour.map(o => ({ ...o, kind: 'Tour', productName: db.tours.find(t => t.id === o.tourId)?.title || o.tourId || '-' })), ...db.bookings_bike.map(o => ({ ...o, kind: 'Xe', productName: db.bikes.find(b => b.id === o.bikeId)?.name || o.bikeId || '-' }))];
@@ -196,6 +196,34 @@
       toast('Đã lưu ảnh thành công');
     });
 
+    // Review Modal Bindings
+    $('#btnAddReviewModal')?.addEventListener('click', () => { $('#adminReviewForm').reset(); $('#adminReviewModal').classList.add('active'); });
+    $('#closeAdminReviewModal')?.addEventListener('click', () => $('#adminReviewModal').classList.remove('active'));
+    $('#adminReviewModal')?.addEventListener('click', (e) => { if (e.target.id === 'adminReviewModal') $('#adminReviewModal').classList.remove('active'); });
+
+    $('#adminReviewForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = $('#arName').value.trim();
+      const rating = Number($('#arRating').value);
+      const tourType = $('#arTour').value.trim();
+      const dateStr = $('#arDate').value.trim();
+      const title = $('#arTitle').value.trim();
+      const content = $('#arContent').value.trim();
+      
+      const newReview = {
+        id: 'rev-' + Date.now(),
+        name, rating, tourType, date: dateStr, title, content,
+        avatarLetter: name.charAt(0).toUpperCase(),
+        status: 'approved'
+      };
+      
+      if (!db.reviews) db.reviews = [];
+      db.reviews.unshift(newReview);
+      persist(); refresh();
+      $('#adminReviewModal').classList.remove('active');
+      toast('Đã thêm đánh giá thủ công');
+    });
+
     $('#productForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const meta1Val = editState.type === 'tour' ? $('#pfTourLocation').value : $('#pfMeta1').value.trim();
@@ -270,6 +298,54 @@
   }
   window.delPhoto = (id) => { db.customer_gallery = db.customer_gallery.filter(x => x.id !== id); persist(); refresh(); };
 
+  let reviewScope = 'all';
+
+  function renderReviews() {
+    if (!db.reviews) db.reviews = [];
+    const term = ($('#reviewSearch')?.value || '').toLowerCase();
+    
+    let list = db.reviews.filter(r => {
+      if (reviewScope !== 'all' && r.status !== reviewScope) return false;
+      return r.name.toLowerCase().includes(term) || r.title.toLowerCase().includes(term) || r.content.toLowerCase().includes(term);
+    });
+
+    const tbody = $('#reviewTableBody');
+    if (tbody) {
+      tbody.innerHTML = list.map(r => {
+        let stLabel = 'Chờ duyệt', stClass = 'status-yellow';
+        if (r.status === 'approved') { stLabel = 'Đã duyệt'; stClass = 'status-green'; }
+        else if (r.status === 'hidden') { stLabel = 'Đã ẩn'; stClass = 'status-gray'; }
+
+        return `<tr>
+          <td><strong>${r.name}</strong><br><small>${r.date}</small></td>
+          <td>${r.tourType}</td>
+          <td>${r.rating} Sao</td>
+          <td><div style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${r.title} - ${r.content}"><strong>${r.title}</strong>: ${r.content}</div></td>
+          <td><span class="status-badge ${stClass}">${stLabel}</span></td>
+          <td>
+            <div style="display:flex;gap:6px;">
+              ${r.status === 'approved' 
+                ? `<button class="action-btn" style="background:#f1f5f9;color:#64748b;" onclick="updateReviewStatus('${r.id}', 'hidden')">Ẩn</button>` 
+                : `<button class="action-btn" style="background:#dcfce3;color:#166534;" onclick="updateReviewStatus('${r.id}', 'approved')">Duyệt</button>`}
+              <button class="action-btn" onclick="deleteReview('${r.id}')">Xóa</button>
+            </div>
+          </td>
+        </tr>`;
+      }).join('');
+    }
+  }
+
+  window.updateReviewStatus = (id, status) => {
+    const rev = db.reviews.find(r => r.id === id);
+    if (rev) { rev.status = status; persist(); refresh(); toast('Đã cập nhật trạng thái đánh giá'); }
+  };
+  
+  window.deleteReview = (id) => {
+    if (confirm('Bạn có chắc chắn muốn xoá đánh giá này?')) {
+      db.reviews = db.reviews.filter(r => r.id !== id); persist(); refresh(); toast('Đã xoá đánh giá');
+    }
+  };
+
   function renderSettings() {
     if (!db.settings) {
       db.settings = { 
@@ -283,8 +359,10 @@
   function bindFilters() {
     $('#productSearch').addEventListener('input', renderProducts);
     $('#orderSearch').addEventListener('input', renderOrders);
+    $('#reviewSearch')?.addEventListener('input', renderReviews);
     $$('.filter-chip[data-filter]').forEach(chip => chip.addEventListener('click', () => { $$('.filter-chip[data-filter]').forEach(c => c.classList.remove('active')); chip.classList.add('active'); productScope = chip.dataset.filter; renderProducts(); }));
     $$('.filter-chip[data-order-filter]').forEach(chip => chip.addEventListener('click', () => { $$('.filter-chip[data-order-filter]').forEach(c => c.classList.remove('active')); chip.classList.add('active'); orderScope = chip.dataset.orderFilter; renderOrders(); }));
+    $$('.filter-chip[data-review-filter]').forEach(chip => chip.addEventListener('click', () => { $$('.filter-chip[data-review-filter]').forEach(c => c.classList.remove('active')); chip.classList.add('active'); reviewScope = chip.dataset.reviewFilter; renderReviews(); }));
   }
 
   function bindDataTools() {

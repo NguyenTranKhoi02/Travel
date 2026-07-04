@@ -25,7 +25,64 @@ const initialData = {
   settings: {
     heroVideoUrl: '',
     heroPosterUrl: ''
-  }
+  },
+  reviews: [
+    {
+        id: 'rev-01',
+        name: 'Petra K',
+        avatarLetter: 'P',
+        rating: 5,
+        date: 'Thg 3 2026',
+        title: 'Dịch vụ tuyệt vời và chuyến đi được tổ chức hoàn hảo',
+        content: 'Hướng dẫn viên và tài xế của chúng tôi đều rất tuyệt vời và chuyên nghiệp. Toàn bộ lịch trình được lên kế hoạch rất tốt. Chỗ ở xác thực, đẹp. Họ đã làm rất tốt việc lái xe — chúng tôi luôn cảm thấy an toàn.',
+        tourType: '6 đóng góp',
+        status: 'approved'
+    },
+    {
+        id: 'rev-02',
+        name: 'Theodor L',
+        avatarLetter: 'T',
+        rating: 5,
+        date: 'Thg 4 2026',
+        title: 'Nhóm 8 người với xe máy',
+        content: 'Hướng dẫn viên rất thân thiện và nhiệt tình. Anh ấy cho chúng tôi xem những tuyến đường đẹp nhất. Chúng tôi cảm thấy thực sự an toàn trong suốt chuyến đi. Tôi thực sự giới thiệu AnTravel cho bất kỳ ai.',
+        tourType: 'Bạn bè · chuyến đi nhóm',
+        status: 'approved'
+    },
+    {
+        id: 'rev-03',
+        name: 'Emma B',
+        avatarLetter: 'E',
+        rating: 5,
+        date: 'Thg 4 2026',
+        title: 'Không thể tin được — 10 trên 10',
+        content: 'Trải nghiệm tuyệt vời nhất từ trước đến nay. Hà Giang Loop là điều không thể bỏ qua ở Việt Nam. Các tài xế thực sự tuyệt vời — giờ chúng tôi gọi họ là bạn. Họ đã vượt xa mong đợi.',
+        tourType: 'Bạn bè · 4N3Đ',
+        status: 'approved'
+    },
+    {
+        id: 'rev-04',
+        name: 'Rick K',
+        avatarLetter: 'R',
+        rating: 5,
+        date: 'Thg 3 2026',
+        title: 'Trải nghiệm 10/10 với xe máy!',
+        content: 'Chúng tôi đã đặt tour 3 ngày 2 đêm. Mọi thứ đều được tổ chức tốt. Các khách sạn nơi chúng tôi ở sạch sẽ và đẹp. Rất cảm ơn đội ngũ hướng dẫn viên AnTravel.',
+        tourType: 'Cặp đôi',
+        status: 'approved'
+    },
+    {
+        id: 'rev-05',
+        name: 'Sarah M',
+        avatarLetter: 'S',
+        rating: 5,
+        date: 'Thg 3 2026',
+        title: 'Tour tuyệt vời nhất tôi từng tham gia',
+        content: 'Không còn nghi ngờ gì nữa, đây là tour tuyệt vời nhất tôi từng đi. Hướng dẫn viên đã nỗ lực hết mình để đảm bảo chúng tôi thoải mái. Chỗ ở đẹp, đồ ăn ngon. Rất khuyến khích AnTravel!',
+        tourType: 'Bạn bè · Tour 3N2Đ',
+        status: 'approved'
+    }
+  ]
 };
 
 async function loadDBAsync() {
@@ -52,7 +109,7 @@ async function loadDBAsync() {
           }
         }
         
-        ['tours', 'bikes', 'bookings_tour', 'bookings_bike', 'booking_logs', 'destinations', 'customer_gallery'].forEach(k => {
+        ['tours', 'bikes', 'bookings_tour', 'bookings_bike', 'booking_logs', 'destinations', 'customer_gallery', 'reviews'].forEach(k => {
           if (!Array.isArray(window.db[k])) window.db[k] = initialData[k] || [];
         });
         if (!window.db.settings) window.db.settings = initialData.settings;

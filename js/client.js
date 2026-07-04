@@ -671,7 +671,144 @@
     }
   }
 
+  function initReviewsSlider() {
+    const slider = document.getElementById('ltReviewsSlider');
+    if (!slider) return;
+    const track = document.getElementById('ltReviewsTrack');
+    
+    if (db.reviews && track) {
+        const approvedReviews = db.reviews.filter(r => r.status === 'approved' || !r.status);
+        track.innerHTML = approvedReviews.map(r => `
+            <div class="lt-slide">
+                <article class="lt-review">
+                    <header class="lt-review__head">
+                        <span class="lt-review__stars" aria-label="${r.rating} out of 5 stars">${'●'.repeat(r.rating)}${'○'.repeat(5-r.rating)}</span>
+                        <span class="lt-review__date">${r.date}</span>
+                    </header>
+                    <h3 class="lt-review__title">${r.title}</h3>
+                    <p class="lt-review__body">${r.content}</p>
+                    <footer class="lt-review__foot">
+                        <div class="lt-review__author">
+                            <div class="lt-review__avatar">${r.avatarLetter || r.name.charAt(0).toUpperCase()}</div>
+                            <div class="lt-review__author-info">
+                                <p class="lt-review__author-name">${r.name}</p>
+                                <span class="lt-review__author-meta">${r.tourType}</span>
+                            </div>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        `).join('');
+    }
+
+    const prevBtn = document.getElementById('ltReviewsPrev');
+    const nextBtn = document.getElementById('ltReviewsNext');
+    const dotsContainer = document.getElementById('ltReviewsDots');
+    const slides = track.querySelectorAll('.lt-slide');
+    const totalSlides = slides.length;
+    let current = 0;
+
+    function getPerView() {
+        const w = window.innerWidth;
+        if (w <= 640) return 1;
+        if (w <= 992) return 2;
+        return 3;
+    }
+
+    function getMaxIndex() {
+        return Math.max(0, totalSlides - getPerView());
+    }
+
+    function goTo(index) {
+        if (totalSlides === 0) return;
+        const max = getMaxIndex();
+        if (index < 0) index = 0;
+        if (index > max) index = max;
+        current = index;
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const offset = current * (slideWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+        updateButtons();
+    }
+
+    function buildDots() {
+        if (!dotsContainer || totalSlides === 0) return;
+        dotsContainer.innerHTML = '';
+        const totalDots = getMaxIndex() + 1;
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'lt-slider__dot';
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.setAttribute('data-index', i);
+            dot.addEventListener('click', (e) => {
+                goTo(parseInt(e.currentTarget.getAttribute('data-index'), 10));
+            });
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    function updateDots() {
+        if (!dotsContainer) return;
+        const dots = dotsContainer.querySelectorAll('.lt-slider__dot');
+        dots.forEach((d, i) => {
+            if (i === current) d.classList.add('is-active');
+            else d.classList.remove('is-active');
+        });
+    }
+
+    function updateButtons() {
+        if (!prevBtn || !nextBtn) return;
+        const max = getMaxIndex();
+        prevBtn.disabled = (current === 0);
+        nextBtn.disabled = (current >= max);
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+            if (diff > 0) goTo(current + 1);
+            else goTo(current - 1);
+        }
+    }, {passive: true});
+
+    slider.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            goTo(current - 1);
+        }
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            goTo(current + 1);
+        }
+    });
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            buildDots();
+            goTo(Math.min(current, getMaxIndex()));
+        }, 150);
+    });
+
+    buildDots();
+    goTo(0);
+  }
+
   initCustomerGallery();
   initScrollAnimations();
   initWhatsAppFloat();
+  initReviewsSlider();
 })();

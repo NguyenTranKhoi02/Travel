@@ -60,6 +60,7 @@
         <a href="#" class="admin-menu-item" data-tab="products">Quản lý Sản phẩm</a>
         <a href="#" class="admin-menu-item" data-tab="orders">Quản lý Đơn hàng</a>
         <a href="#" class="admin-menu-item" data-tab="gallery">Thư viện Ảnh</a>
+        <a href="#" class="admin-menu-item" data-tab="reviews">Quản lý Đánh giá</a>
         <a href="#" class="admin-menu-item" data-tab="settings">Cài đặt chung</a>
       </nav>
       <button class="admin-exit" id="quickExit" type="button">← Về trang Client</button>
@@ -230,6 +231,39 @@
         </div>
       </section>
 
+      <section id="reviews" class="admin-tab">
+        <div class="page-head">
+          <h1>Quản lý Đánh giá</h1>
+          <p>Thêm đánh giá thủ công từ Tripadvisor, duyệt hoặc xoá đánh giá.</p>
+        </div>
+        <div class="panel filter-panel">
+          <input id="reviewSearch" class="admin-search" placeholder="Tìm theo tên khách, tour..." />
+          <div class="filter-actions">
+            <button class="filter-chip active" data-review-filter="all" type="button">Tất cả</button>
+            <button class="filter-chip" data-review-filter="pending" type="button">Chờ duyệt</button>
+            <button class="filter-chip" data-review-filter="approved" type="button">Đã duyệt</button>
+            <button class="admin-btn" id="btnAddReviewModal" type="button" style="margin-left: 10px;">+ Thêm Đánh Giá</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Khách hàng</th>
+                  <th>Tour / Dịch vụ</th>
+                  <th>Số sao</th>
+                  <th>Nội dung</th>
+                  <th>Trạng thái</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="reviewTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section id="settings" class="admin-tab">
         <div class="page-head">
           <h1>Cài đặt chung</h1>
@@ -324,6 +358,30 @@
         <h2>Chi tiết đơn hàng</h2><button class="btn" id="closeOrderDetail" type="button">Đóng</button>
       </div>
       <div id="orderDetailBody"></div>
+    </div>
+  </div>
+
+  <!-- Review Modal in Admin -->
+  <div class="modal" id="adminReviewModal">
+    <div class="modal-box" style="max-width: 500px;">
+      <h2>Thêm Đánh Giá Mới</h2>
+      <form id="adminReviewForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
+        <input type="text" id="arName" placeholder="Tên khách hàng" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <select id="arRating" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+          <option value="5">5 Sao</option>
+          <option value="4">4 Sao</option>
+          <option value="3">3 Sao</option>
+        </select>
+        <input type="text" id="arTour" placeholder="Dịch vụ (VD: Bạn bè · Tour 3N2Đ)" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <input type="text" id="arDate" placeholder="Thời gian (VD: Thg 5 2026)" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <input type="text" id="arTitle" placeholder="Tiêu đề đánh giá" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <textarea id="arContent" rows="4" placeholder="Nội dung đánh giá" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;font-family:inherit;"></textarea>
+        
+        <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;">
+          <button type="submit" class="btn btn-primary">Lưu Đánh Giá</button>
+          <button type="button" class="btn btn-secondary" id="closeAdminReviewModal">Đóng</button>
+        </div>
+      </form>
     </div>
   </div>
 
