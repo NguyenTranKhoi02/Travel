@@ -423,7 +423,7 @@
       <div class="slider" id="tourSlider">${(() => { let imgs = tour.gallery && tour.gallery.length ? [...tour.gallery] : []; if (!imgs.includes(tour.image)) imgs.unshift(tour.image); if (imgs.length === 0) imgs = [tour.image]; return imgs.map((img, idx) => `<img src="${img}" class="${idx === 0 ? 'active' : ''}" alt="${tour.title}">`).join(''); })()}</div>
       <div class="slider-controls"><span>${tour.location} • ${tour.duration} ${booked > 0 ? `• <strong style="color:var(--orange)">🔥 ${booked} ${t('js_people_participated')}</strong>` : ''}</span><strong>${money(tour.price_base)}</strong></div>
       <h2>${tour.title}</h2><p class="muted">${tour.style || t('js_tour_style_default')} • ${t('js_route_desc')}</p>
-      <div style="margin-top: 24px;"><h3>${t('js_itinerary_title')}</h3><div id="itineraryList" class="yen-itinerary-list"></div></div>
+      <div style="margin-top: 24px;"><h3 class="title-tt">${t('js_itinerary_title')}</h3><div id="itineraryList" class="yen-itinerary-list"></div></div>
     </div>`;
 
     const sliderImgs = qsa('#tourSlider img', mount);
