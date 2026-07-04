@@ -442,7 +442,7 @@ video {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(7, 18, 13, 0) 30%, rgba(7, 18, 13, 0.75) 75%, rgba(7, 18, 13, 0.95) 100%);
-  padding: 28px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -462,7 +462,29 @@ video {
   color: rgba(255, 255, 255, 0.9);
   margin: 0 0 16px;
   line-height: 1.5;
+  overflow-y: auto;
+  max-height: 184px;
+  position: relative;
+  padding-right: 10px;
+  margin-bottom: 0;
 }
+
+.card-overlay p {
+  @-moz-document url-prefix() {
+    scrollbar-width: thin;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 99px;
+    background: var(--nn, #e5e5e5);
+  }
+}
+
+
 
 .hero--home {
   display: flex;
