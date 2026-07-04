@@ -107,7 +107,7 @@ video {
 
 .nav {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-wrap: wrap;
   align-items: center
 }
@@ -1047,6 +1047,7 @@ form textarea:focus {
   }
 
   .nav-wrap {
+    gap: 10px;
     flex-direction: row;
     align-items: center
   }
@@ -4571,4 +4572,158 @@ body .elementor-widget .hgl-booking .hgl-label,
   stroke-width: 2.5 !important;
   stroke-linecap: round !important;
   stroke-linejoin: round !important;
+}
+
+/* ========== FOOTER REDESIGN ========== */
+.site-footer {
+  padding: 40px 20px 20px;
+  background: linear-gradient(135deg, #dae8df 0%, #e8eff0 100%);
+  color: var(--text);
+  text-align: center;
+}
+
+.lt-footer-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.lt-footer-brand {
+  margin-bottom: 8px;
+}
+
+.lt-footer-brand .brand {
+  justify-content: center;
+}
+
+.lt-footer-brand .brand-text {
+  color: #173126;
+  font-size: 1.5rem;
+}
+
+.lt-footer-contact p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+}
+
+.lt-footer-contact strong {
+  font-weight: 700;
+}
+
+.lt-footer-contact a {
+  color: #d97706;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.lt-footer-contact span {
+  color: #d97706;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.lt-footer-contact a:hover {
+  color: #5a8a72;
+}
+
+.lt-footer-contact span:hover {
+  color: #5a8a72;
+}
+
+.lt-footer-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #CFCBC5;
+  margin: 16px 0;
+}
+
+.lt-footer-company {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.lt-footer-company p {
+  margin: 4px 0;
+}
+
+.lt-footer-badge {
+  margin-top: 16px;
+  margin-bottom: 24px;
+}
+
+.lt-footer-badge img {
+  height: 40px;
+  margin: 0 auto;
+}
+
+.lt-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.lt-footer-copyright {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lt-footer-social {
+  display: flex;
+  gap: 16px;
+}
+
+.lt-footer-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: var(--text);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lt-footer-social a svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.lt-footer-social a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  color: #fff;
+}
+
+/* Brand specific hover colors */
+.lt-footer-social a.social-fb:hover {
+  background-color: #1877F2;
+}
+
+.lt-footer-social a.social-ig:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.lt-footer-social a.social-wa:hover {
+  background-color: #25D366;
+}
+
+@media (max-width: 600px) {
+  .lt-footer-bottom {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
 }

@@ -180,7 +180,12 @@
     $('#setHeroPosterUpload')?.addEventListener('change', (e) => handleFileUpload(e.target, '#setHeroPoster'));
 
     // Gallery Modal Bindings
-    $('#addPhotoBtn').addEventListener('click', () => { $('#photoForm').reset(); $('#photoModal').classList.add('active'); });
+    $('#addPhotoBtn').addEventListener('click', () => { 
+      $('#photoForm').reset(); 
+      delete $('#photoForm').dataset.editId;
+      $('#photoModal').querySelector('h2').textContent = 'Thêm Ảnh Mới';
+      $('#photoModal').classList.add('active'); 
+    });
     $('#closePhotoModal').addEventListener('click', () => $('#photoModal').classList.remove('active'));
     $('#photoModal').addEventListener('click', (e) => { if (e.target.id === 'photoModal') $('#photoModal').classList.remove('active'); });
 
@@ -189,11 +194,23 @@
       const url = $('#phUrl').value.trim();
       const caption = $('#phCaption').value.trim();
       if (!url || !caption) return toast('Vui lòng nhập đủ thông tin');
-      db.customer_gallery.unshift({ id: Date.now(), url, caption });
+
+      const editId = $('#photoForm').dataset.editId;
+      if (editId) {
+        const p = db.customer_gallery.find(x => x.id === Number(editId));
+        if (p) {
+          p.url = url;
+          p.caption = caption;
+        }
+        toast('Đã cập nhật ảnh thành công');
+      } else {
+        db.customer_gallery.unshift({ id: Date.now(), url, caption });
+        toast('Đã lưu ảnh thành công');
+      }
+
       persist();
       $('#photoModal').classList.remove('active');
       refresh();
-      toast('Đã lưu ảnh thành công');
     });
 
     // Review Modal Bindings
@@ -294,9 +311,18 @@
 
   function renderGallery() {
     if (!db.customer_gallery) db.customer_gallery = [];
-    $('#galleryTableBody').innerHTML = db.customer_gallery.map(p => `<tr><td><img src="${p.url}" style="width:50px"></td><td>${p.caption}</td><td><button class="action-btn" onclick="delPhoto(${p.id})">Xóa</button></td></tr>`).join('');
+    $('#galleryTableBody').innerHTML = db.customer_gallery.map(p => `<tr><td><img src="${p.url}" style="width:50px"></td><td>${p.caption}</td><td><button class="action-btn" onclick="editPhoto(${p.id})" style="background:#e0f2fe;color:#0284c7;margin-right:8px;">Sửa</button><button class="action-btn" onclick="delPhoto(${p.id})">Xóa</button></td></tr>`).join('');
   }
-  window.delPhoto = (id) => { db.customer_gallery = db.customer_gallery.filter(x => x.id !== id); persist(); refresh(); };
+  window.delPhoto = (id) => { if(!confirm('Bạn có chắc chắn muốn xóa ảnh này?')) return; db.customer_gallery = db.customer_gallery.filter(x => x.id !== id); persist(); refresh(); };
+  window.editPhoto = (id) => {
+    const p = db.customer_gallery.find(x => x.id === id);
+    if (!p) return;
+    $('#photoForm').dataset.editId = id;
+    $('#phUrl').value = p.url;
+    $('#phCaption').value = p.caption;
+    $('#photoModal').querySelector('h2').textContent = 'Sửa Ảnh';
+    $('#photoModal').classList.add('active');
+  };
 
   let reviewScope = 'all';
 

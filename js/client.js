@@ -85,7 +85,7 @@
         return `
       <a class="swiper-slide province-card" href="tours.html?location=${encodeURIComponent(dest.name)}">
         <img src="${dest.image}" alt="${dest.name}" />
-        <div class="card-overlay"><span class="badge">${count} ${t('js_tours_available')}</span><h3>${dest.name}</h3><p>${dest.description}</p></div>
+        <div class="card-overlay"><span class="badge">${count} <span data-i18n="js_tours_available">${t('js_tours_available')}</span></span><h3 data-i18n="dest_${dest.id}_name">${t('dest_' + dest.id + '_name') !== ('dest_' + dest.id + '_name') ? t('dest_' + dest.id + '_name') : dest.name}</h3><p data-i18n="dest_${dest.id}_desc">${t('dest_' + dest.id + '_desc') !== ('dest_' + dest.id + '_desc') ? t('dest_' + dest.id + '_desc') : dest.description}</p></div>
       </a>`;
       }).join('');
 
@@ -121,7 +121,7 @@
           <span class="yen-tour-card-badge">${tour.style || t('js_tour_style_default')}</span>
         </div>
         <div class="yen-tour-card-body">
-          <h3 class="yen-tour-card-title">${tour.title}</h3>
+          <h3 class="yen-tour-card-title" data-i18n="tour_${tour.id}_title">${t(`tour_${tour.id}_title`) !== `tour_${tour.id}_title` ? t(`tour_${tour.id}_title`) : tour.title}</h3>
           <div class="yen-tour-card-meta">
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${tour.location}</span>
             <span>•</span>
@@ -201,7 +201,7 @@
           <span class="yen-tour-card-price-badge">${money(tour.price_base)}</span>
         </div>
         <div class="yen-tour-card-body">
-          <h3 class="yen-tour-card-title">${tour.title}</h3>
+          <h3 class="yen-tour-card-title" data-i18n="tour_${tour.id}_title">${t(`tour_${tour.id}_title`) !== `tour_${tour.id}_title` ? t(`tour_${tour.id}_title`) : tour.title}</h3>
           <div class="yen-tour-card-meta">
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${tour.duration}</span>
             <span>•</span>
@@ -678,27 +678,39 @@
     
     if (db.reviews && track) {
         const approvedReviews = db.reviews.filter(r => r.status === 'approved' || !r.status);
-        track.innerHTML = approvedReviews.map(r => `
+        track.innerHTML = approvedReviews.map(r => {
+            const prefix = r.id ? r.id.replace('-', '_') : '';
+            const titleKey = prefix ? `${prefix}_title` : '';
+            const bodyKey = prefix ? `${prefix}_body` : '';
+            const dateKey = prefix ? `${prefix}_date` : '';
+            const metaKey = prefix ? `${prefix}_meta` : '';
+            
+            const titleStr = titleKey && t(titleKey) !== titleKey ? t(titleKey) : r.title;
+            const bodyStr = bodyKey && t(bodyKey) !== bodyKey ? t(bodyKey) : r.content;
+            const dateStr = dateKey && t(dateKey) !== dateKey ? t(dateKey) : r.date;
+            const metaStr = metaKey && t(metaKey) !== metaKey ? t(metaKey) : r.tourType;
+            
+            return `
             <div class="lt-slide">
                 <article class="lt-review">
                     <header class="lt-review__head">
                         <span class="lt-review__stars" aria-label="${r.rating} out of 5 stars">${'●'.repeat(r.rating)}${'○'.repeat(5-r.rating)}</span>
-                        <span class="lt-review__date">${r.date}</span>
+                        <span class="lt-review__date" ${dateKey ? `data-i18n="${dateKey}"` : ''}>${dateStr}</span>
                     </header>
-                    <h3 class="lt-review__title">${r.title}</h3>
-                    <p class="lt-review__body">${r.content}</p>
+                    <h3 class="lt-review__title" ${titleKey ? `data-i18n="${titleKey}"` : ''}>${titleStr}</h3>
+                    <p class="lt-review__body" ${bodyKey ? `data-i18n="${bodyKey}"` : ''}>${bodyStr}</p>
                     <footer class="lt-review__foot">
                         <div class="lt-review__author">
                             <div class="lt-review__avatar">${r.avatarLetter || r.name.charAt(0).toUpperCase()}</div>
                             <div class="lt-review__author-info">
                                 <p class="lt-review__author-name">${r.name}</p>
-                                <span class="lt-review__author-meta">${r.tourType}</span>
+                                <span class="lt-review__author-meta" ${metaKey ? `data-i18n="${metaKey}"` : ''}>${metaStr}</span>
                             </div>
                         </div>
                     </footer>
                 </article>
             </div>
-        `).join('');
+        `}).join('');
     }
 
     const prevBtn = document.getElementById('ltReviewsPrev');

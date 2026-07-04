@@ -202,6 +202,56 @@ const translations = {
     ft_sub_btn: "Đăng ký",
     ft_links: "Liên kết",
     ft_admin: "Đăng nhập Admin",
+    ft_address_label: "Địa chỉ:",
+    ft_address_val: "24 Nguyễn Trãi, Hà Giang 1, Tuyên Quang, Việt Nam",
+    ft_hotline_label: "Đường dây nóng Whatsapp & Điện thoại:",
+    ft_hotline_val: "+84 357164502",
+    ft_email_label: "Email:",
+    ft_email_val: "horsetravel23@gmail.com",
+    ft_copyright: "© 2026 Bản quyền đã được bảo lưu. Thiết kế bởi AnTravel",
+
+    // Destinations
+    "dest_dest-01_name": "Hà Giang",
+    "dest_dest-01_desc": "Điểm đến lý tưởng cho chuyến đi của bạn.",
+    "dest_dest-02_name": "Cao Bằng",
+    "dest_dest-02_desc": "Điểm đến lý tưởng cho chuyến đi của bạn.",
+
+    // Tours
+    "tour_tour-hg-01_title": "Hà Giang Loop: Chinh Phục Mã Pí Lèng",
+    "tour_tour-cb-01_title": "Cao Bằng Bản Giốc: Nơi Biên Cương Kỳ Vĩ",
+
+    // Reviews
+    sec_reviews_eyebrow: "Đánh giá của khách hàng",
+    sec_reviews_title_prefix: "Khách hàng",
+    sec_reviews_title_hl: "nói gì về chúng tôi",
+    sec_reviews_lead: "Những câu chuyện chân thực từ những du khách đã khám phá Đông Bắc cùng AnTravel.",
+    sec_reviews_count: "191+ đánh giá",
+    sec_reviews_btn_write: "Viết Đánh Giá",
+
+    rev_01_title: "Dịch vụ tuyệt vời và chuyến đi được tổ chức hoàn hảo",
+    rev_01_body: "Hướng dẫn viên và tài xế của chúng tôi đều rất tuyệt vời và chuyên nghiệp. Toàn bộ lịch trình được lên kế hoạch rất tốt. Chỗ ở xác thực, đẹp. Họ đã làm rất tốt việc lái xe — chúng tôi luôn cảm thấy an toàn.",
+    rev_01_date: "Thg 3 2026",
+    rev_01_meta: "6 đóng góp",
+    
+    rev_02_title: "Nhóm 8 người với xe máy",
+    rev_02_body: "Hướng dẫn viên rất thân thiện và nhiệt tình. Anh ấy cho chúng tôi xem những tuyến đường đẹp nhất. Chúng tôi cảm thấy thực sự an toàn trong suốt chuyến đi. Tôi thực sự giới thiệu AnTravel cho bất kỳ ai.",
+    rev_02_date: "Thg 4 2026",
+    rev_02_meta: "Bạn bè · chuyến đi nhóm",
+    
+    rev_03_title: "Không thể tin được — 10 trên 10",
+    rev_03_body: "Trải nghiệm tuyệt vời nhất từ trước đến nay. Hà Giang Loop là điều không thể bỏ qua ở Việt Nam. Các tài xế thực sự tuyệt vời — giờ chúng tôi gọi họ là bạn. Họ đã vượt xa mong đợi.",
+    rev_03_date: "Thg 4 2026",
+    rev_03_meta: "Bạn bè · 4N3Đ",
+
+    rev_04_title: "Trải nghiệm 10/10 với xe máy!",
+    rev_04_body: "Chúng tôi đã đặt tour 3 ngày 2 đêm. Mọi thứ đều được tổ chức tốt. Các khách sạn nơi chúng tôi ở sạch sẽ và đẹp. Rất cảm ơn đội ngũ hướng dẫn viên AnTravel.",
+    rev_04_date: "Thg 3 2026",
+    rev_04_meta: "Cặp đôi",
+
+    rev_05_title: "Tour tuyệt vời nhất tôi từng tham gia",
+    rev_05_body: "Không còn nghi ngờ gì nữa, đây là tour tuyệt vời nhất tôi từng đi. Hướng dẫn viên đã nỗ lực hết mình để đảm bảo chúng tôi thoải mái. Chỗ ở đẹp, đồ ăn ngon. Rất khuyến khích AnTravel!",
+    rev_05_date: "Thg 3 2026",
+    rev_05_meta: "Bạn bè · Tour 3N2Đ",
 
     // JS dynamic content
     js_book_now: "ĐẶT NGAY",
@@ -426,6 +476,56 @@ const translations = {
     ft_sub_btn: "Subscribe",
     ft_links: "Quick Links",
     ft_admin: "Admin Login",
+    ft_address_label: "Address:",
+    ft_address_val: "24 Nguyen Trai, Ha Giang 1, Tuyen Quang, Vietnam",
+    ft_hotline_label: "Whatsapp & Phone Hotline:",
+    ft_hotline_val: "+84 357164502",
+    ft_email_label: "Email:",
+    ft_email_val: "horsetravel23@gmail.com",
+    ft_copyright: "© 2026 All rights reserved. Designed by AnTravel",
+
+    // Destinations
+    "dest_dest-01_name": "Ha Giang",
+    "dest_dest-01_desc": "The ideal destination for your trip.",
+    "dest_dest-02_name": "Cao Bang",
+    "dest_dest-02_desc": "The ideal destination for your trip.",
+
+    // Tours
+    "tour_tour-hg-01_title": "Ha Giang Loop: Conquer Ma Pi Leng",
+    "tour_tour-cb-01_title": "Cao Bang Ban Gioc: The Majestic Frontier",
+
+    // Reviews
+    sec_reviews_eyebrow: "Customer Reviews",
+    sec_reviews_title_prefix: "What customers",
+    sec_reviews_title_hl: "say about us",
+    sec_reviews_lead: "Authentic stories from travelers who explored the Northeast with AnTravel.",
+    sec_reviews_count: "191+ reviews",
+    sec_reviews_btn_write: "Write a Review",
+
+    rev_01_title: "Excellent service and perfectly organized trip",
+    rev_01_body: "Our guides and drivers were excellent and professional. The whole itinerary was very well planned. Authentic, beautiful accommodation. They did a great job driving — we always felt safe.",
+    rev_01_date: "Mar 2026",
+    rev_01_meta: "6 contributions",
+    
+    rev_02_title: "Group of 8 with motorbikes",
+    rev_02_body: "The guide was very friendly and enthusiastic. He showed us the most beautiful routes. We felt really safe throughout the trip. I truly recommend AnTravel to anyone.",
+    rev_02_date: "Apr 2026",
+    rev_02_meta: "Friends · group trip",
+    
+    rev_03_title: "Unbelievable — 10 out of 10",
+    rev_03_body: "Best experience ever. Ha Giang Loop is a must-do in Vietnam. The drivers are absolutely amazing — we now call them friends. They exceeded all expectations.",
+    rev_03_date: "Apr 2026",
+    rev_03_meta: "Friends · 4D3N",
+
+    rev_04_title: "10/10 experience on motorbike!",
+    rev_04_body: "We booked the 3 days 2 nights tour. Everything was well organized. The hotels we stayed at were clean and beautiful. Thanks to the AnTravel guide team.",
+    rev_04_date: "Mar 2026",
+    rev_04_meta: "Couple",
+
+    rev_05_title: "The best tour I have ever joined",
+    rev_05_body: "Without a doubt, this is the best tour I've ever been on. The guides went above and beyond to make sure we were comfortable. Beautiful accommodation, delicious food. Highly recommend AnTravel!",
+    rev_05_date: "Mar 2026",
+    rev_05_meta: "Friends · 3D2N Tour",
 
     // JS dynamic content
     js_book_now: "BOOK NOW",
