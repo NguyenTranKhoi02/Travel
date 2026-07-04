@@ -2820,9 +2820,10 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-hint {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   margin-top: 4px;
+  font-weight: 600 !important;
 }
 
 /* ===== RADIO CARDS ===== */

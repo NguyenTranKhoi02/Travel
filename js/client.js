@@ -268,10 +268,6 @@
         const isSelfDrive = exp && exp.value === 'Tự lái';
 
         const baseTourCost = tour.price_base || 0;
-        qs('#sumTour').textContent = money(baseTourCost * people);
-        const isEn = (localStorage.getItem('lang') || 'vi') === 'en';
-        const tourLabel = qs('#sumTour').previousElementSibling;
-        if (tourLabel) tourLabel.textContent = isEn ? `Tour Price (${people} pax):` : `Giá Tour (${people} khách):`;
 
         let vehicleCost = 0;
         let discount = 0;
@@ -280,17 +276,37 @@
         if (vehicle && vehicle.value === 'Xe máy') {
           vehicleCost = (tour.surcharge_motorbike || 0) * people;
         } else if (vehicle && vehicle.value === 'Ô tô 7 chỗ') {
-          vehicleCost = tour.surcharge_7seat || 0;
+          vehicleCost = (tour.surcharge_7seat || 0) * people;
         } else if (vehicle && vehicle.value === 'Xe Jeep') {
-          vehicleCost = tour.surcharge_jeep || 0;
+          vehicleCost = (tour.surcharge_jeep || 0) * people;
         }
+
+        let actualBaseTourCost = baseTourCost * people;
+        if (vehicle && (vehicle.value === 'Ô tô 7 chỗ' || vehicle.value === 'Xe Jeep')) {
+          actualBaseTourCost = 0;
+        }
+
+        qs('#sumTour').textContent = money(actualBaseTourCost);
+        const isEn = (localStorage.getItem('lang') || 'vi') === 'en';
+        const tourLabel = qs('#sumTour').previousElementSibling;
+        if (tourLabel) tourLabel.textContent = isEn ? `Tour Price (${people} pax):` : `Giá Tour (${people} khách):`;
 
         if (isSelfDrive && tour.discount_selfdrive) {
           discount = tour.discount_selfdrive * people;
           discountLabel = isEn ? 'Discount (Self-drive):' : 'Giảm giá (Tự lái):';
         }
 
-        let targetTourCost = (baseTourCost * people) + vehicleCost - discount;
+        if (vehicle && (vehicle.value === 'Ô tô 7 chỗ' || vehicle.value === 'Xe Jeep') && people > 2) {
+          const groupDiscount = vehicleCost * 0.2;
+          discount += groupDiscount;
+          if (discountLabel) {
+            discountLabel += isEn ? ' & Group 20%' : ' & Nhóm 20%';
+          } else {
+            discountLabel = isEn ? 'Discount (Group >2 pax):' : 'Giảm 20% (Trên 2 khách):';
+          }
+        }
+
+        let targetTourCost = actualBaseTourCost + vehicleCost - discount;
 
         const discountRow = qs('#discountRow');
         if (discount > 0) {
@@ -332,7 +348,7 @@
         const total = targetTourCost + accCost + pickupCost + returnCost;
         qs('#tourTotal').textContent = money(total);
 
-        return { total, tourCost: baseTourCost, vehicleCost, discount, accCost, pickupCost, returnCost };
+        return { total, tourCost: actualBaseTourCost, vehicleCost, discount, accCost, pickupCost, returnCost };
       };
       ['input', 'change'].forEach(evt => form.addEventListener(evt, updateTotalPrice));
       updateTotalPrice();
