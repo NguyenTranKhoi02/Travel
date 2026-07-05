@@ -266,6 +266,21 @@
         const vehicle = qs('input[name="vehicle"]:checked');
         const exp = qs('input[name="experience"]:checked');
         const isSelfDrive = exp && exp.value === 'Tự lái';
+        const expWrap = qs('#experienceWrap');
+        const carGroupWrap = qs('#carGroupSizeWrap');
+        let carGroupSize = 1;
+
+        if (vehicle && (vehicle.value === 'Ô tô 7 chỗ' || vehicle.value === 'Xe Jeep')) {
+          if (expWrap) expWrap.style.display = 'none';
+          if (carGroupWrap) {
+            carGroupWrap.style.display = 'block';
+            const selCarGroup = qs('input[name="carGroupSize"]:checked');
+            if (selCarGroup) carGroupSize = parseInt(selCarGroup.value) || 1;
+          }
+        } else {
+          if (expWrap) expWrap.style.display = 'block';
+          if (carGroupWrap) carGroupWrap.style.display = 'none';
+        }
 
         const baseTourCost = tour.price_base || 0;
 
@@ -276,9 +291,15 @@
         if (vehicle && vehicle.value === 'Xe máy') {
           vehicleCost = (tour.surcharge_motorbike || 0) * people;
         } else if (vehicle && vehicle.value === 'Ô tô 7 chỗ') {
-          vehicleCost = (tour.surcharge_7seat || 0) * people;
+          let s7 = tour.surcharge_7seat || [0,0,0,0];
+          if (typeof s7 === 'number') s7 = [s7, s7, s7, s7];
+          const pricePerPerson = s7[carGroupSize - 1] || 0;
+          vehicleCost = pricePerPerson * people;
         } else if (vehicle && vehicle.value === 'Xe Jeep') {
-          vehicleCost = (tour.surcharge_jeep || 0) * people;
+          let sj = tour.surcharge_jeep || [0,0,0,0];
+          if (typeof sj === 'number') sj = [sj, sj, sj, sj];
+          const pricePerPerson = sj[carGroupSize - 1] || 0;
+          vehicleCost = pricePerPerson * people;
         }
 
         let actualBaseTourCost = baseTourCost * people;
@@ -291,19 +312,9 @@
         const tourLabel = qs('#sumTour').previousElementSibling;
         if (tourLabel) tourLabel.textContent = isEn ? `Tour Price (${people} pax):` : `Giá Tour (${people} khách):`;
 
-        if (isSelfDrive && tour.discount_selfdrive) {
+        if (isSelfDrive && tour.discount_selfdrive && (!vehicle || vehicle.value === 'Xe máy')) {
           discount = tour.discount_selfdrive * people;
           discountLabel = isEn ? 'Discount (Self-drive):' : 'Giảm giá (Tự lái):';
-        }
-
-        if (vehicle && (vehicle.value === 'Ô tô 7 chỗ' || vehicle.value === 'Xe Jeep') && people > 2) {
-          const groupDiscount = vehicleCost * 0.2;
-          discount += groupDiscount;
-          if (discountLabel) {
-            discountLabel += isEn ? ' & Group 20%' : ' & Nhóm 20%';
-          } else {
-            discountLabel = isEn ? 'Discount (Group >2 pax):' : 'Giảm 20% (Trên 2 khách):';
-          }
         }
 
         let targetTourCost = actualBaseTourCost + vehicleCost - discount;
@@ -373,7 +384,7 @@
           startDate: qs('#startDate').value,
           people: Number(qs('#peopleCount').value),
           vehicle: qs('input[name="vehicle"]:checked').value,
-          experience: qs('input[name="experience"]:checked').value,
+          experience: ['Ô tô 7 chỗ', 'Xe Jeep'].includes(qs('input[name="vehicle"]:checked').value) ? `Nhóm ${qs('input[name="carGroupSize"]:checked')?.value || 1} người/xe` : (qs('input[name="experience"]:checked')?.value || 'N/A'),
           accommodation: qs('#accommodation').options[qs('#accommodation').selectedIndex].text,
           pickupBus: qs('#pickupBus').options[qs('#pickupBus').selectedIndex].text,
           returnBus: qs('#returnBus').options[qs('#returnBus').selectedIndex].text,

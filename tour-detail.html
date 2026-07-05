@@ -196,7 +196,6 @@
                         <span class="hgl-radio-card-content" data-i18n="form_veh_car">Ô tô 7 chỗ</span>
                       </label>
                     </div>
-                    <p class="hgl-hint" style="color: var(--orange); font-weight: 500; margin-top: 8px;" data-i18n="form_veh_note">(Lưu ý: Bạn sẽ tiết kiệm được nhiều chi phí hơn khi đi từ 2 người trở lên do được chia sẻ chung tiền xe)</p>
                   </div>
                   <div class="hgl-field full" id="experienceWrap">
                     <label class="hgl-label" data-i18n="form_exp_label">Kinh nghiệm</label>
@@ -211,10 +210,32 @@
                       </label>
                     </div>
                   </div>
+                  <div class="hgl-field full" id="carGroupSizeWrap" style="display: none;">
+                    <label class="hgl-label" data-i18n="form_car_group_label">Số lượng người trong nhóm (mỗi xe)</label>
+                    <div class="hgl-radio-group">
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="carGroupSize" value="1" checked>
+                        <span class="hgl-radio-card-content" data-i18n="form_car_group_1">1 người</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="carGroupSize" value="2">
+                        <span class="hgl-radio-card-content" data-i18n="form_car_group_2">2 người</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="carGroupSize" value="3">
+                        <span class="hgl-radio-card-content" data-i18n="form_car_group_3">3 người</span>
+                      </label>
+                      <label class="hgl-radio-card">
+                        <input type="radio" name="carGroupSize" value="4">
+                        <span class="hgl-radio-card-content" data-i18n="form_car_group_4">4 người</span>
+                      </label>
+                    </div>
+                  </div>
                   <div class="hgl-field full">
                     <label class="hgl-label" data-i18n="form_acc_label">Chỗ ở</label>
                     <select class="hgl-select" id="accommodation" name="accommodation">
-                      <option value="Dorm" data-price="0" data-i18n="form_acc_opt_dorm">Dorm (Ký túc xá) - Đã bao gồm</option>
+                      <option value="Dorm" data-price="0" data-i18n="form_acc_opt_dorm">Dorm (Ký túc xá) - Đã bao gồm
+                      </option>
                       <option value="Phòng riêng" data-price="300000" data-i18n="form_acc_opt1">Phòng Riêng (1-2 người)
                         +300.000đ/đêm</option>
                       <option value="Phòng gia đình" data-price="500000" data-i18n="form_acc_opt2">Phòng Gia đình (3-4
@@ -246,8 +267,10 @@
                     <div class="hgl-field">
                       <select class="hgl-select" id="pickupBus" name="pickupBus">
                         <option value="" data-price="0" data-i18n="form_bus_choose_pickup">-- Chọn điểm đi --</option>
-                        <option value="Hà Nội" data-price="350000" data-i18n="form_bus_hanoi">Hà Nội (Phố Cổ) - 350.000đ</option>
-                        <option value="Sân bay Nội Bài" data-price="400000" data-i18n="form_bus_noibai">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Hà Nội" data-price="350000" data-i18n="form_bus_hanoi">Hà Nội (Phố Cổ) - 350.000đ
+                        </option>
+                        <option value="Sân bay Nội Bài" data-price="400000" data-i18n="form_bus_noibai">Sân bay Nội Bài
+                          - 400.000đ</option>
                         <option value="Sapa" data-price="450000" data-i18n="form_bus_sapa">Sapa - 450.000đ</option>
                         <option value="Tự túc" data-price="0" data-i18n="form_bus_self">Tôi tự di chuyển</option>
                       </select>
@@ -264,8 +287,10 @@
                     <div class="hgl-field">
                       <select class="hgl-select" id="returnBus" name="returnBus">
                         <option value="" data-price="0" data-i18n="form_bus_choose_return">-- Chọn điểm về --</option>
-                        <option value="Hà Nội" data-price="350000" data-i18n="form_bus_hanoi">Hà Nội (Phố Cổ) - 350.000đ</option>
-                        <option value="Sân bay Nội Bài" data-price="400000" data-i18n="form_bus_noibai">Sân bay Nội Bài - 400.000đ</option>
+                        <option value="Hà Nội" data-price="350000" data-i18n="form_bus_hanoi">Hà Nội (Phố Cổ) - 350.000đ
+                        </option>
+                        <option value="Sân bay Nội Bài" data-price="400000" data-i18n="form_bus_noibai">Sân bay Nội Bài
+                          - 400.000đ</option>
                         <option value="Sapa" data-price="450000" data-i18n="form_bus_sapa">Sapa - 450.000đ</option>
                         <option value="Tự túc" data-price="0" data-i18n="form_bus_self">Tôi tự di chuyển</option>
                       </select>
@@ -284,25 +309,30 @@
                 </div>
                 <div class="hgl-grid hgl-grid-2">
                   <div class="hgl-field">
-                    <label class="hgl-label"><span data-i18n="form_info_name">Họ tên</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_name">Họ tên</span> <span class="hgl-required"
+                        data-i18n="js_required">*</span></label>
                     <input type="text" class="hgl-input" id="tourName" name="name" required>
                   </div>
                   <div class="hgl-field">
-                    <label class="hgl-label"><span data-i18n="form_info_people">Số lượng người</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_people">Số lượng người</span> <span
+                        class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="number" class="hgl-input" id="peopleCount" name="people" min="1" value="1" required>
                   </div>
                   <div class="hgl-field">
-                    <label class="hgl-label"><span data-i18n="form_info_phone">SĐT / Zalo</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_phone">SĐT / Zalo</span> <span
+                        class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="tel" class="hgl-input" id="tourPhone" name="phone" required>
                   </div>
                   <div class="hgl-field">
-                    <label class="hgl-label"><span data-i18n="form_info_date">Ngày khởi hành</span> <span class="hgl-required" data-i18n="js_required">*</span></label>
+                    <label class="hgl-label"><span data-i18n="form_info_date">Ngày khởi hành</span> <span
+                        class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="date" class="hgl-input" id="startDate" name="startDate" required>
                   </div>
                   <div class="hgl-field full">
                     <label class="hgl-label" data-i18n="form_info_req">Yêu cầu đặc biệt</label>
                     <textarea class="hgl-textarea" id="specialRequest" name="specialRequest"
-                      placeholder="Bạn có yêu cầu ăn chay, giờ giấc đón xe, hay có lưu ý gì thêm không?" data-i18n-placeholder="form_info_req_placeholder"></textarea>
+                      placeholder="Bạn có yêu cầu ăn chay, giờ giấc đón xe, hay có lưu ý gì thêm không?"
+                      data-i18n-placeholder="form_info_req_placeholder"></textarea>
                   </div>
                 </div>
               </div>

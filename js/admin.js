@@ -109,8 +109,28 @@
       $('#pfPriceBase').style.display = 'block'; $('#pfPriceBase').value = item ? formatPriceInput(item.price_base) : '';
       $('#pfSurchargeMotorbike').style.display = 'block'; $('#pfSurchargeMotorbike').value = item && item.surcharge_motorbike ? formatPriceInput(item.surcharge_motorbike) : '';
       $('#pfDiscountSelfDrive').style.display = 'block'; $('#pfDiscountSelfDrive').value = item && item.discount_selfdrive ? formatPriceInput(item.discount_selfdrive) : '';
-      $('#pfSurcharge7Seat').style.display = 'block'; $('#pfSurcharge7Seat').value = item && item.surcharge_7seat ? formatPriceInput(item.surcharge_7seat) : '';
-      $('#pfSurchargeJeep').style.display = 'block'; $('#pfSurchargeJeep').value = item && item.surcharge_jeep ? formatPriceInput(item.surcharge_jeep) : '';
+      $('#pfSurcharge7SeatWrap').style.display = 'block'; 
+      if (item && item.surcharge_7seat) {
+        let s7 = item.surcharge_7seat;
+        if (typeof s7 === 'number') s7 = [s7, s7, s7, s7];
+        $('#pfSurcharge7Seat_1').value = formatPriceInput(s7[0] || '');
+        $('#pfSurcharge7Seat_2').value = formatPriceInput(s7[1] || '');
+        $('#pfSurcharge7Seat_3').value = formatPriceInput(s7[2] || '');
+        $('#pfSurcharge7Seat_4').value = formatPriceInput(s7[3] || '');
+      } else {
+        $('#pfSurcharge7Seat_1').value = ''; $('#pfSurcharge7Seat_2').value = ''; $('#pfSurcharge7Seat_3').value = ''; $('#pfSurcharge7Seat_4').value = '';
+      }
+      $('#pfSurchargeJeepWrap').style.display = 'block';
+      if (item && item.surcharge_jeep) {
+        let sj = item.surcharge_jeep;
+        if (typeof sj === 'number') sj = [sj, sj, sj, sj];
+        $('#pfSurchargeJeep_1').value = formatPriceInput(sj[0] || '');
+        $('#pfSurchargeJeep_2').value = formatPriceInput(sj[1] || '');
+        $('#pfSurchargeJeep_3').value = formatPriceInput(sj[2] || '');
+        $('#pfSurchargeJeep_4').value = formatPriceInput(sj[3] || '');
+      } else {
+        $('#pfSurchargeJeep_1').value = ''; $('#pfSurchargeJeep_2').value = ''; $('#pfSurchargeJeep_3').value = ''; $('#pfSurchargeJeep_4').value = '';
+      }
       $('#pfMeta2').style.display = 'block'; $('#pfMeta2').value = item?.duration || '';
       $('#pfImage').value = item?.image || '';
       $('#itineraryBuilderWrap').style.display = 'flex';
@@ -123,7 +143,7 @@
       $('#pfMeta1').style.display = 'block'; $('#pfMeta1').placeholder = 'Loại xe'; $('#pfMeta1').value = item?.type || '';
       $('#pfTourLocation').style.display = 'none';
       $('#pfPriceBase').style.display = 'block'; $('#pfPriceBase').value = item ? formatPriceInput(item.price_per_day) : '';
-      $('#pfSurchargeMotorbike').style.display = 'none'; $('#pfDiscountSelfDrive').style.display = 'none'; $('#pfSurcharge7Seat').style.display = 'none'; $('#pfSurchargeJeep').style.display = 'none';
+      $('#pfSurchargeMotorbike').style.display = 'none'; $('#pfDiscountSelfDrive').style.display = 'none'; $('#pfSurcharge7SeatWrap').style.display = 'none'; $('#pfSurchargeJeepWrap').style.display = 'none';
       $('#pfMeta2').style.display = 'block'; $('#pfMeta2').value = item?.status || '';
       $('#pfImage').value = item?.image || '';
       $('#itineraryBuilderWrap').style.display = 'none';
@@ -134,7 +154,7 @@
       $('#pfMeta1').style.display = 'block'; $('#pfMeta1').placeholder = 'Mô tả ngắn'; $('#pfMeta1').value = item?.description || '';
       $('#pfTourLocation').style.display = 'none';
       $('#pfPriceBase').style.display = 'none'; $('#pfPriceBase').value = '0';
-      $('#pfSurchargeMotorbike').style.display = 'none'; $('#pfDiscountSelfDrive').style.display = 'none'; $('#pfSurcharge7Seat').style.display = 'none'; $('#pfSurchargeJeep').style.display = 'none';
+      $('#pfSurchargeMotorbike').style.display = 'none'; $('#pfDiscountSelfDrive').style.display = 'none'; $('#pfSurcharge7SeatWrap').style.display = 'none'; $('#pfSurchargeJeepWrap').style.display = 'none';
       $('#pfMeta2').style.display = 'none'; $('#pfMeta2').value = 'none';
       $('#pfImage').value = item?.image || '';
       $('#itineraryBuilderWrap').style.display = 'none';
@@ -167,11 +187,13 @@
     $('#pfDiscountSelfDrive')?.addEventListener('input', function() {
       this.value = formatPriceInput(this.value);
     });
-    $('#pfSurcharge7Seat')?.addEventListener('input', function() {
-      this.value = formatPriceInput(this.value);
-    });
-    $('#pfSurchargeJeep')?.addEventListener('input', function() {
-      this.value = formatPriceInput(this.value);
+    ['1', '2', '3', '4'].forEach(num => {
+      $(`#pfSurcharge7Seat_${num}`)?.addEventListener('input', function() {
+        this.value = formatPriceInput(this.value);
+      });
+      $(`#pfSurchargeJeep_${num}`)?.addEventListener('input', function() {
+        this.value = formatPriceInput(this.value);
+      });
     });
 
     // Handle Uploads
@@ -245,7 +267,7 @@
       e.preventDefault();
       const meta1Val = editState.type === 'tour' ? $('#pfTourLocation').value : $('#pfMeta1').value.trim();
       const itineraryValues = [...$$('#itineraryBuilder .itinerary-day-input')].map(el => el.value.trim()).filter(Boolean);
-      const payload = { title: $('#pfTitle').value.trim(), meta1: meta1Val, price: Number($('#pfPriceBase').value.replace(/\./g, '')), surcharge_motorbike: Number($('#pfSurchargeMotorbike').value.replace(/\./g, '')) || 0, discount_selfdrive: Number($('#pfDiscountSelfDrive').value.replace(/\./g, '')) || 0, surcharge_7seat: Number($('#pfSurcharge7Seat').value.replace(/\./g, '')) || 0, surcharge_jeep: Number($('#pfSurchargeJeep').value.replace(/\./g, '')) || 0, meta2: $('#pfMeta2').value.trim(), image: $('#pfImage').value.trim(), itinerary: itineraryValues };
+      const payload = { title: $('#pfTitle').value.trim(), meta1: meta1Val, price: Number($('#pfPriceBase').value.replace(/\./g, '')) || 0, surcharge_motorbike: Number($('#pfSurchargeMotorbike').value.replace(/\./g, '')) || 0, discount_selfdrive: Number($('#pfDiscountSelfDrive').value.replace(/\./g, '')) || 0, surcharge_7seat: [Number($('#pfSurcharge7Seat_1').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_2').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_3').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_4').value.replace(/\./g, '')) || 0], surcharge_jeep: [Number($('#pfSurchargeJeep_1').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_2').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_3').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_4').value.replace(/\./g, '')) || 0], meta2: $('#pfMeta2').value.trim(), image: $('#pfImage').value.trim(), itinerary: itineraryValues };
       
       if (editState.type === 'tour') {
         if (!payload.title || !payload.meta1 || !payload.price || !payload.meta2 || !payload.image) return toast('Vui lòng nhập đủ thông tin');

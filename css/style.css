@@ -2780,6 +2780,7 @@ body .elementor .hgl-booking button {
   gap: 4px;
   text-transform: none !important;
   letter-spacing: normal !important;
+  margin-bottom: 8px;
 }
 
 body .elementor .hgl-booking .hgl-label,

@@ -302,8 +302,22 @@
         <div class="form-group"><label class="admin-label">Giá Tour Cơ bản (VND / Khách)</label><input id="pfPriceBase" placeholder="Giá Tour Cơ bản (VND / Khách)" type="text" required /></div>
         <div class="form-group"><label class="admin-label">Giá Xe máy (VND / Khách)</label><input id="pfSurchargeMotorbike" placeholder="Giá Xe máy (VND / Khách)" type="text" /></div>
         <div class="form-group"><label class="admin-label">Giảm giá nếu Tự lái (VND / Khách)</label><input id="pfDiscountSelfDrive" placeholder="Giảm giá nếu Tự lái (VND / Khách)" type="text" /></div>
-        <div class="form-group"><label class="admin-label">Giá NGUYÊN Ô tô 7 chỗ (VND / Chuyến)</label><input id="pfSurcharge7Seat" placeholder="Giá NGUYÊN Ô tô 7 chỗ (VND / Chuyến)" type="text" /></div>
-        <div class="form-group"><label class="admin-label">Giá NGUYÊN Xe Jeep (VND / Chuyến)</label><input id="pfSurchargeJeep" placeholder="Giá NGUYÊN Xe Jeep (VND / Chuyến)" type="text" /></div>
+        <div class="form-group full" id="pfSurcharge7SeatWrap"><label class="admin-label">Giá Ô tô 7 chỗ theo nhóm (VND / Khách)</label>
+          <div style="display: flex; gap: 8px;">
+            <input id="pfSurcharge7Seat_1" placeholder="1 người" type="text" style="flex:1" />
+            <input id="pfSurcharge7Seat_2" placeholder="2 người" type="text" style="flex:1" />
+            <input id="pfSurcharge7Seat_3" placeholder="3 người" type="text" style="flex:1" />
+            <input id="pfSurcharge7Seat_4" placeholder="4 người" type="text" style="flex:1" />
+          </div>
+        </div>
+        <div class="form-group full" id="pfSurchargeJeepWrap"><label class="admin-label">Giá Xe Jeep theo nhóm (VND / Khách)</label>
+          <div style="display: flex; gap: 8px;">
+            <input id="pfSurchargeJeep_1" placeholder="1 người" type="text" style="flex:1" />
+            <input id="pfSurchargeJeep_2" placeholder="2 người" type="text" style="flex:1" />
+            <input id="pfSurchargeJeep_3" placeholder="3 người" type="text" style="flex:1" />
+            <input id="pfSurchargeJeep_4" placeholder="4 người" type="text" style="flex:1" />
+          </div>
+        </div>
         <div class="full form-group">
           <label class="admin-label">Đường dẫn Ảnh (URL)</label>
           <div style="display:flex;gap:8px;">
