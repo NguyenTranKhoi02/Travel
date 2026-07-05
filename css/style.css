@@ -740,6 +740,12 @@ video {
   margin-top: 12px
 }
 
+#bookingSection {
+  background: url(../images/bg-focus.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
 /* New Itinerary Section */
 .yen-itinerary-list {
   display: flex;
@@ -826,7 +832,7 @@ video {
 .yen-itinerary-content-inner {
   padding: 0 16px 20px 16px;
   padding-left: 71px;
-  color: #4a756f;
+  color: #000;
   line-height: 1.6;
 }
 
@@ -1604,7 +1610,7 @@ form textarea:focus {
 
 .yen-tours-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 28px;
 }
 
