@@ -740,12 +740,6 @@ video {
   margin-top: 12px
 }
 
-#bookingSection {
-  background: url(../images/bg-focus.png) no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-
 /* New Itinerary Section */
 .yen-itinerary-list {
   display: flex;
@@ -4733,4 +4727,12 @@ body .elementor-widget .hgl-booking .hgl-label,
     justify-content: center;
     text-align: center;
   }
+}
+
+/* ========== background ========== */
+#bookingSection {
+  background: url(../images/bg-focus.png) no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed;
 }
