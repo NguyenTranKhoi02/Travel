@@ -67,11 +67,16 @@ video {
   gap: 16px
 }
 
+.wrap-logo {
+  flex: 1;
+}
+
 .brand {
   display: flex;
   gap: 12px;
   align-items: center;
-  flex: 1;
+  width: 100px;
+  height: 60px;
 }
 
 .brand-mark {
@@ -1049,7 +1054,8 @@ form textarea:focus {
   .nav-wrap {
     gap: 10px;
     flex-direction: row;
-    align-items: center
+    align-items: center;
+    padding: 5px 16px;
   }
 }
 
@@ -4051,6 +4057,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 .tour-detail-section #bookingPanel {
   background: transparent;
   border: none;
+  backdrop-filter: inherit;
 }
 
 .about-destinations-section {
@@ -4598,6 +4605,8 @@ body .elementor-widget .hgl-booking .hgl-label,
 
 .lt-footer-brand .brand {
   justify-content: center;
+  height: 85px;
+  width: 160px;
 }
 
 .lt-footer-brand .brand-text {
