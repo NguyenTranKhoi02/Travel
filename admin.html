@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin | AnTravel</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" type="image/png" href="images/logoHL.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -154,7 +154,8 @@
         </div>
         <div class="panel">
           <div class="panel-head">
-            <h2>Điểm đến</h2><button class="btn btn-primary" id="addDestinationBtn" type="button">+ Thêm Điểm đến</button>
+            <h2>Điểm đến</h2><button class="btn btn-primary" id="addDestinationBtn" type="button">+ Thêm Điểm
+              đến</button>
           </div>
           <div class="table-wrap">
             <table class="admin-table">
@@ -242,7 +243,8 @@
             <button class="filter-chip active" data-review-filter="all" type="button">Tất cả</button>
             <button class="filter-chip" data-review-filter="pending" type="button">Chờ duyệt</button>
             <button class="filter-chip" data-review-filter="approved" type="button">Đã duyệt</button>
-            <button class="admin-btn" id="btnAddReviewModal" type="button" style="margin-left: 10px;">+ Thêm Đánh Giá</button>
+            <button class="admin-btn" id="btnAddReviewModal" type="button" style="margin-left: 10px;">+ Thêm Đánh
+              Giá</button>
           </div>
         </div>
         <div class="panel">
@@ -277,9 +279,12 @@
             <div class="form-group">
               <label class="admin-label">Đường dẫn Ảnh nền (Hero Image)</label>
               <div style="display:flex;gap:8px;">
-                <input id="setHeroPoster" readonly style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;" placeholder="Ảnh thu nhỏ chỉ được lấy từ chức năng tải lên..." />
+                <input id="setHeroPoster" readonly
+                  style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;"
+                  placeholder="Ảnh thu nhỏ chỉ được lấy từ chức năng tải lên..." />
                 <input type="file" id="setHeroPosterUpload" accept="image/*" style="display:none" />
-                <button type="button" class="btn" onclick="document.getElementById('setHeroPosterUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+                <button type="button" class="btn" onclick="document.getElementById('setHeroPosterUpload').click()"
+                  style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
               </div>
             </div>
             <div>
@@ -295,14 +300,22 @@
     <div class="modal-box">
       <h2 id="modalTitle">Thêm sản phẩm</h2>
       <form id="productForm" class="grid-2">
-        <div class="form-group"><label class="admin-label">Tên</label><input id="pfTitle" placeholder="Tên" required /></div>
-        <div class="form-group"><label class="admin-label">Loại xe / Mô tả ngắn</label><input id="pfMeta1" placeholder="Loại xe" /></div>
-        <div class="form-group"><label class="admin-label">Tỉnh / Điểm đến</label><select id="pfTourLocation" style="display:none"></select></div>
-        <div class="form-group"><label class="admin-label">Số ngày / Trạng thái</label><input id="pfMeta2" placeholder="Số ngày / Trạng thái" required /></div>
-        <div class="form-group"><label class="admin-label">Giá Tour Cơ bản (VND / Khách)</label><input id="pfPriceBase" placeholder="Giá Tour Cơ bản (VND / Khách)" type="text" required /></div>
-        <div class="form-group"><label class="admin-label">Giá Xe máy (VND / Khách)</label><input id="pfSurchargeMotorbike" placeholder="Giá Xe máy (VND / Khách)" type="text" /></div>
-        <div class="form-group"><label class="admin-label">Giảm giá nếu Tự lái (VND / Khách)</label><input id="pfDiscountSelfDrive" placeholder="Giảm giá nếu Tự lái (VND / Khách)" type="text" /></div>
-        <div class="form-group full" id="pfSurcharge7SeatWrap"><label class="admin-label">Giá Ô tô 7 chỗ theo nhóm (VND / Khách)</label>
+        <div class="form-group"><label class="admin-label">Tên</label><input id="pfTitle" placeholder="Tên" required />
+        </div>
+        <div class="form-group"><label class="admin-label">Loại xe / Mô tả ngắn</label><input id="pfMeta1"
+            placeholder="Loại xe" /></div>
+        <div class="form-group"><label class="admin-label">Tỉnh / Điểm đến</label><select id="pfTourLocation"
+            style="display:none"></select></div>
+        <div class="form-group"><label class="admin-label">Số ngày / Trạng thái</label><input id="pfMeta2"
+            placeholder="Số ngày / Trạng thái" required /></div>
+        <div class="form-group"><label class="admin-label">Giá Tour Cơ bản (VND / Khách)</label><input id="pfPriceBase"
+            placeholder="Giá Tour Cơ bản (VND / Khách)" type="text" required /></div>
+        <div class="form-group"><label class="admin-label">Giá Xe máy (VND / Khách)</label><input
+            id="pfSurchargeMotorbike" placeholder="Giá Xe máy (VND / Khách)" type="text" /></div>
+        <div class="form-group"><label class="admin-label">Giảm giá nếu Tự lái (VND / Khách)</label><input
+            id="pfDiscountSelfDrive" placeholder="Giảm giá nếu Tự lái (VND / Khách)" type="text" /></div>
+        <div class="form-group full" id="pfSurcharge7SeatWrap"><label class="admin-label">Giá Ô tô 7 chỗ theo nhóm (VND
+            / Khách)</label>
           <div style="display: flex; gap: 8px;">
             <input id="pfSurcharge7Seat_1" placeholder="1 người" type="text" style="flex:1" />
             <input id="pfSurcharge7Seat_2" placeholder="2 người" type="text" style="flex:1" />
@@ -310,7 +323,8 @@
             <input id="pfSurcharge7Seat_4" placeholder="4 người" type="text" style="flex:1" />
           </div>
         </div>
-        <div class="form-group full" id="pfSurchargeJeepWrap"><label class="admin-label">Giá Xe Jeep theo nhóm (VND / Khách)</label>
+        <div class="form-group full" id="pfSurchargeJeepWrap"><label class="admin-label">Giá Xe Jeep theo nhóm (VND /
+            Khách)</label>
           <div style="display: flex; gap: 8px;">
             <input id="pfSurchargeJeep_1" placeholder="1 người" type="text" style="flex:1" />
             <input id="pfSurchargeJeep_2" placeholder="2 người" type="text" style="flex:1" />
@@ -321,15 +335,19 @@
         <div class="full form-group">
           <label class="admin-label">Đường dẫn Ảnh (URL)</label>
           <div style="display:flex;gap:8px;">
-            <input id="pfImage" style="flex:1;background:#f8fafc;" placeholder="Ảnh URL chỉ được lấy từ chức năng tải lên..." readonly required />
+            <input id="pfImage" style="flex:1;background:#f8fafc;"
+              placeholder="Ảnh URL chỉ được lấy từ chức năng tải lên..." readonly required />
             <input type="file" id="pfImageUpload" style="display:none" accept="image/*" />
-            <button type="button" class="btn" onclick="document.getElementById('pfImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+            <button type="button" class="btn" onclick="document.getElementById('pfImageUpload').click()"
+              style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
           </div>
         </div>
-        <div class="full" id="itineraryBuilderWrap" style="display:none; flex-direction:column; gap:12px; margin-top:8px;">
+        <div class="full" id="itineraryBuilderWrap"
+          style="display:none; flex-direction:column; gap:12px; margin-top:8px;">
           <label style="font-weight:600;">Lịch trình chi tiết (Mỗi ô tương ứng 1 ngày)</label>
           <div id="itineraryBuilder" style="display:flex;flex-direction:column;gap:8px;"></div>
-          <button type="button" class="btn" id="addItineraryDayBtn" style="align-self:flex-start;padding:8px 16px;background:#e2e8f0;border-radius:8px;">+ Thêm ngày</button>
+          <button type="button" class="btn" id="addItineraryDayBtn"
+            style="align-self:flex-start;padding:8px 16px;background:#e2e8f0;border-radius:8px;">+ Thêm ngày</button>
         </div>
         <label class="full" id="pfFeaturedWrap" style="display:flex;align-items:center;gap:8px;cursor:pointer">
           <input type="checkbox" id="pfFeatured" /> <strong>Tour Nổi bật (Hiển thị trang chủ)</strong>
@@ -350,7 +368,8 @@
             <input id="phUrl" placeholder="Ảnh chỉ được lấy từ chức năng tải lên..." required readonly
               style="flex:1;padding:14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc;" />
             <input type="file" id="phImageUpload" accept="image/*" style="display:none" />
-            <button type="button" class="btn" onclick="document.getElementById('phImageUpload').click()" style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
+            <button type="button" class="btn" onclick="document.getElementById('phImageUpload').click()"
+              style="white-space:nowrap;padding:10px 16px;">Tải lên</button>
           </div>
         </div>
         <div class="form-group">
@@ -380,17 +399,23 @@
     <div class="modal-box" style="max-width: 500px;">
       <h2>Thêm Đánh Giá Mới</h2>
       <form id="adminReviewForm" style="display: flex; flex-direction: column; gap: 15px; margin-top: 15px;">
-        <input type="text" id="arName" placeholder="Tên khách hàng" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
-        <select id="arRating" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <input type="text" id="arName" placeholder="Tên khách hàng" required
+          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <select id="arRating" required
+          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
           <option value="5">5 Sao</option>
           <option value="4">4 Sao</option>
           <option value="3">3 Sao</option>
         </select>
-        <input type="text" id="arTour" placeholder="Dịch vụ (VD: Bạn bè · Tour 3N2Đ)" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
-        <input type="text" id="arDate" placeholder="Thời gian (VD: Thg 5 2026)" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
-        <input type="text" id="arTitle" placeholder="Tiêu đề đánh giá" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
-        <textarea id="arContent" rows="4" placeholder="Nội dung đánh giá" required style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;font-family:inherit;"></textarea>
-        
+        <input type="text" id="arTour" placeholder="Dịch vụ (VD: Bạn bè · Tour 3N2Đ)" required
+          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <input type="text" id="arDate" placeholder="Thời gian (VD: Thg 5 2026)" required
+          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <input type="text" id="arTitle" placeholder="Tiêu đề đánh giá" required
+          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;">
+        <textarea id="arContent" rows="4" placeholder="Nội dung đánh giá" required
+          style="padding:14px;border:1px solid #e2e8f0;border-radius:12px;width:100%;background:#f8fafc;font-family:inherit;"></textarea>
+
         <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:8px;">
           <button type="submit" class="btn btn-primary">Lưu Đánh Giá</button>
           <button type="button" class="btn btn-secondary" id="closeAdminReviewModal">Đóng</button>

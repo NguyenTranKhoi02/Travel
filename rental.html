@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thuê xe máy | VibeEast</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="icon" type="image/png" href="images/logoHL.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -19,10 +19,10 @@
     <div class="nav-wrap">
       <div class="wrap-logo">
         <a class="brand" href="index.html">
-          <img src="/images/logoA.png" alt="">
+          <img src="/images/logoHL.png" alt="">
         </a>
       </div>
-      
+
       <div class="lang-switcher">
         <a href="#" class="lang-btn" data-lang="vi">VN</a>
         <a href="#" class="lang-btn" data-lang="en">EN</a>
@@ -60,14 +60,16 @@
               <input type="checkbox" name="bike_type" value="Xe số" /> <span data-i18n="car_num">Xe số</span>
             </label>
             <label class="yen-filter-item">
-              <input type="checkbox" name="bike_type" value="Xe côn tay" /> <span data-i18n="car_manual">Xe côn tay</span>
+              <input type="checkbox" name="bike_type" value="Xe côn tay" /> <span data-i18n="car_manual">Xe côn
+                tay</span>
             </label>
             <label class="yen-filter-item">
               <input type="checkbox" name="bike_type" value="Tay ga" /> <span data-i18n="car_scooter">Xe tay ga</span>
             </label>
           </div>
 
-          <button class="yen-clear-filters" id="clearBikeFilters" type="button" data-i18n="filter_clear">Xóa bộ lọc</button>
+          <button class="yen-clear-filters" id="clearBikeFilters" type="button" data-i18n="filter_clear">Xóa bộ
+            lọc</button>
         </aside>
 
         <!-- BIKES GRID -->
@@ -93,23 +95,32 @@
       <h2 class="bike-modal-title" data-i18n="modal_rental_title">Xác nhận đặt xe</h2>
       <form id="bikeBookingForm" class="bike-booking-form">
         <div class="bike-form-grid-2">
-          <label class="bike-form-label"><span data-i18n="modal_name">Họ tên</span><input id="bikeName" class="bike-form-input" required></label>
-          <label class="bike-form-label"><span data-i18n="modal_phone">SĐT</span><input id="bikePhone" class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_name">Họ tên</span><input id="bikeName"
+              class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_phone">SĐT</span><input id="bikePhone"
+              class="bike-form-input" required></label>
         </div>
         <div class="bike-form-grid-2">
-          <label class="bike-form-label"><span data-i18n="modal_pickup_date">Ngày nhận</span><input id="rentFrom" type="date" class="bike-form-input" required></label>
-          <label class="bike-form-label"><span data-i18n="modal_drop_date">Ngày trả</span><input id="rentTo" type="date" class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_pickup_date">Ngày nhận</span><input id="rentFrom"
+              type="date" class="bike-form-input" required></label>
+          <label class="bike-form-label"><span data-i18n="modal_drop_date">Ngày trả</span><input id="rentTo" type="date"
+              class="bike-form-input" required></label>
         </div>
-        <label class="bike-form-label"><span data-i18n="modal_car">Xe muốn thuê</span><select id="bikeSelect" class="bike-form-input"></select></label>
-        <label class="bike-form-label"><span data-i18n="modal_pickup_loc">Nơi nhận xe</span><input id="pickupPlace" class="bike-form-input" placeholder="VD: Bến xe, KS..." data-i18n-placeholder="modal_pickup_loc_placeholder"></label>
-        
+        <label class="bike-form-label"><span data-i18n="modal_car">Xe muốn thuê</span><select id="bikeSelect"
+            class="bike-form-input"></select></label>
+        <label class="bike-form-label"><span data-i18n="modal_pickup_loc">Nơi nhận xe</span><input id="pickupPlace"
+            class="bike-form-input" placeholder="VD: Bến xe, KS..."
+            data-i18n-placeholder="modal_pickup_loc_placeholder"></label>
+
         <div class="bike-form-total-wrap">
           <strong data-i18n="modal_total">Tổng tiền:</strong>
           <span class="form-total" id="bikeTotal"></span>
         </div>
-        
+
         <div class="bike-form-actions">
-          <button class="btn btn-secondary bike-btn-cancel" type="button" onclick="document.getElementById('bikeBookingModal').classList.remove('active')" data-i18n="modal_cancel">Hủy</button>
+          <button class="btn btn-secondary bike-btn-cancel" type="button"
+            onclick="document.getElementById('bikeBookingModal').classList.remove('active')"
+            data-i18n="modal_cancel">Hủy</button>
           <button class="btn btn-primary bike-btn-submit" type="submit" data-i18n="modal_confirm">Đặt xe ngay</button>
         </div>
       </form>
@@ -119,7 +130,7 @@
     <div class="container lt-footer-inner">
       <div class="lt-footer-brand">
         <a class="brand" href="index.html">
-          <img src="/images/logoA.png" alt="">
+          <img src="/images/logoHL.png" alt="">
         </a>
       </div>
 
