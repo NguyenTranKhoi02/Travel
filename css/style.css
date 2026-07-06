@@ -1,12 +1,12 @@
 :root {
-  --green: #1E3A2F;
-  --orange: #D97706;
+  --secondary: #2E2E2C;
+  --primary: #DB9D51;
   --cream: #F9FAC7;
   --bg: #f5f1e6;
   --text: #173126;
   --muted: #647067;
   --card: #ffffff;
-  --shadow: 0 20px 50px rgba(22, 44, 34, .12);
+  --shadow: 0 20px 50px rgba(46, 46, 44, .12);
   --radius: 24px;
 }
 
@@ -48,12 +48,12 @@ video {
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
+  width: 100%;
+  left: 0;
   top: 0;
   z-index: 20;
-  background: rgba(255, 255, 255, .82);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(30, 58, 47, .08)
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #ffffff 7.5%, rgba(255, 255, 255, 0.66) 65%, rgba(255, 255, 255, 0) 100%);
 }
 
 .eyetitle {
@@ -63,7 +63,7 @@ video {
 .nav-wrap {
   display: flex;
   align-items: center;
-  padding: 14px 16px;
+  padding: 14px 16px 30px 16px;
   gap: 16px
 }
 
@@ -83,7 +83,7 @@ video {
   width: 42px;
   height: 42px;
   border-radius: 20px;
-  background: var(--green);
+  background: var(--secondary);
   color: #fff;
   display: grid;
   place-items: center;
@@ -93,15 +93,15 @@ video {
 
 @keyframes livePulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(30, 58, 47, 0.4);
+    box-shadow: 0 0 0 0 rgba(46, 46, 44, 0.4);
   }
 
   70% {
-    box-shadow: 0 0 0 10px rgba(30, 58, 47, 0);
+    box-shadow: 0 0 0 10px rgba(46, 46, 44, 0);
   }
 
   100% {
-    box-shadow: 0 0 0 0 rgba(30, 58, 47, 0);
+    box-shadow: 0 0 0 0 rgba(46, 46, 44, 0);
   }
 }
 
@@ -112,28 +112,46 @@ video {
 
 .nav {
   display: flex;
-  gap: 5px;
+  gap: 26px;
   flex-wrap: wrap;
   align-items: center
 }
 
 .nav a {
-  padding: 10px 14px;
+  position: relative;
   border-radius: 999px;
-  font-weight: 600
+  font-weight: 600;
+  transition: all 0.5s ease;
 }
 
 .nav a.active,
 .nav a:hover {
-  background: linear-gradient(135deg, #dae8df 0%, #e8eff0 100%);
-  color: #5a8a72;
+  color: var(--primary);
+}
+
+.nav a:before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.nav a.active:before,
+.nav a:hover:before {
+  opacity: 1;
+  width: 100%;
 }
 
 .nav-toggle {
   display: none;
   width: 44px;
   height: 44px;
-  border: 1px solid rgba(23, 49, 38, .12);
+  border: 1px solid rgba(46, 46, 44, .12);
   border-radius: 14px;
   background: #fff;
   align-items: center;
@@ -146,7 +164,7 @@ video {
 .nav-toggle span {
   width: 18px;
   height: 2px;
-  background: var(--green);
+  background: var(--secondary);
   border-radius: 2px
 }
 
@@ -172,7 +190,7 @@ video {
 }
 
 .hero-overlay {
-  background: linear-gradient(180deg, rgba(23, 49, 38, .30), rgba(23, 49, 38, .78))
+  background: linear-gradient(180deg, rgba(46, 46, 44, .30), rgba(46, 46, 44, .78))
 }
 
 .hero-content {
@@ -195,7 +213,7 @@ video {
   letter-spacing: .14em;
   font-size: .78rem;
   font-weight: 700;
-  color: #ff9113;
+  color: var(--primary);
 }
 
 .hero h1,
@@ -264,7 +282,7 @@ video {
   width: auto;
   padding: 14px 16px;
   border-radius: 16px;
-  border: 1px solid rgba(23, 49, 38, .14);
+  border: 1px solid rgba(46, 46, 44, .14);
   font: inherit;
   background: #fff;
 }
@@ -287,7 +305,7 @@ video {
 }
 
 .btn-primary {
-  background: var(--orange) !important;
+  background: var(--primary) !important;
   color: #fff;
 }
 
@@ -302,7 +320,7 @@ video {
 }
 
 .alt-bg {
-  background: linear-gradient(180deg, rgba(30, 58, 47, .05), transparent)
+  background: linear-gradient(180deg, rgba(46, 46, 44, .05), transparent)
 }
 
 .section-heading {
@@ -339,7 +357,7 @@ video {
 
 .bike-swiper .swiper-button-next,
 .bike-swiper .swiper-button-prev {
-  color: var(--green);
+  color: var(--secondary);
   background: #fff;
   width: 48px;
   height: 48px;
@@ -359,7 +377,7 @@ video {
 }
 
 .bike-swiper .swiper-pagination-bullet-active {
-  background: var(--green);
+  background: var(--secondary);
 }
 
 @media (max-width: 600px) {
@@ -383,7 +401,7 @@ video {
 
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--orange) !important;
+  color: var(--primary) !important;
   background: rgba(255, 255, 255, 0.85);
   width: 52px !important;
   height: 52px !important;
@@ -399,7 +417,7 @@ video {
 }
 
 .swiper-pagination-bullet-active {
-  background: var(--orange) !important;
+  background: var(--primary) !important;
 }
 
 .province-card,
@@ -409,7 +427,7 @@ video {
   overflow: hidden;
   border-radius: 28px;
   min-height: 500px;
-  background: var(--green);
+  background: var(--secondary);
   color: #fff;
   box-shadow: var(--shadow);
 }
@@ -546,7 +564,7 @@ video {
   padding: 16px;
   font-size: 1rem;
   border-radius: 16px;
-  background: var(--orange) !important;
+  background: var(--primary) !important;
   color: #fff;
   box-shadow: 0 8px 20px rgba(217, 119, 6, 0.4);
   transition: all 0.3s ease;
@@ -567,7 +585,7 @@ video {
   display: flex;
   flex-direction: column;
   gap: 32px;
-  background: linear-gradient(135deg, var(--green) 0%, #11241d 100%);
+  background: linear-gradient(135deg, var(--secondary) 0%, #1a1a19 100%);
   color: #fff;
   padding: 56px;
   border-radius: 32px;
@@ -581,7 +599,7 @@ video {
 }
 
 .rental-highlight .eyebrow {
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .rental-highlight p {
@@ -603,7 +621,7 @@ video {
 
 .check-list li::before {
   content: "✔";
-  color: var(--orange);
+  color: var(--primary);
   font-weight: 800;
 }
 
@@ -632,7 +650,7 @@ video {
 .bike-sneakpeek .mini:hover {
   background: rgba(255, 255, 255, 0.15);
   transform: translateY(-8px);
-  border-color: var(--orange);
+  border-color: var(--primary);
 }
 
 .bike-sneakpeek img {
@@ -653,7 +671,7 @@ video {
 }
 
 .bike-price {
-  color: var(--orange);
+  color: var(--primary);
   font-weight: 800;
   font-size: 1.05rem;
   margin-top: 4px;
@@ -667,12 +685,11 @@ video {
 }
 
 .bike-sneakpeek .mini:hover .bike-arrow {
-  color: var(--orange);
+  color: var(--primary);
 }
 
 .site-footer {
   padding: 28px 0;
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
   color: var(--text);
 }
 
@@ -846,13 +863,13 @@ video {
 .form-total {
   font-size: 1.8rem;
   font-weight: 800;
-  color: var(--green)
+  color: var(--secondary)
 }
 
 .radio-list label {
   display: block;
   padding: 12px 14px;
-  border: 1px solid rgba(23, 49, 38, .12);
+  border: 1px solid rgba(46, 46, 44, .12);
   border-radius: 14px;
   margin-bottom: 10px;
   cursor: pointer
@@ -872,7 +889,7 @@ video {
 
 .admin-sidebar {
   padding: 24px;
-  background: var(--green);
+  background: var(--secondary);
   color: #fff
 }
 
@@ -926,7 +943,7 @@ video {
 .table th,
 .table td {
   padding: 14px;
-  border-bottom: 1px solid rgba(23, 49, 38, .08);
+  border-bottom: 1px solid rgba(46, 46, 44, .08);
   text-align: left
 }
 
@@ -980,7 +997,7 @@ video {
 }
 
 .detail-pan strong {
-  color: #5a8a72;
+  color: var(--primary);
   font-size: 20px;
   text-decoration-line: underline;
 }
@@ -991,7 +1008,7 @@ video {
 
 .detail-pan .title-tt {
   font-size: 24px;
-  color: var(--orange);
+  color: var(--primary);
 }
 
 form {
@@ -1014,7 +1031,7 @@ form textarea {
   width: 100%;
   padding: 14px 16px;
   border-radius: 16px;
-  border: 1px solid rgba(23, 49, 38, .14);
+  border: 1px solid rgba(46, 46, 44, .14);
   font: inherit;
   background: #fff;
 }
@@ -1022,7 +1039,7 @@ form textarea {
 form input:focus,
 form select:focus,
 form textarea:focus {
-  outline: 2px solid var(--orange);
+  outline: 2px solid var(--primary);
   border-color: transparent;
 }
 
@@ -1060,6 +1077,10 @@ form textarea:focus {
 }
 
 @media (max-width: 768px) {
+  .site-header {
+    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #ffffff 7.5%, rgba(255, 255, 255, 0.66) 90%, rgba(255, 255, 255, 0) 100%);
+  }
+
   .slider-controls {
     flex-direction: column;
     gap: 12px;
@@ -1112,24 +1133,28 @@ form textarea:focus {
   .nav {
     display: none;
     position: absolute;
-    top: 72px;
+    top: 64px;
     left: 16px;
     right: 16px;
     background: #fff;
     padding: 12px;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: var(--shadow);
     flex-direction: column;
     align-items: stretch
   }
 
   .nav.open {
-    display: flex
+    display: flex;
+    gap: 0px;
   }
 
   .nav a {
-    padding: 14px 16px;
-    background: linear-gradient(135deg, #dae8df 0%, #e8eff0 100%);
+    padding: 10px 0px;
+  }
+
+  .nav a:before {
+    bottom: 0px;
   }
 
   .hero {
@@ -1156,7 +1181,7 @@ form textarea:focus {
   }
 
   .section {
-    padding: 56px 0
+    padding: 30px 0
   }
 
   .section-heading {
@@ -1318,9 +1343,7 @@ form textarea:focus {
 }
 
 /* About Page Refactored Styles */
-.about-page {
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
-}
+.about-page {}
 
 .animate-up {
   opacity: 0;
@@ -1334,7 +1357,7 @@ form textarea:focus {
 }
 
 .about-hero-glass {
-  background: #5a8a72;
+  background: #2E2E2C;
   border-radius: 10px;
   padding: 60px 40px;
   color: #fff;
@@ -1379,7 +1402,7 @@ form textarea:focus {
 
 .about-hero-container {
   z-index: 1;
-  padding-top: 30px;
+  padding: 80px;
 }
 
 .about-eyebrow {
@@ -1396,12 +1419,12 @@ form textarea:focus {
   line-height: 1.1;
 }
 
-.text-orange {
-  color: var(--orange);
+.text-primary {
+  color: var(--primary);
 }
 
-.text-green {
-  color: var(--orange);
+.text-secondary {
+  color: var(--secondary);
 }
 
 .about-sapo {
@@ -1414,8 +1437,11 @@ form textarea:focus {
 
 .about-gallery-section {
   padding: 100px 0;
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
-  color: #fff;
+  background: url(../images/bg-focus.png) no-repeat;
+  background-size: contain;
+  border-top: 2px solid #2E2E2C;
+  border-bottom: 2px solid #2E2E2C;
+  background-attachment: fixed;
 }
 
 .about-gallery-heading {
@@ -1426,7 +1452,7 @@ form textarea:focus {
 .about-h2 {
   font-size: clamp(2rem, 4vw, 3rem);
   margin-top: 12px;
-  color: #5a8a72;
+  color: #2E2E2C;
 }
 
 .about-gallery-desc {
@@ -1434,7 +1460,7 @@ form textarea:focus {
   max-width: 600px;
   margin: 16px auto 0;
   font-size: 1.1rem;
-  color: #5a8a72;
+  color: #2E2E2C;
 }
 
 .delay-100 {
@@ -1506,16 +1532,17 @@ form textarea:focus {
 .yen-section-title {
   font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 700;
-  color: #d4816b;
+  color: #2E2E2C;
   font-style: italic;
   margin: 0 0 8px;
   line-height: 1.2;
 }
 
 .yen-section-sub {
-  color: var(--muted);
+  color: var(--primary);
   font-size: 1.05rem;
   margin: 0 0 40px;
+  font-weight: 600;
 }
 
 .yen-center {
@@ -1533,9 +1560,9 @@ form textarea:focus {
   align-items: center;
   gap: 8px;
   padding: 14px 32px;
-  border: 2px solid var(--green);
+  border: 2px solid var(--secondary);
   border-radius: 999px;
-  color: var(--green);
+  color: var(--secondary);
   font-weight: 700;
   font-size: 0.95rem;
   background: transparent;
@@ -1544,10 +1571,10 @@ form textarea:focus {
 }
 
 .btn-outline-yen:hover {
-  background: var(--brand);
+  background: var(--primary);
   color: #fff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(30, 58, 47, 0.2);
+  box-shadow: 0 8px 20px rgba(46, 46, 44, 0.2);
 }
 
 /* ===================================================================
@@ -1567,7 +1594,7 @@ form textarea:focus {
 .yen-about-subtitle {
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--orange);
+  color: var(--primary);
   margin: 0 0 20px;
 }
 
@@ -1605,7 +1632,11 @@ form textarea:focus {
    FEATURED TOURS — White Card Grid (yenecotravel style)
    =================================================================== */
 .yen-tours-section {
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
+  background: url(../images/bg-focus.png) no-repeat #202020;
+  background-size: cover;
+  border-top: 2px solid #2E2E2C;
+  border-bottom: 2px solid #2E2E2C;
+  background-attachment: fixed;
 }
 
 .yen-tours-grid {
@@ -1618,7 +1649,7 @@ form textarea:focus {
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -1627,7 +1658,7 @@ form textarea:focus {
 
 .yen-tour-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.13);
 }
 
 .yen-tour-card-img {
@@ -1666,7 +1697,7 @@ form textarea:focus {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
-  color: var(--muted);
+  color: #2E2E2C;
   font-size: 0.88rem;
   margin-bottom: 16px;
   align-items: center;
@@ -1694,14 +1725,14 @@ form textarea:focus {
 .yen-tour-card-price {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #d4816b;
+  color: #DB9D51;
 }
 
 .yen-tour-card-btn {
   padding: 10px 22px;
   border-radius: 999px;
-  background: #d4816b;
-  color: #fff;
+  background: #DB9D51;
+  color: #000;
   font-weight: 700;
   font-size: 0.85rem;
   border: none;
@@ -1713,7 +1744,7 @@ form textarea:focus {
 }
 
 .yen-tour-card-btn:hover {
-  background: #c06f5a;
+  background: #db9c4e;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(212, 129, 107, 0.4);
 }
@@ -1726,7 +1757,7 @@ form textarea:focus {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
-  color: var(--green);
+  color: var(--secondary);
   font-size: 0.78rem;
   font-weight: 700;
   z-index: 2;
@@ -1743,7 +1774,11 @@ form textarea:focus {
    MOTORBIKE RENTAL — White Card Grid (yenecotravel style)
    =================================================================== */
 .yen-bike-section {
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
+  background: url(../images/bg-focus.png) no-repeat #202020;
+  background-size: cover;
+  border-top: 2px solid #2E2E2C;
+  border-bottom: 2px solid #2E2E2C;
+  background-attachment: fixed;
 }
 
 .yen-bike-grid {
@@ -1756,7 +1791,7 @@ form textarea:focus {
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -1765,7 +1800,7 @@ form textarea:focus {
 
 .yen-bike-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.13);
 }
 
 .yen-bike-card-img-wrap {
@@ -1798,7 +1833,7 @@ form textarea:focus {
 .yen-bike-card-title {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--green);
+  color: var(--secondary);
   margin: 0 0 8px;
 }
 
@@ -1830,7 +1865,7 @@ form textarea:focus {
   margin-top: auto;
   font-size: 1.2rem;
   font-weight: 800;
-  color: #d4816b;
+  color: var(--primary);
 }
 
 .yen-bike-card-price small {
@@ -1869,7 +1904,7 @@ form textarea:focus {
 .yen-travel-box {
   max-width: 900px;
   margin: 0 auto;
-  border: 2px solid var(--green);
+  border: 2px solid var(--secondary);
   border-radius: 32px;
   padding: 60px 48px;
   text-align: center;
@@ -1892,14 +1927,15 @@ form textarea:focus {
 
 .yen-travel-subtitle {
   font-size: 1.05rem;
-  color: var(--muted);
+  color: var(--primary);
   margin: 0 0 20px;
 }
 
 .yen-travel-desc {
   font-size: 1rem;
+  font-weight: 600;
   line-height: 1.85;
-  color: #4a5568;
+  color: #2E2E2C;
   max-width: 700px;
   margin: 0 auto 40px;
 }
@@ -1948,7 +1984,7 @@ form textarea:focus {
 
 .yen-value-item p {
   font-size: 0.9rem;
-  color: var(--muted);
+  color: #2E2E2C;
   line-height: 1.6;
   margin: 0;
 }
@@ -1957,7 +1993,11 @@ form textarea:focus {
    FAQ SECTION — Clean Accordion
    =================================================================== */
 .yen-faq-section {
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
+  background: url(../images/bg-focus.png) no-repeat;
+  background-size: cover;
+  border-top: 2px solid #2E2E2C;
+  border-bottom: 2px solid #2E2E2C;
+  background-attachment: fixed;
 }
 
 .yen-faq-list {
@@ -1981,8 +2021,8 @@ form textarea:focus {
 }
 
 .yen-faq-item.active {
-  border-color: var(--green);
-  box-shadow: 0 4px 16px rgba(30, 58, 47, 0.08);
+  border-color: var(--secondary);
+  box-shadow: 0 4px 16px rgba(46, 46, 44, 0.08);
 }
 
 .yen-faq-question {
@@ -2004,7 +2044,7 @@ form textarea:focus {
 }
 
 .yen-faq-question:hover {
-  color: var(--green);
+  color: var(--secondary);
 }
 
 .yen-faq-icon {
@@ -2018,7 +2058,7 @@ form textarea:focus {
 
 .yen-faq-item.active .yen-faq-icon {
   transform: rotate(45deg);
-  color: var(--green);
+  color: var(--secondary);
 }
 
 .yen-faq-answer {
@@ -2044,6 +2084,15 @@ form textarea:focus {
    RESPONSIVE — New Sections
    =================================================================== */
 @media (max-width: 960px) {
+  .about-hero-container {
+    z-index: 1;
+    padding: 30px 0;
+  }
+
+  .about-hero-glass {
+    max-width: 100%;
+  }
+
   .yen-about-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -2160,7 +2209,7 @@ form textarea:focus {
 
 /* --- Tours Hero Header --- */
 .yen-tours-hero {
-  background: linear-gradient(135deg, #dae8df 0%, #e8eff0 100%);
+  background: var(--primary);
   padding: 100px 0 48px;
   border-bottom: 1px solid #d1ddd6;
 }
@@ -2168,21 +2217,24 @@ form textarea:focus {
 .yen-tours-hero-title {
   font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 700;
-  color: #5a8a72;
+  color: #2E2E2C;
   font-style: italic;
   margin: 0 0 8px;
 }
 
 .yen-tours-hero-sub {
   font-size: 1.1rem;
-  color: #6b8a7a;
+  color: #2E2E2C;
   margin: 0;
 }
 
 /* --- Tours Layout (Sidebar + Grid) --- */
 .yen-tours-content {
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
   padding: 48px 0 80px;
+  background: url(../images/bg-focus.png) no-repeat #202020;
+  background-size: cover;
+  border-top: 2px solid #2E2E2C;
+  background-attachment: fixed;
 }
 
 .yen-tours-layout {
@@ -2198,7 +2250,7 @@ form textarea:focus {
   border-radius: 20px;
   padding: 32px 28px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 2px solid rgba(0, 0, 0, 0.04);
   position: sticky;
   top: 90px;
 }
@@ -2222,7 +2274,7 @@ form textarea:focus {
 .yen-filter-title {
   font-size: 1rem;
   font-weight: 700;
-  color: #5a8a72;
+  color: #2E2E2C;
   margin: 0 0 14px;
 }
 
@@ -2238,13 +2290,13 @@ form textarea:focus {
 }
 
 .yen-filter-item:hover {
-  color: var(--green);
+  color: var(--secondary);
 }
 
 .yen-filter-item input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: var(--green);
+  accent-color: var(--secondary);
   cursor: pointer;
 }
 
@@ -2262,8 +2314,8 @@ form textarea:focus {
 }
 
 .yen-clear-filters:hover {
-  border-color: var(--green);
-  color: var(--green);
+  border-color: var(--secondary);
+  color: var(--secondary);
   background: #f0faf5;
 }
 
@@ -2291,7 +2343,7 @@ form textarea:focus {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(8px);
-  color: #16a34a;
+  color: var(--primary);
   font-size: 0.88rem;
   font-weight: 800;
   z-index: 2;
@@ -2303,8 +2355,8 @@ form textarea:focus {
   width: 100%;
   padding: 14px;
   border-radius: 12px;
-  background: #5a8a72;
-  color: #fff;
+  background: var(--primary);
+  color: #000;
   font-weight: 700;
   font-size: 0.9rem;
   text-align: center;
@@ -2316,7 +2368,7 @@ form textarea:focus {
 }
 
 .yen-tour-card-book:hover {
-  background: #4a7a62;
+  background: var(--primary);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(90, 138, 114, 0.4);
 }
@@ -2480,7 +2532,7 @@ form textarea:focus {
 }
 
 .bike-status-available {
-  color: var(--orange);
+  color: var(--primary);
   font-weight: 600;
 }
 
@@ -2544,7 +2596,7 @@ form textarea:focus {
 
 .bike-form-total-wrap .form-total {
   font-size: 1.25rem;
-  color: var(--orange);
+  color: var(--primary);
   font-weight: 800;
 }
 
@@ -2666,7 +2718,7 @@ body .elementor .hgl-booking button {
 /* ===== HEADER ===== */
 .hgl-header {
   border-radius: var(--radius) var(--radius) 0px 0px;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
   padding: 32px 28px;
   text-align: center;
   position: relative;
@@ -2685,10 +2737,10 @@ body .elementor .hgl-booking button {
 }
 
 .hgl-header h2 {
-  color: #fff !important;
+  color: #2E2E2C !important;
   font-family: var(--font) !important;
-  font-size: 1.6rem;
-  font-weight: 800;
+  font-size: 1.7rem;
+  font-weight: 900;
   margin-bottom: 6px;
   position: relative;
   line-height: 1.25;
@@ -2697,10 +2749,10 @@ body .elementor .hgl-booking button {
 }
 
 .hgl-header p {
-  color: rgba(255, 255, 255, 0.9) !important;
+  color: #2E2E2C !important;
   font-family: var(--font) !important;
   font-size: 0.95rem;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 /* ===== FORM BODY ===== */
@@ -2731,7 +2783,7 @@ body .elementor .hgl-booking button {
 .hgl-section-title svg {
   width: 20px;
   height: 20px;
-  color: var(--brand);
+  color: var(--primary);
 }
 
 .hgl-grid {
@@ -2815,7 +2867,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 .hgl-select:focus,
 .hgl-textarea:focus {
   outline: none;
-  border-color: var(--brand);
+  border-color: var(--primary);
   box-shadow: 0 0 0 3px rgba(255, 102, 2, 0.12);
 }
 
@@ -2875,14 +2927,14 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-radio-card-content:hover {
-  border-color: var(--brand);
+  border-color: var(--primary);
   background: var(--brand-light);
 }
 
 .hgl-radio-card input:checked+.hgl-radio-card-content {
-  border-color: var(--brand);
+  border-color: var(--primary);
   background: var(--brand-light);
-  color: var(--brand-dark);
+  color: #2E2E2C;
   font-weight: 600;
 }
 
@@ -2917,12 +2969,12 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-bike-card:hover {
-  border-color: var(--brand);
+  border-color: var(--primary);
   box-shadow: 0 4px 12px rgba(255, 102, 2, 0.1);
 }
 
 .hgl-bike-card.selected {
-  border-color: var(--brand);
+  border-color: var(--primary);
   background: var(--brand-light);
 }
 
@@ -2954,7 +3006,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 
 .hgl-bike-price {
   font-size: 0.85rem;
-  color: var(--brand);
+  color: var(--primary);
   font-weight: 700;
 }
 
@@ -2971,8 +3023,8 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-bike-card.selected .hgl-bike-check {
-  background: var(--brand);
-  border-color: var(--brand);
+  background: var(--primary);
+  border-color: var(--primary);
 }
 
 .hgl-bike-card.selected .hgl-bike-check::after {
@@ -3010,7 +3062,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 .hgl-bus-col-title svg {
   width: 18px;
   height: 18px;
-  color: var(--brand);
+  color: var(--primary);
 }
 
 /* ===== COST SUMMARY ===== */
@@ -3044,12 +3096,13 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-summary-row.total .hgl-summary-value {
-  color: var(--brand);
+  color: var(--primary);
+  font-weight: 600;
   font-size: 1.15rem;
 }
 
 .hgl-summary-label {
-  color: var(--text-light);
+  color: #2E2E2C;
 }
 
 .hgl-summary-value {
@@ -3082,7 +3135,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 .hgl-payment-title svg {
   width: 18px;
   height: 18px;
-  color: var(--brand);
+  color: var(--primary);
 }
 
 .hgl-payment-grid {
@@ -3109,11 +3162,11 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-payment-card:hover {
-  border-color: var(--brand);
+  border-color: var(--primary);
 }
 
 .hgl-payment-card.selected {
-  border-color: var(--brand);
+  border-color: var(--primary);
   background: var(--brand-light);
 }
 
@@ -3145,7 +3198,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-payment-card.selected .hgl-payment-card-title svg.hgl-pay-icon {
-  stroke: var(--brand);
+  stroke: var(--primary);
 }
 
 .hgl-payment-card-desc {
@@ -3168,7 +3221,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-payment-breakdown-row.highlight {
-  color: var(--brand);
+  color: var(--primary);
   font-weight: 600;
   background: transparent !important;
 }
@@ -3218,7 +3271,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-voucher-btn:hover {
-  background: var(--brand);
+  background: var(--primary);
 }
 
 /* ===== TERMS ===== */
@@ -3240,7 +3293,7 @@ body .elementor-widget .hgl-booking .hgl-label,
   height: 20px;
   margin: 0;
   flex-shrink: 0;
-  accent-color: var(--brand);
+  accent-color: var(--primary);
 }
 
 .hgl-terms-checkbox span {
@@ -3249,7 +3302,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-terms-toggle {
-  color: var(--brand);
+  color: var(--primary);
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
@@ -3348,7 +3401,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 
 .hgl-terms-warning {
   background: #fff5f0;
-  border-left: 3px solid var(--brand);
+  border-left: 3px solid var(--primary);
   padding: 10px 12px;
   border-radius: 4px;
   margin: 8px 0;
@@ -3356,7 +3409,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-terms-link {
-  color: var(--brand);
+  color: var(--primary);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.78rem;
@@ -3380,7 +3433,7 @@ body .elementor-widget .hgl-booking .hgl-label,
   justify-content: center;
   gap: 10px;
   padding: 16px 48px;
-  background: var(--brand);
+  background: var(--primary);
   color: #fff;
   border: 2px solid var(--text);
   border-radius: 12px;
@@ -3395,22 +3448,22 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-submit-btn:hover:not(:disabled) {
-  background: var(--brand-dark);
+  background: var(--primary);
   transform: translate(-2px, -2px);
-  box-shadow: 7px 7px 0 var(--text);
+  box-shadow: 2px 2px 0 var(--text);
 }
 
 .hgl-submit-btn:active:not(:disabled) {
-  transform: translate(3px, 3px);
+  transform: translate(2px, 2px);
   box-shadow: 1px 1px 0 var(--text);
 }
 
 .hgl-submit-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
-  background: var(--brand);
+  background: var(--primary);
   transform: translate(0, 0);
-  box-shadow: 5px 5px 0 var(--text);
+  box-shadow: 2px 2px 0 var(--text);
 }
 
 .hgl-submit-btn svg.hgl-submit-icon {
@@ -3523,7 +3576,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .flatpickr-months {
-  background: var(--brand) !important;
+  background: var(--primary) !important;
   border-radius: var(--radius) var(--radius) 0 0 !important;
 }
 
@@ -3534,7 +3587,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .flatpickr-weekdays {
-  background: var(--brand) !important;
+  background: var(--primary) !important;
 }
 
 .flatpickr-weekday {
@@ -3543,8 +3596,8 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .flatpickr-day.selected {
-  background: var(--brand) !important;
-  border-color: var(--brand) !important;
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
 }
 
 .flatpickr-day:hover {
@@ -3644,7 +3697,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 
 .hgl-cancel-table .fee {
   font-weight: 700;
-  color: var(--brand);
+  color: var(--primary);
   white-space: nowrap;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -3737,8 +3790,8 @@ body .elementor-widget .hgl-booking .hgl-label,
   text-transform: uppercase;
 }
 
-.text-orange {
-  color: #ffaa48;
+.text-primary {
+  color: var(--primary);
 }
 
 .hero-desc--elementor {
@@ -3802,16 +3855,16 @@ body .elementor-widget .hgl-booking .hgl-label,
   font-size: 14px;
   font-weight: 600;
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid #000;
   color: #333;
   background: transparent;
   transition: all 0.2s ease;
 }
 
 .lang-btn.active {
-  background: #5a8a72;
+  background: var(--primary);
   color: white !important;
-  border-color: #5a8a72;
+  border-color: var(--primary);
   color: white !important;
 }
 
@@ -3829,7 +3882,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 .hgl-booking-headline {
   font-size: clamp(1.8rem, 4vw, 2rem);
   font-weight: 900;
-  color: #1E3A2F;
+  color: var(--secondary);
   line-height: 1.2;
 }
 
@@ -3864,7 +3917,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hgl-booking-dynamic-wrapper svg path {
-  stroke: #5a8a72;
+  stroke: var(--primary);
   stroke-width: 8px;
   fill: none;
   transition: .3s;
@@ -3953,7 +4006,11 @@ body .elementor-widget .hgl-booking .hgl-label,
 /* About Services Section */
 .about-services-section {
   padding: 60px 0;
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
+  background: url(../images/bg-focus.png) no-repeat #202020;
+  background-size: cover;
+  border-top: 2px solid #2E2E2C;
+  border-bottom: 2px solid #2E2E2C;
+  background-attachment: fixed;
 }
 
 .about-section-title {
@@ -3973,7 +4030,7 @@ body .elementor-widget .hgl-booking .hgl-label,
   transform: translateY(-50%);
   width: 4px;
   height: 35px;
-  background: var(--orange);
+  background: var(--primary);
 }
 
 .services-grid {
@@ -3986,7 +4043,7 @@ body .elementor-widget .hgl-booking .hgl-label,
   background: #F7F7F7;
   padding: 30px;
   border-radius: 12px;
-  border-left: 4px solid #5a8a72;
+  border-left: 4px solid var(--primary);
   transition: all 0.3s ease;
 }
 
@@ -4011,12 +4068,12 @@ body .elementor-widget .hgl-booking .hgl-label,
   stroke: #FFF;
 }
 
-.icon-badge--orange {
-  background: var(--orange);
+.icon-badge--primary {
+  background: var(--primary);
 }
 
-.icon-badge--forest {
-  background: var(--green);
+.icon-badge--secondary {
+  background: var(--secondary);
 }
 
 .icon-badge--ink {
@@ -4062,7 +4119,9 @@ body .elementor-widget .hgl-booking .hgl-label,
 
 .about-destinations-section {
   padding: 60px 0;
-  background: linear-gradient(180deg, #eaf2ee 0%, #f0f4f2 100%);
+  background: url(../images/bg-focus.png) no-repeat #202020;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .destinations-container p {
@@ -4090,9 +4149,9 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .destination-tag:hover {
-  background: var(--orange);
+  background: var(--primary);
   color: #FFF;
-  border-color: var(--orange);
+  border-color: var(--primary);
 }
 
 /* ========== WHATSAPP FLOAT ========== */
@@ -4151,7 +4210,7 @@ body .elementor-widget .hgl-booking .hgl-label,
   --lt-ink: var(--text);
   --lt-ink-muted: var(--muted);
   --lt-line: #dddddd;
-  --lt-accent: var(--orange);
+  --lt-accent: var(--primary);
   --lt-hover: #e0e0e0;
   --lt-white: #ffffff;
   --lt-ta-green: #00aa6c;
@@ -4509,7 +4568,7 @@ body .elementor-widget .hgl-booking .hgl-label,
   max-height: none !important;
   border-radius: 50% !important;
   background: var(--lt-white) !important;
-  border: 2px solid var(--lt-ink) !important;
+  border: 1px solid var(--lt-ink) !important;
   cursor: pointer !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -4561,7 +4620,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .lt-slider button.lt-slider__btn:active:not(:disabled) {
-  transform: translate(3px, 3px) !important;
+  transform: translate(2px, 2px) !important;
   box-shadow: 1px 1px 0 var(--lt-ink) !important;
 }
 
@@ -4584,10 +4643,24 @@ body .elementor-widget .hgl-booking .hgl-label,
 
 /* ========== FOOTER REDESIGN ========== */
 .site-footer {
-  padding: 40px 20px 20px;
-  background: linear-gradient(135deg, #dae8df 0%, #e8eff0 100%);
+  position: relative;
+  z-index: 1;
+  padding: 40px 20px 50px;
   color: var(--text);
   text-align: center;
+  border-top: 2px solid #2E2E2C;
+  overflow: hidden;
+}
+
+.site-footer::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  /* Ngăn chặn viền mờ ở mép (prevent blurred edges from leaking) */
+  z-index: -1;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.611), rgba(255, 255, 255, 0.8), #ffffff), url(../images/bg-ft.png) no-repeat center;
+  background-size: cover;
+  filter: blur(10px);
 }
 
 .lt-footer-inner {
@@ -4624,29 +4697,29 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .lt-footer-contact a {
-  color: #d97706;
+  color: #2E2E2C;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .lt-footer-contact span {
-  color: #d97706;
+  color: #2E2E2C;
   font-weight: 500;
   transition: color 0.2s ease;
 }
 
 .lt-footer-contact a:hover {
-  color: #5a8a72;
+  color: var(--primary);
 }
 
 .lt-footer-contact span:hover {
-  color: #5a8a72;
+  color: var(--primary);
 }
 
 .lt-footer-divider {
   width: 100%;
   height: 1px;
-  background-color: #CFCBC5;
+  background-color: #2E2E2C;
   margin: 16px 0;
 }
 
@@ -4681,9 +4754,10 @@ body .elementor-widget .hgl-booking .hgl-label,
 
 .lt-footer-copyright {
   font-size: 0.75rem;
-  color: #666;
+  color: #2E2E2C;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-weight: 700;
 }
 
 .lt-footer-social {

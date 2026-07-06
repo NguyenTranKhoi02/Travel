@@ -81,7 +81,7 @@
     div.style.gap = '8px';
     div.className = 'itinerary-day-row';
     div.innerHTML = `
-      <div class="day-index" style="width:40px;height:40px;background:var(--orange);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;flex-shrink:0;">${idx + 1}</div>
+      <div class="day-index" style="width:40px;height:40px;background:var(--primary);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;flex-shrink:0;">${idx + 1}</div>
       <textarea class="itinerary-day-input" rows="2" style="flex:1;padding:12px;border:1px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;" placeholder="Nội dung ngày ${idx + 1}...">${value}</textarea>
       <button type="button" class="btn delete-day-btn" style="background:#fee2e2;color:#ef4444;border-radius:8px;padding:0 12px;font-weight:bold;align-self:flex-start;" title="Xóa ngày này">X</button>
     `;

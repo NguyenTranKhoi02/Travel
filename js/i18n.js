@@ -14,7 +14,7 @@ const translations = {
     brand_detail: "Chi tiết tour",
 
     // Hero
-    hero_title: "TOUR VÒNG QUANH HÀ GIANG BẰNG<br/>XE MÁY, JEEP &<br/><span class='text-orange'>EASY RIDER</span>",
+    hero_title: "TOUR VÒNG QUANH HÀ GIANG BẰNG<br/>XE MÁY, JEEP &<br/><span class='text-primary'>EASY RIDER</span>",
     hero_desc: "Chuyến phiêu lưu 2 đến 6 ngày từ TP Hà Giang. Hướng dẫn viên bản địa, nhóm nhỏ, khởi hành hàng ngày quanh năm.",
     hero_btn_book: "Đặt Ngay",
 
@@ -140,7 +140,7 @@ const translations = {
     about_pg_title: "Giới thiệu",
     about_pg_sub: "Hành trình không khoảng cách",
     about_hero_eyebrow: "Hành trình không khoảng cách",
-    about_hero_h1: "Đông Bắc Bộ<br /><span class='text-orange'>Nơi Đá Nở Hoa</span>",
+    about_hero_h1: "Đông Bắc Bộ<br /><span class='text-primary'>Nơi Đá Nở Hoa</span>",
     about_hero_sapo: "Đến với Hà Giang và Cao Bằng, bạn không chỉ đang tham gia một chuyến đi, mà là đang dấn thân vào một cuộc phiêu lưu qua những cung đường đèo hiểm trở và hùng vĩ nhất Việt Nam. Tại <strong>AnTravel</strong>, chúng tôi tin rằng mỗi khúc cua Mã Pí Lèng, mỗi bọt nước tung trắng xóa tại Thác Bản Giốc đều mang trong mình một câu chuyện.",
     about_pg_desc: "Đến với Hà Giang và Cao Bằng, bạn không chỉ đang tham gia một chuyến đi, mà là đang dấn thân vào một cuộc phiêu lưu qua những cung đường đèo hiểm trở và hùng vĩ nhất Việt Nam. Tại <strong>Đông Bắc Bộ</strong>, chúng tôi tin rằng mỗi khúc cua Mã Pí Lèng, mỗi bọt nước tung trắng xóa tại Thác Bản Giốc đều mang trong mình một câu chuyện.",
 
@@ -287,7 +287,7 @@ const translations = {
     brand_detail: "Tour Details",
 
     // Hero
-    hero_title: "HA GIANG LOOP TOURS BY<br/>MOTORBIKE, JEEP &<br/><span class='text-orange'>EASY RIDER</span>",
+    hero_title: "HA GIANG LOOP TOURS BY<br/>MOTORBIKE, JEEP &<br/><span class='text-primary'>EASY RIDER</span>",
     hero_desc: "2 to 6 day adventures from Ha Giang City. Certified local guides, small groups, all-inclusive daily departures year-round.",
     hero_btn_book: "Book Now",
 
@@ -414,7 +414,7 @@ const translations = {
     about_pg_title: "About Us",
     about_pg_sub: "Journey with no distance",
     about_hero_eyebrow: "Journey with no distance",
-    about_hero_h1: "Northeast Vietnam<br /><span class='text-orange'>Where Stones Bloom</span>",
+    about_hero_h1: "Northeast Vietnam<br /><span class='text-primary'>Where Stones Bloom</span>",
     about_hero_sapo: "Coming to Ha Giang and Cao Bang, you are not just taking a trip, but embarking on an adventure through the most rugged and majestic mountain passes in Vietnam. At <strong>AnTravel</strong>, we believe that every curve of Ma Pi Leng, every splash of white water at Ban Gioc Waterfall carries a story within.",
     about_pg_desc: "Coming to Ha Giang and Cao Bang, you are not just taking a trip, but embarking on an adventure through the most rugged and majestic mountain passes in Vietnam. In the <strong>Northeast</strong>, we believe that every curve of Ma Pi Leng, every splash of white water at Ban Gioc Waterfall carries a story within.",
 

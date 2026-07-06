@@ -126,7 +126,7 @@
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${tour.location}</span>
             <span>•</span>
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${tour.duration}</span>
-            ${booked > 0 ? `<span>• <strong style="color:var(--orange)">🔥 ${booked} ${t('js_people_joined')}</strong></span>` : ''}
+            ${booked > 0 ? `<span>• <strong style="color:var(--primary)">🔥 ${booked} ${t('js_people_joined')}</strong></span>` : ''}
           </div>
           <div class="yen-tour-card-footer">
             <span class="yen-tour-card-price">${money(tour.price_base)}</span>
@@ -206,7 +206,7 @@
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> ${tour.duration}</span>
             <span>•</span>
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${tour.location}</span>
-            ${booked > 0 ? `<span>• <strong style="color:var(--orange)">🔥 ${booked}</strong></span>` : ''}
+            ${booked > 0 ? `<span>• <strong style="color:var(--primary)">🔥 ${booked}</strong></span>` : ''}
           </div>
           <a class="yen-tour-card-book" href="tour-detail.html?id=${tour.id}">${t('js_book_now')}</a>
         </div>
@@ -432,7 +432,7 @@
     mount.innerHTML = `
     <div class="panel detail-pan">
       <div class="slider" id="tourSlider">${(() => { let imgs = tour.gallery && tour.gallery.length ? [...tour.gallery] : []; if (!imgs.includes(tour.image)) imgs.unshift(tour.image); if (imgs.length === 0) imgs = [tour.image]; return imgs.map((img, idx) => `<img src="${img}" class="${idx === 0 ? 'active' : ''}" alt="${tour.title}">`).join(''); })()}</div>
-      <div class="slider-controls"><span>${tour.location} • ${tour.duration} ${booked > 0 ? `• <strong style="color:var(--orange)">🔥 ${booked} ${t('js_people_participated')}</strong>` : ''}</span><strong>${money(tour.price_base)}</strong></div>
+      <div class="slider-controls"><span>${tour.location} • ${tour.duration} ${booked > 0 ? `• <strong style="color:var(--primary)">🔥 ${booked} ${t('js_people_participated')}</strong>` : ''}</span><strong>${money(tour.price_base)}</strong></div>
       <h2>${tour.title}</h2><p class="muted">${tour.style || t('js_tour_style_default')} • ${t('js_route_desc')}</p>
       <div style="margin-top: 24px;"><h3 class="title-tt">${t('js_itinerary_title')}</h3><div id="itineraryList" class="yen-itinerary-list"></div></div>
     </div>`;
