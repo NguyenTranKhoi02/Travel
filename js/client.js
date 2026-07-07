@@ -291,12 +291,12 @@
         if (vehicle && vehicle.value === 'Xe máy') {
           vehicleCost = (tour.surcharge_motorbike || 0) * people;
         } else if (vehicle && vehicle.value === 'Ô tô 7 chỗ') {
-          let s7 = tour.surcharge_7seat || [0,0,0,0];
+          let s7 = tour.surcharge_7seat || [0, 0, 0, 0];
           if (typeof s7 === 'number') s7 = [s7, s7, s7, s7];
           const pricePerPerson = s7[carGroupSize - 1] || 0;
           vehicleCost = pricePerPerson * people;
         } else if (vehicle && vehicle.value === 'Xe Jeep') {
-          let sj = tour.surcharge_jeep || [0,0,0,0];
+          let sj = tour.surcharge_jeep || [0, 0, 0, 0];
           if (typeof sj === 'number') sj = [sj, sj, sj, sj];
           const pricePerPerson = sj[carGroupSize - 1] || 0;
           vehicleCost = pricePerPerson * people;
@@ -434,7 +434,44 @@
       <div class="slider" id="tourSlider">${(() => { let imgs = tour.gallery && tour.gallery.length ? [...tour.gallery] : []; if (!imgs.includes(tour.image)) imgs.unshift(tour.image); if (imgs.length === 0) imgs = [tour.image]; return imgs.map((img, idx) => `<img src="${img}" class="${idx === 0 ? 'active' : ''}" alt="${tour.title}">`).join(''); })()}</div>
       <div class="slider-controls"><span>${tour.location} • ${tour.duration} ${booked > 0 ? `• <strong style="color:var(--primary)">🔥 ${booked} ${t('js_people_participated')}</strong>` : ''}</span><strong>${money(tour.price_base)}</strong></div>
       <h2>${tour.title}</h2><p class="muted">${tour.style || t('js_tour_style_default')} • ${t('js_route_desc')}</p>
-      <div style="margin-top: 24px;"><h3 class="title-tt">${t('js_itinerary_title')}</h3><div id="itineraryList" class="yen-itinerary-list"></div></div>
+      <div class="hgl-tour-content-wrapper">
+        <div class="hgl-tour-itinerary-section">
+          <h3 class="title-tt">${t('js_itinerary_title')}</h3>
+          <div id="itineraryList" class="yen-itinerary-list"></div>
+        </div>
+        <div id="includedSection" class="hgl-tour-included-section">
+          <h3 class="title-tt hgl-hidden-title" data-i18n="js_included_title">${t('js_included_title') !== 'js_included_title' ? t('js_included_title') : 'Bao gồm / Không bao gồm'}</h3>
+          <div class="hgl-included-grid">
+            <div class="hgl-included-box">
+               <h4 class="hgl-box-title" data-i18n="js_included_heading">${t('js_included_heading') !== 'js_included_heading' ? t('js_included_heading') : 'Bao gồm'}</h4>
+               <ul class="hgl-included-list">
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_1">${t('js_inc_1') !== 'js_inc_1' ? t('js_inc_1') : 'Hướng dẫn viên địa phương chuyên nghiệp (lái xe Easy Rider hoặc Jeep)'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_2">${t('js_inc_2') !== 'js_inc_2' ? t('js_inc_2') : '3 đêm lưu trú (tại nhà dân/nhà nghỉ địa phương)'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_3">${t('js_inc_3') !== 'js_inc_3' ? t('js_inc_3') : 'Các bữa ăn theo lịch trình: 4 bữa sáng, 4 bữa trưa, 3 bữa tối.'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_4">${t('js_inc_4') !== 'js_inc_4' ? t('js_inc_4') : 'Mũ bảo hiểm và áo mưa chất lượng cao'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_5">${t('js_inc_5') !== 'js_inc_5' ? t('js_inc_5') : 'Nhiên liệu cho toàn bộ hành trình'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_6">${t('js_inc_6') !== 'js_inc_6' ? t('js_inc_6') : 'Nước đóng chai dùng trong suốt các chuyến đi'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_7">${t('js_inc_7') !== 'js_inc_7' ? t('js_inc_7') : 'Tất cả phí vào cửa và giấy phép'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"></polyline></svg> <span data-i18n="js_inc_8">${t('js_inc_8') !== 'js_inc_8' ? t('js_inc_8') : 'Hỗ trợ 24/7 trong suốt chuyến lưu diễn.'}</span></li>
+               </ul>
+            </div>
+            <div class="hgl-included-box excluded-box">
+               <h4 class="hgl-box-title" data-i18n="js_excluded_heading">${t('js_excluded_heading') !== 'js_excluded_heading' ? t('js_excluded_heading') : 'Không bao gồm'}</h4>
+               <ul class="hgl-included-list excluded-list">
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> <span data-i18n="js_exc_1">${t('js_exc_1') !== 'js_exc_1' ? t('js_exc_1') : 'Vé xe giường nằm tuyến Hà Nội ↔ Hà Giang (có thể sắp xếp)'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> <span data-i18n="js_exc_2">${t('js_exc_2') !== 'js_exc_2' ? t('js_exc_2') : 'Chi phí cá nhân và đồ ăn nhẹ'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> <span data-i18n="js_exc_3">${t('js_exc_3') !== 'js_exc_3' ? t('js_exc_3') : 'Bảo hiểm du lịch (khuyến nghị)'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> <span data-i18n="js_exc_4">${t('js_exc_4') !== 'js_exc_4' ? t('js_exc_4') : '(Rất cảm ơn những lời góp ý dành cho hướng dẫn viên)'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> <span data-i18n="js_exc_5">${t('js_exc_5') !== 'js_exc_5' ? t('js_exc_5') : 'Nâng cấp lên phòng đơn hoặc phòng riêng'}</span></li>
+                 <li><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> <span data-i18n="js_exc_6">${t('js_exc_6') !== 'js_exc_6' ? t('js_exc_6') : 'Đồ uống có cồn'}</span></li>
+               </ul>
+            </div>
+          </div>
+          <div class="lt-note hgl-note-spacing">
+            <p><strong data-i18n="js_note_title">${t('js_note_title') !== 'js_note_title' ? t('js_note_title') : 'Bạn có yêu cầu đặc biệt về chế độ ăn uống?'}</strong> <span data-i18n="js_note_content">${t('js_note_content') !== 'js_note_content' ? t('js_note_content') : `Ăn chay, ăn thuần chay, hay bị dị ứng? Hãy cho chúng tôi biết khi đặt tour ${tour.title} và chúng tôi sẽ đáp ứng theo yêu cầu của bạn.`}</span></p>
+          </div>
+        </div>
+      </div>
     </div>`;
 
     const sliderImgs = qsa('#tourSlider img', mount);
@@ -448,7 +485,12 @@
     }
 
     const itineraryList = qs('#itineraryList');
-    itineraryList.innerHTML = tour.itinerary.map((item, idx) => `
+    itineraryList.innerHTML = tour.itinerary.map((item, idx) => {
+      let content = typeof item === 'string' ? item : (item.content || '');
+      let images = (typeof item === 'object' && item.images) ? item.images : [];
+      let imagesHtml = images.length ? `<div class="itinerary-images-grid" style="display:flex;gap:8px;margin-top:12px;">${images.map(img => `<img src="${img}" style="width:100%;max-width:200px;border-radius:8px;object-fit:cover;aspect-ratio:4/3;" alt="itinerary image">`).join('')}</div>` : '';
+      
+      return `
       <div class="yen-itinerary-item ${idx === 0 ? 'active' : ''}">
         <button class="yen-itinerary-toggle">
           <div class="yen-itinerary-toggle-left">
@@ -464,10 +506,12 @@
         </button>
         <div class="yen-itinerary-content">
           <div class="yen-itinerary-content-inner">
-            <p>${item.replace(/\n/g, '<br>')}</p>
+            <p>${content.replace(/\n/g, '<br>')}</p>
+            ${imagesHtml}
           </div>
         </div>
-      </div>`).join('');
+      </div>`;
+    }).join('');
 
     qsa('.yen-itinerary-toggle', itineraryList).forEach((btn) => btn.addEventListener('click', () => {
       const parent = btn.closest('.yen-itinerary-item');
@@ -686,26 +730,26 @@
     const slider = document.getElementById('ltReviewsSlider');
     if (!slider) return;
     const track = document.getElementById('ltReviewsTrack');
-    
+
     if (db.reviews && track) {
-        const approvedReviews = db.reviews.filter(r => r.status === 'approved' || !r.status);
-        track.innerHTML = approvedReviews.map(r => {
-            const prefix = r.id ? r.id.replace('-', '_') : '';
-            const titleKey = prefix ? `${prefix}_title` : '';
-            const bodyKey = prefix ? `${prefix}_body` : '';
-            const dateKey = prefix ? `${prefix}_date` : '';
-            const metaKey = prefix ? `${prefix}_meta` : '';
-            
-            const titleStr = titleKey && t(titleKey) !== titleKey ? t(titleKey) : r.title;
-            const bodyStr = bodyKey && t(bodyKey) !== bodyKey ? t(bodyKey) : r.content;
-            const dateStr = dateKey && t(dateKey) !== dateKey ? t(dateKey) : r.date;
-            const metaStr = metaKey && t(metaKey) !== metaKey ? t(metaKey) : r.tourType;
-            
-            return `
+      const approvedReviews = db.reviews.filter(r => r.status === 'approved' || !r.status);
+      track.innerHTML = approvedReviews.map(r => {
+        const prefix = r.id ? r.id.replace('-', '_') : '';
+        const titleKey = prefix ? `${prefix}_title` : '';
+        const bodyKey = prefix ? `${prefix}_body` : '';
+        const dateKey = prefix ? `${prefix}_date` : '';
+        const metaKey = prefix ? `${prefix}_meta` : '';
+
+        const titleStr = titleKey && t(titleKey) !== titleKey ? t(titleKey) : r.title;
+        const bodyStr = bodyKey && t(bodyKey) !== bodyKey ? t(bodyKey) : r.content;
+        const dateStr = dateKey && t(dateKey) !== dateKey ? t(dateKey) : r.date;
+        const metaStr = metaKey && t(metaKey) !== metaKey ? t(metaKey) : r.tourType;
+
+        return `
             <div class="lt-slide">
                 <article class="lt-review">
                     <header class="lt-review__head">
-                        <span class="lt-review__stars" aria-label="${r.rating} out of 5 stars">${'●'.repeat(r.rating)}${'○'.repeat(5-r.rating)}</span>
+                        <span class="lt-review__stars" aria-label="${r.rating} out of 5 stars">${'●'.repeat(r.rating)}${'○'.repeat(5 - r.rating)}</span>
                         <span class="lt-review__date" ${dateKey ? `data-i18n="${dateKey}"` : ''}>${dateStr}</span>
                     </header>
                     <h3 class="lt-review__title" ${titleKey ? `data-i18n="${titleKey}"` : ''}>${titleStr}</h3>
@@ -732,61 +776,61 @@
     let current = 0;
 
     function getPerView() {
-        const w = window.innerWidth;
-        if (w <= 640) return 1;
-        if (w <= 992) return 2;
-        return 3;
+      const w = window.innerWidth;
+      if (w <= 640) return 1;
+      if (w <= 992) return 2;
+      return 3;
     }
 
     function getMaxIndex() {
-        return Math.max(0, totalSlides - getPerView());
+      return Math.max(0, totalSlides - getPerView());
     }
 
     function goTo(index) {
-        if (totalSlides === 0) return;
-        const max = getMaxIndex();
-        if (index < 0) index = 0;
-        if (index > max) index = max;
-        current = index;
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        const gap = parseFloat(getComputedStyle(track).gap) || 0;
-        const offset = current * (slideWidth + gap);
-        track.style.transform = `translateX(-${offset}px)`;
-        updateDots();
-        updateButtons();
+      if (totalSlides === 0) return;
+      const max = getMaxIndex();
+      if (index < 0) index = 0;
+      if (index > max) index = max;
+      current = index;
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      const offset = current * (slideWidth + gap);
+      track.style.transform = `translateX(-${offset}px)`;
+      updateDots();
+      updateButtons();
     }
 
     function buildDots() {
-        if (!dotsContainer || totalSlides === 0) return;
-        dotsContainer.innerHTML = '';
-        const totalDots = getMaxIndex() + 1;
-        for (let i = 0; i < totalDots; i++) {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'lt-slider__dot';
-            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            dot.setAttribute('data-index', i);
-            dot.addEventListener('click', (e) => {
-                goTo(parseInt(e.currentTarget.getAttribute('data-index'), 10));
-            });
-            dotsContainer.appendChild(dot);
-        }
+      if (!dotsContainer || totalSlides === 0) return;
+      dotsContainer.innerHTML = '';
+      const totalDots = getMaxIndex() + 1;
+      for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'lt-slider__dot';
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.setAttribute('data-index', i);
+        dot.addEventListener('click', (e) => {
+          goTo(parseInt(e.currentTarget.getAttribute('data-index'), 10));
+        });
+        dotsContainer.appendChild(dot);
+      }
     }
 
     function updateDots() {
-        if (!dotsContainer) return;
-        const dots = dotsContainer.querySelectorAll('.lt-slider__dot');
-        dots.forEach((d, i) => {
-            if (i === current) d.classList.add('is-active');
-            else d.classList.remove('is-active');
-        });
+      if (!dotsContainer) return;
+      const dots = dotsContainer.querySelectorAll('.lt-slider__dot');
+      dots.forEach((d, i) => {
+        if (i === current) d.classList.add('is-active');
+        else d.classList.remove('is-active');
+      });
     }
 
     function updateButtons() {
-        if (!prevBtn || !nextBtn) return;
-        const max = getMaxIndex();
-        prevBtn.disabled = (current === 0);
-        nextBtn.disabled = (current >= max);
+      if (!prevBtn || !nextBtn) return;
+      const max = getMaxIndex();
+      prevBtn.disabled = (current === 0);
+      nextBtn.disabled = (current >= max);
     }
 
     if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
@@ -795,35 +839,35 @@
     let touchStartX = 0;
     let touchEndX = 0;
     track.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, {passive: true});
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
     track.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 40) {
-            if (diff > 0) goTo(current + 1);
-            else goTo(current - 1);
-        }
-    }, {passive: true});
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        if (diff > 0) goTo(current + 1);
+        else goTo(current - 1);
+      }
+    }, { passive: true });
 
     slider.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            goTo(current - 1);
-        }
-        if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            goTo(current + 1);
-        }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goTo(current - 1);
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goTo(current + 1);
+      }
     });
 
     let resizeTimer;
     window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            buildDots();
-            goTo(Math.min(current, getMaxIndex()));
-        }, 150);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        buildDots();
+        goTo(Math.min(current, getMaxIndex()));
+      }, 150);
     });
 
     buildDots();

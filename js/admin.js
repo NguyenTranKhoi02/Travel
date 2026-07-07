@@ -74,17 +74,42 @@
   }
 
   function addItineraryInput(value = '') {
+    let content = typeof value === 'string' ? value : (value.content || '');
+    let img1 = (typeof value === 'object' && value.images && value.images[0]) ? value.images[0] : '';
+    let img2 = (typeof value === 'object' && value.images && value.images[1]) ? value.images[1] : '';
+
     const builder = $('#itineraryBuilder');
     const idx = builder.children.length;
+    const id1 = 'iti-img-' + Date.now() + '-' + idx + '-1';
+    const id2 = 'iti-img-' + Date.now() + '-' + idx + '-2';
+    
     const div = document.createElement('div');
     div.style.display = 'flex';
     div.style.gap = '8px';
     div.className = 'itinerary-day-row';
     div.innerHTML = `
       <div class="day-index" style="width:40px;height:40px;background:var(--primary);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;flex-shrink:0;">${idx + 1}</div>
-      <textarea class="itinerary-day-input" rows="2" style="flex:1;padding:12px;border:1px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;" placeholder="Nội dung ngày ${idx + 1}...">${value}</textarea>
+      <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+        <textarea class="itinerary-day-input" rows="2" style="padding:12px;border:1px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;" placeholder="Nội dung ngày ${idx + 1}...">${content}</textarea>
+        <div style="display:flex; gap:16px;">
+          <div style="flex:1; display:flex; gap:8px;">
+            <input type="text" id="${id1}" class="itinerary-img-input" placeholder="URL ảnh 1 (tùy chọn)" value="${img1}" style="flex:1; padding:8px; border:1px solid #e2e8f0; border-radius:4px; font-size:0.9rem; background:#f8fafc;">
+            <input type="file" id="${id1}-file" style="display:none" accept="image/*">
+            <button type="button" class="btn" style="padding:0 12px; font-size:0.9rem;" onclick="document.getElementById('${id1}-file').click()">Tải ảnh</button>
+          </div>
+          <div style="flex:1; display:flex; gap:8px;">
+            <input type="text" id="${id2}" class="itinerary-img-input" placeholder="URL ảnh 2 (tùy chọn)" value="${img2}" style="flex:1; padding:8px; border:1px solid #e2e8f0; border-radius:4px; font-size:0.9rem; background:#f8fafc;">
+            <input type="file" id="${id2}-file" style="display:none" accept="image/*">
+            <button type="button" class="btn" style="padding:0 12px; font-size:0.9rem;" onclick="document.getElementById('${id2}-file').click()">Tải ảnh</button>
+          </div>
+        </div>
+      </div>
       <button type="button" class="btn delete-day-btn" style="background:#fee2e2;color:#ef4444;border-radius:8px;padding:0 12px;font-weight:bold;align-self:flex-start;" title="Xóa ngày này">X</button>
     `;
+    
+    div.querySelector(`#${id1}-file`).addEventListener('change', (e) => handleFileUpload(e.target, `#${id1}`));
+    div.querySelector(`#${id2}-file`).addEventListener('change', (e) => handleFileUpload(e.target, `#${id2}`));
+    
     div.querySelector('.delete-day-btn').addEventListener('click', () => {
       div.remove();
       [...builder.children].forEach((child, i) => {
@@ -266,7 +291,11 @@
     $('#productForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const meta1Val = editState.type === 'tour' ? $('#pfTourLocation').value : $('#pfMeta1').value.trim();
-      const itineraryValues = [...$$('#itineraryBuilder .itinerary-day-input')].map(el => el.value.trim()).filter(Boolean);
+      const itineraryValues = [...$$('#itineraryBuilder .itinerary-day-row')].map(row => {
+        const content = row.querySelector('.itinerary-day-input').value.trim();
+        const imgs = [...row.querySelectorAll('.itinerary-img-input')].map(el => el.value.trim()).filter(Boolean);
+        return content ? { content, images: imgs } : null;
+      }).filter(Boolean);
       const payload = { title: $('#pfTitle').value.trim(), meta1: meta1Val, price: Number($('#pfPriceBase').value.replace(/\./g, '')) || 0, surcharge_motorbike: Number($('#pfSurchargeMotorbike').value.replace(/\./g, '')) || 0, discount_selfdrive: Number($('#pfDiscountSelfDrive').value.replace(/\./g, '')) || 0, surcharge_7seat: [Number($('#pfSurcharge7Seat_1').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_2').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_3').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_4').value.replace(/\./g, '')) || 0], surcharge_jeep: [Number($('#pfSurchargeJeep_1').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_2').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_3').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_4').value.replace(/\./g, '')) || 0], meta2: $('#pfMeta2').value.trim(), image: $('#pfImage').value.trim(), itinerary: itineraryValues };
       
       if (editState.type === 'tour') {

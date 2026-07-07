@@ -769,6 +769,127 @@ video {
   gap: 16px;
 }
 
+/* Tour Content Wrapper */
+.hgl-tour-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+  border-top: 1px solid #d9d9d9;
+}
+
+.hgl-tour-itinerary-section,
+.hgl-tour-included-section {
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .hgl-tour-content-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .hgl-tour-itinerary-section {
+    min-width: 0;
+  }
+
+  .hgl-tour-included-section {
+    min-width: 0;
+  }
+}
+
+.hgl-note-spacing {
+  margin-top: 16px;
+}
+
+/* Included Section */
+.hgl-included-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .hgl-included-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.hgl-included-box {
+  background: #f9fdfa;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.hgl-included-box.excluded-box {
+  background: #f9fafb;
+  border-color: #e5e7eb;
+}
+
+.hgl-box-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.hgl-included-box:not(.excluded-box) .hgl-box-title {
+  color: #10b981;
+}
+
+.excluded-box .hgl-box-title {
+  color: #1f2937;
+}
+
+.hgl-included-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.hgl-included-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #374151;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 16px 0;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.hgl-included-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.hgl-included-list svg {
+  color: #10b981;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.excluded-list svg {
+  color: #9ca3af;
+}
+
+.lt-note {
+  background: #f4f6fb;
+  border: 1px solid #e5e7eb;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.lt-note p {
+  margin: 0;
+  color: #1f2937;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
 .yen-itinerary-item {
   background: #fff;
   border-radius: 12px;
@@ -998,7 +1119,7 @@ video {
 
 .detail-pan strong {
   color: var(--primary);
-  font-size: 20px;
+  font-size: 18px;
   text-decoration-line: underline;
 }
 
@@ -1044,6 +1165,10 @@ form textarea:focus {
 }
 
 @media (max-width: 960px) {
+  .detail-pan strong {
+    font-size: 18px;
+  }
+
   .eyetitle {
     font-size: 2em;
   }
