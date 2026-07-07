@@ -253,7 +253,8 @@
       }
 
       const updateTotalPrice = () => {
-        const people = Number(qs('#peopleCount').value || 1);
+        let people = Number(qs('#peopleCount').value || 1);
+        const peopleInput = qs('#peopleCount');
 
         let days = 3;
         if (tour.duration) {
@@ -277,9 +278,21 @@
             const selCarGroup = qs('input[name="carGroupSize"]:checked');
             if (selCarGroup) carGroupSize = parseInt(selCarGroup.value) || 1;
           }
+          if (peopleInput) {
+            peopleInput.value = carGroupSize;
+            people = carGroupSize;
+            peopleInput.readOnly = true;
+            peopleInput.style.backgroundColor = '#f1f5f9';
+            peopleInput.style.cursor = 'not-allowed';
+          }
         } else {
           if (expWrap) expWrap.style.display = 'block';
           if (carGroupWrap) carGroupWrap.style.display = 'none';
+          if (peopleInput) {
+            peopleInput.readOnly = false;
+            peopleInput.style.backgroundColor = '';
+            peopleInput.style.cursor = '';
+          }
         }
 
         const baseTourCost = tour.price_base || 0;
@@ -293,13 +306,11 @@
         } else if (vehicle && vehicle.value === 'Ô tô 7 chỗ') {
           let s7 = tour.surcharge_7seat || [0, 0, 0, 0];
           if (typeof s7 === 'number') s7 = [s7, s7, s7, s7];
-          const pricePerPerson = s7[carGroupSize - 1] || 0;
-          vehicleCost = pricePerPerson * people;
+          vehicleCost = s7[carGroupSize - 1] || 0;
         } else if (vehicle && vehicle.value === 'Xe Jeep') {
           let sj = tour.surcharge_jeep || [0, 0, 0, 0];
           if (typeof sj === 'number') sj = [sj, sj, sj, sj];
-          const pricePerPerson = sj[carGroupSize - 1] || 0;
-          vehicleCost = pricePerPerson * people;
+          vehicleCost = sj[carGroupSize - 1] || 0;
         }
 
         let actualBaseTourCost = baseTourCost * people;
