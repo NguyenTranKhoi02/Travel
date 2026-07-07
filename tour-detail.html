@@ -182,6 +182,10 @@
                 </div>
                 <div class="hgl-grid hgl-grid-2">
                   <div class="hgl-field full">
+                    <label class="hgl-label"><span data-i18n="form_info_date">Ngày khởi hành</span></label>
+                    <input type="date" class="hgl-input" id="startDate" name="startDate" required>
+                  </div>
+                  <div class="hgl-field full">
                     <label class="hgl-label" data-i18n="form_vehicle_label">Lựa chọn đi xe</label>
                     <div class="hgl-radio-group">
                       <label class="hgl-radio-card">
@@ -315,6 +319,11 @@
                     <input type="text" class="hgl-input" id="tourName" name="name" required>
                   </div>
                   <div class="hgl-field">
+                    <label class="hgl-label"><span data-i18n="form_info_email">Email</span> <span class="hgl-required"
+                        data-i18n="js_required">*</span></label>
+                    <input type="email" class="hgl-input" id="tourEmail" name="email" required>
+                  </div>
+                  <div class="hgl-field">
                     <label class="hgl-label"><span data-i18n="form_info_people">Số lượng người</span> <span
                         class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="number" class="hgl-input" id="peopleCount" name="people" min="1" value="1" required>
@@ -324,11 +333,7 @@
                         class="hgl-required" data-i18n="js_required">*</span></label>
                     <input type="tel" class="hgl-input" id="tourPhone" name="phone" required>
                   </div>
-                  <div class="hgl-field">
-                    <label class="hgl-label"><span data-i18n="form_info_date">Ngày khởi hành</span> <span
-                        class="hgl-required" data-i18n="js_required">*</span></label>
-                    <input type="date" class="hgl-input" id="startDate" name="startDate" required>
-                  </div>
+
                   <div class="hgl-field full">
                     <label class="hgl-label" data-i18n="form_info_req">Yêu cầu đặc biệt</label>
                     <textarea class="hgl-textarea" id="specialRequest" name="specialRequest"

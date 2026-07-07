@@ -30,15 +30,15 @@
       function triggerSend() {
         let message = '';
         if (orderType === 'tour') {
-          message = `Tên khách: ${data.name}\nSĐT: ${data.phone}\nTour: ${data.tourName}\nNgày đi: ${data.startDate}\nSố người: ${data.people}\nLoại xe: ${data.mode}\nTổng tiền: ${new Intl.NumberFormat('vi-VN').format(data.total)} đ`;
+          message = `Tên khách: ${data.name}\nEmail: ${data.email || 'Không có'}\nSĐT: ${data.phone}\nTour: ${data.tourName}\nNgày đi: ${data.startDate}\nSố người: ${data.people}\nLoại xe: ${data.mode}\nTổng tiền: ${new Intl.NumberFormat('vi-VN').format(data.total)} đ`;
         } else {
-          message = `Tên khách: ${data.name}\nSĐT: ${data.phone}\nXe: ${data.bikeName}\nTừ: ${data.from} Đến: ${data.to}\nNơi nhận: ${data.pickup}\nTổng tiền: ${new Intl.NumberFormat('vi-VN').format(data.total)} đ`;
+          message = `Tên khách: ${data.name}\nEmail: ${data.email || 'Không có'}\nSĐT: ${data.phone}\nXe: ${data.bikeName}\nTừ: ${data.from} Đến: ${data.to}\nNơi nhận: ${data.pickup}\nTổng tiền: ${new Intl.NumberFormat('vi-VN').format(data.total)} đ`;
         }
 
         emailjs.send(SERVICE_ID, TEMPLATE_ID, {
           message: message,
           name: data.name || 'Khách hàng',
-          email: 'horsetravel23@gmail.com'
+          email: data.email || 'horsetravel23@gmail.com'
         }, PUBLIC_KEY)
           .then(() => resolve())
           .catch((err) => { console.error('Lỗi gửi email:', err); resolve(); });
@@ -130,7 +130,7 @@
           </div>
           <div class="yen-tour-card-footer">
             <span class="yen-tour-card-price">${money(tour.price_base)}</span>
-            <a class="yen-tour-card-btn" href="tour-detail.html?id=${tour.id}">${t('js_book_now')}</a>
+            <a class="yen-tour-card-btn" href="tour-detail.html?id=${tour.id}" data-i18n="js_book_now">${t('js_book_now')}</a>
           </div>
         </div>
       </article>`;
@@ -151,7 +151,7 @@
         </div>
         <div class="yen-bike-card-body">
           <h3 class="yen-bike-card-title">${b.name}</h3>
-          <span class="yen-bike-status ${statusClass}">${b.status}</span>
+          <span class="yen-bike-status ${statusClass}" ${isAvailable ? 'data-i18n="js_ready"' : ''}>${isAvailable ? t('js_ready') : b.status}</span>
           <div class="yen-bike-card-specs">
             ${engineCC ? `<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> ${engineCC} Engine</span>` : ''}
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg> ${b.type}</span>
@@ -208,7 +208,7 @@
             <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${tour.location}</span>
             ${booked > 0 ? `<span>• <strong style="color:var(--primary)">🔥 ${booked}</strong></span>` : ''}
           </div>
-          <a class="yen-tour-card-book" href="tour-detail.html?id=${tour.id}">${t('js_book_now')}</a>
+          <a class="yen-tour-card-book" href="tour-detail.html?id=${tour.id}" data-i18n="js_book_now">${t('js_book_now')}</a>
         </div>
       </article>`;
       }).join('') || `<p class="yen-no-result">${t('js_no_tour')}</p>`;
@@ -370,6 +370,15 @@
 
 
 
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          if (!form.checkValidity()) {
+            alert(t('js_fill_required') || 'Vui lòng điền đầy đủ các thông tin bắt buộc (Họ tên, Email, SĐT, Ngày khởi hành)!');
+          }
+        });
+      }
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = form.querySelector('button[type="submit"]');
@@ -380,6 +389,7 @@
           id: Date.now(),
           tourId: tour.id,
           name: qs('#tourName').value,
+          email: qs('#tourEmail') ? qs('#tourEmail').value : '',
           phone: qs('#tourPhone').value,
           startDate: qs('#startDate').value,
           people: Number(qs('#peopleCount').value),
@@ -399,6 +409,7 @@
 
         const msg = `🚨 <b>CÓ KHÁCH ĐẶT TOUR MỚI!</b>
 👤 Tên: ${orderData.name}
+📧 Email: ${orderData.email || 'Không có'}
 📞 SĐT: ${orderData.phone}
 🗓 Ngày đi: ${orderData.startDate}
 👥 Số lượng: ${orderData.people} người
@@ -436,7 +447,7 @@
       <h2>${tour.title}</h2><p class="muted">${tour.style || t('js_tour_style_default')} • ${t('js_route_desc')}</p>
       <div class="hgl-tour-content-wrapper">
         <div class="hgl-tour-itinerary-section">
-          <h3 class="title-tt">${t('js_itinerary_title')}</h3>
+          <h3 class="title-tt" data-i18n="js_itinerary_title">${t('js_itinerary_title')}</h3>
           <div id="itineraryList" class="yen-itinerary-list"></div>
         </div>
         <div id="includedSection" class="hgl-tour-included-section">
@@ -468,7 +479,7 @@
             </div>
           </div>
           <div class="lt-note hgl-note-spacing">
-            <p><strong data-i18n="js_note_title">${t('js_note_title') !== 'js_note_title' ? t('js_note_title') : 'Bạn có yêu cầu đặc biệt về chế độ ăn uống?'}</strong> <span data-i18n="js_note_content">${t('js_note_content') !== 'js_note_content' ? t('js_note_content') : `Ăn chay, ăn thuần chay, hay bị dị ứng? Hãy cho chúng tôi biết khi đặt tour ${tour.title} và chúng tôi sẽ đáp ứng theo yêu cầu của bạn.`}</span></p>
+            <p><strong data-i18n="js_note_title">${t('js_note_title') !== 'js_note_title' ? t('js_note_title') : 'Bạn có yêu cầu đặc biệt về chế độ ăn uống?'}</strong> <span data-i18n="js_note_content">${t('js_note_content') !== 'js_note_content' ? t('js_note_content') : 'Ăn chay, ăn thuần chay, hay bị dị ứng? Hãy cho chúng tôi biết khi đặt tour và chúng tôi sẽ đáp ứng theo yêu cầu của bạn.'}</span></p>
           </div>
         </div>
       </div>
@@ -498,7 +509,7 @@
               <span>${idx + 1}</span>
             </div>
             <div class="yen-itinerary-title-wrap">
-              <h3 class="yen-itinerary-title">${t('js_day')} ${idx + 1}</h3>
+              <h3 class="yen-itinerary-title"><span data-i18n="js_day">${t('js_day')}</span> ${idx + 1}</h3>
               <p class="yen-itinerary-subtitle">Day ${idx + 1}</p>
             </div>
           </div>
@@ -506,7 +517,7 @@
         </button>
         <div class="yen-itinerary-content">
           <div class="yen-itinerary-content-inner">
-            <p>${content.replace(/\n/g, '<br>')}</p>
+            <p data-i18n="tour_${tour.id}_itinerary_${idx}">${t(`tour_${tour.id}_itinerary_${idx}`) !== `tour_${tour.id}_itinerary_${idx}` ? t(`tour_${tour.id}_itinerary_${idx}`).replace(/\n/g, '<br>') : content.replace(/\n/g, '<br>')}</p>
             ${imagesHtml}
           </div>
         </div>
