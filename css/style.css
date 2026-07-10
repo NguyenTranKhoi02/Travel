@@ -37,7 +37,7 @@ video {
 }
 
 .container {
-  width: min(1340px, calc(100% - 32px));
+  width: min(1500px, calc(100% - 32px));
   margin: auto
 }
 
@@ -229,7 +229,7 @@ video {
 
 .hero p {
   font-size: 1.05rem;
-  max-width: 52ch;
+  max-width: 100%;
   color: #000;
 }
 
@@ -1493,11 +1493,6 @@ form textarea:focus {
   overflow: hidden;
 }
 
-.masonry-gallery:hover .gallery-item:not(:hover) {
-  opacity: 0.4;
-  filter: grayscale(80%) blur(3px);
-}
-
 .gallery-item {
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
@@ -1513,6 +1508,10 @@ form textarea:focus {
   align-items: center;
   justify-content: center;
   position: relative;
+  background: url(../images/bg-focus.png) no-repeat;
+  background-size: contain;
+  border-top: 2px solid #2E2E2C;
+  background-attachment: fixed;
 }
 
 .about-hero-video-bg {
@@ -1553,11 +1552,28 @@ form textarea:focus {
 }
 
 .about-sapo {
-  font-size: 1.15rem;
+  font-size: 1rem;
   line-height: 1.9;
   color: rgba(255, 255, 255, 0.85);
-  max-width: 700px;
-  margin: 0 auto;
+  overflow-y: auto;
+  max-height: 300px;
+  position: relative;
+  padding-right: 10px;
+}
+
+.about-sapo {
+  @-moz-document url-prefix() {
+    scrollbar-width: thin;
+  }
+
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 99px;
+    background: var(--nn, #e5e5e5);
+  }
 }
 
 .about-gallery-section {
@@ -3903,7 +3919,7 @@ body .elementor-widget .hgl-booking .hgl-label,
 }
 
 .hero-copy--elementor {
-  max-width: 800px;
+  max-width: 60%;
 }
 
 .hero-title--elementor {
