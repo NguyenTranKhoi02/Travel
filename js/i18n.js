@@ -147,7 +147,7 @@ const translations = {
     about_pg_sub: "Hành trình không khoảng cách",
     about_hero_eyebrow: "Hành trình không khoảng cách",
     about_hero_h1: "Đông Bắc Bộ<br /><span class='text-primary'>Nơi Đá Nở Hoa</span>",
-    about_hero_sapo: "Đến với Hà Giang và Cao Bằng, bạn không chỉ đang tham gia một chuyến đi, mà là đang dấn thân vào một cuộc phiêu lưu qua những cung đường đèo hiểm trở và hùng vĩ nhất Việt Nam. Tại <strong>AnTravel</strong>, chúng tôi tin rằng mỗi khúc cua Mã Pí Lèng, mỗi bọt nước tung trắng xóa tại Thác Bản Giốc đều mang trong mình một câu chuyện.",
+    about_hero_sapo: "Đến với Hà Giang và Cao Bằng, bạn không chỉ đang tham gia một chuyến đi, mà là đang dấn thân vào một cuộc phiêu lưu qua những cung đường đèo hiểm trở và hùng vĩ nhất Việt Nam. Tại <strong>Horse Loop</strong>, chúng tôi tin rằng mỗi khúc cua Mã Pí Lèng, mỗi bọt nước tung trắng xóa tại Thác Bản Giốc đều mang trong mình một câu chuyện.",
     about_pg_desc: "Đến với Hà Giang và Cao Bằng, bạn không chỉ đang tham gia một chuyến đi, mà là đang dấn thân vào một cuộc phiêu lưu qua những cung đường đèo hiểm trở và hùng vĩ nhất Việt Nam. Tại <strong>Đông Bắc Bộ</strong>, chúng tôi tin rằng mỗi khúc cua Mã Pí Lèng, mỗi bọt nước tung trắng xóa tại Thác Bản Giốc đều mang trong mình một câu chuyện.",
 
     // Tour detail page
@@ -155,10 +155,10 @@ const translations = {
     detail_hero_label: "Ha Giang Travel",
 
     // Home Sections
-    sec_about_title: "Về AnTravel",
+    sec_about_title: "Về Horse Loop",
     sec_about_sub: "Hành trình Đông Bắc — Nơi đá nở hoa",
-    sec_about_desc1: "AnTravel được thành lập bởi những người yêu thiên nhiên và đam mê khám phá vùng cao Đông Bắc. Chúng tôi chuyên tổ chức tour phượt Hà Giang, Cao Bằng với phong cách trải nghiệm chân thực — từ tự lái xe máy chinh phục đèo Mã Pí Lèng đến Easy Rider cùng tài xế bản địa am hiểu từng khúc cua.",
-    sec_about_desc2: "Mỗi chuyến đi không chỉ là ngắm cảnh, mà là cơ hội hòa mình vào văn hóa, ẩm thực và cuộc sống của đồng bào vùng cao. AnTravel cam kết mang đến trải nghiệm an toàn, chất lượng và đầy cảm hứng.",
+    sec_about_desc1: "Horse Loop được thành lập bởi những người yêu thiên nhiên và đam mê khám phá vùng cao Đông Bắc. Chúng tôi chuyên tổ chức tour phượt Hà Giang, Cao Bằng với phong cách trải nghiệm chân thực — từ tự lái xe máy chinh phục đèo Mã Pí Lèng đến Easy Rider cùng tài xế bản địa am hiểu từng khúc cua.",
+    sec_about_desc2: "Mỗi chuyến đi không chỉ là ngắm cảnh, mà là cơ hội hòa mình vào văn hóa, ẩm thực và cuộc sống của đồng bào vùng cao. Horse Loop cam kết mang đến trải nghiệm an toàn, chất lượng và đầy cảm hứng.",
     sec_about_btn: "Tìm hiểu thêm →",
 
     sec_tours_title: "Tour Nổi Bật",
@@ -171,10 +171,10 @@ const translations = {
     sec_bike_sub: "Xe chất lượng, sẵn sàng cho mọi cung đèo",
     sec_bike_btn: "Xem tất cả xe",
 
-    // Extra Sections - Travel With AnTravel
-    sec_travel_title: "Đồng Hành Cùng AnTravel",
+    // Extra Sections - Travel With Horse Loop
+    sec_travel_title: "Đồng Hành Cùng Horse Loop",
     sec_travel_sub: "Trải nghiệm chân thực, an toàn và có trách nhiệm",
-    sec_travel_desc: "Chúng tôi không chỉ tổ chức tour — chúng tôi mang đến những hành trình có ý nghĩa. AnTravel cam kết du lịch bền vững, hỗ trợ cộng đồng địa phương và bảo vệ môi trường vùng cao Đông Bắc cho thế hệ tương lai.",
+    sec_travel_desc: "Chúng tôi không chỉ tổ chức tour — chúng tôi mang đến những hành trình có ý nghĩa. Horse Loop cam kết du lịch bền vững, hỗ trợ cộng đồng địa phương và bảo vệ môi trường vùng cao Đông Bắc cho thế hệ tương lai.",
     sec_travel_v1_title: "Trải nghiệm thực",
     sec_travel_v1_desc: "Lộ trình độc đáo, tài xế bản địa, ăn ở cùng người dân vùng cao",
     sec_travel_v2_title: "An toàn tuyệt đối",
@@ -184,21 +184,21 @@ const translations = {
 
     // FAQ
     sec_faq_title: "Câu Hỏi Thường Gặp",
-    sec_faq_q1: "AnTravel có gì khác biệt so với các đơn vị tour khác?",
-    sec_faq_a1: "AnTravel tập trung vào trải nghiệm chân thực — bạn sẽ đi cùng tài xế bản địa am hiểu từng con đèo, ở homestay với người dân, ăn những món ăn địa phương thật sự. Chúng tôi không chạy tour đại trà mà thiết kế hành trình phù hợp với từng nhóm khách.",
+    sec_faq_q1: "Horse Loop có gì khác biệt so với các đơn vị tour khác?",
+    sec_faq_a1: "Horse Loop tập trung vào trải nghiệm chân thực — bạn sẽ đi cùng tài xế bản địa am hiểu từng con đèo, ở homestay với người dân, ăn những món ăn địa phương thật sự. Chúng tôi không chạy tour đại trà mà thiết kế hành trình phù hợp với từng nhóm khách.",
     sec_faq_q2: "Tôi chưa biết đi xe máy, có tham gia tour được không?",
     sec_faq_a2: "Hoàn toàn được! Chúng tôi có dịch vụ Easy Rider — tài xế bản địa kinh nghiệm sẽ chở bạn trên toàn bộ hành trình. Bạn chỉ cần ngồi sau và tận hưởng cảnh đẹp.",
-    sec_faq_q3: "Thuê xe máy tại AnTravel có an toàn không?",
-    sec_faq_a3: "Tất cả xe của AnTravel đều được bảo dưỡng kỹ trước mỗi chuyến đi. Chúng tôi tặng kèm giáp bảo hộ, mũ 3/4 chất lượng cao và gói cứu hộ đèo dốc 24/7. Nếu xe gặp sự cố, đội ngũ kỹ thuật sẽ có mặt trong thời gian nhanh nhất.",
+    sec_faq_q3: "Thuê xe máy tại Horse Loop có an toàn không?",
+    sec_faq_a3: "Tất cả xe của Horse Loop đều được bảo dưỡng kỹ trước mỗi chuyến đi. Chúng tôi tặng kèm giáp bảo hộ, mũ 3/4 chất lượng cao và gói cứu hộ đèo dốc 24/7. Nếu xe gặp sự cố, đội ngũ kỹ thuật sẽ có mặt trong thời gian nhanh nhất.",
     sec_faq_q4: "Tôi cần chuẩn bị gì khi đi Hà Giang?",
-    sec_faq_a4: "Bạn cần mang theo: CMND/CCCD, bằng lái xe (nếu tự lái), quần áo giữ ấm (vùng cao lạnh hơn), kem chống nắng, thuốc cá nhân. Phần còn lại — từ xe, mũ, giáp, bản đồ — AnTravel lo hết!",
+    sec_faq_a4: "Bạn cần mang theo: CMND/CCCD, bằng lái xe (nếu tự lái), quần áo giữ ấm (vùng cao lạnh hơn), kem chống nắng, thuốc cá nhân. Phần còn lại — từ xe, mũ, giáp, bản đồ — Horse Loop lo hết!",
     sec_faq_q5: "Làm thế nào để đặt tour hoặc thuê xe?",
-    sec_faq_a5: "Bạn có thể đặt trực tiếp trên website — chọn tour hoặc xe, điền thông tin và bấm đặt. Đội ngũ AnTravel sẽ liên hệ xác nhận trong vòng 1 giờ. Hoặc gọi hotline 0357164502 để được tư vấn ngay.",
+    sec_faq_a5: "Bạn có thể đặt trực tiếp trên website — chọn tour hoặc xe, điền thông tin và bấm đặt. Đội ngũ Horse Loop sẽ liên hệ xác nhận trong vòng 1 giờ. Hoặc gọi hotline 0357164502 để được tư vấn ngay.",
     sec_faq_q6: "Thời điểm nào đẹp nhất để đi Hà Giang và Cao Bằng?",
     sec_faq_a6: "Hà Giang đẹp nhất vào tháng 9-11 (mùa lúa chín + hoa tam giác mạch) và tháng 2-4 (hoa đào, hoa mận). Cao Bằng với Thác Bản Giốc đẹp nhất từ tháng 5-9 khi nước nhiều. Tuy nhiên, mỗi mùa đều có vẻ đẹp riêng!",
 
     // Gallery
-    sec_gallery_eyebrow: "AnTravel x Khách Hàng",
+    sec_gallery_eyebrow: "Horse Loop x Khách Hàng",
     sec_gallery_title: "Lưu giữ thanh xuân",
     sec_gallery_desc: "Những khoảnh khắc chân thực nhất của các \"phượt thủ\" trên cung đường Đông Bắc. Hãy để chúng tôi đồng hành cùng bạn.",
 
@@ -214,7 +214,7 @@ const translations = {
     ft_hotline_val: "+84 357164502",
     ft_email_label: "Email:",
     ft_email_val: "horsetravel23@gmail.com",
-    ft_copyright: "© 2026 Bản quyền đã được bảo lưu. Thiết kế bởi AnTravel",
+    ft_copyright: "© 2026 Bản quyền đã được bảo lưu. Thiết kế bởi Horse Loop",
 
     // Destinations
     "dest_dest-01_name": "Hà Giang",
@@ -230,7 +230,7 @@ const translations = {
     sec_reviews_eyebrow: "Đánh giá của khách hàng",
     sec_reviews_title_prefix: "Khách hàng",
     sec_reviews_title_hl: "nói gì về chúng tôi",
-    sec_reviews_lead: "Những câu chuyện chân thực từ những du khách đã khám phá Đông Bắc cùng AnTravel.",
+    sec_reviews_lead: "Những câu chuyện chân thực từ những du khách đã khám phá Đông Bắc cùng Horse Loop.",
     sec_reviews_count: "191+ đánh giá",
     sec_reviews_btn_write: "Viết Đánh Giá",
 
@@ -240,7 +240,7 @@ const translations = {
     rev_01_meta: "6 đóng góp",
     
     rev_02_title: "Nhóm 8 người với xe máy",
-    rev_02_body: "Hướng dẫn viên rất thân thiện và nhiệt tình. Anh ấy cho chúng tôi xem những tuyến đường đẹp nhất. Chúng tôi cảm thấy thực sự an toàn trong suốt chuyến đi. Tôi thực sự giới thiệu AnTravel cho bất kỳ ai.",
+    rev_02_body: "Hướng dẫn viên rất thân thiện và nhiệt tình. Anh ấy cho chúng tôi xem những tuyến đường đẹp nhất. Chúng tôi cảm thấy thực sự an toàn trong suốt chuyến đi. Tôi thực sự giới thiệu Horse Loop cho bất kỳ ai.",
     rev_02_date: "Thg 4 2026",
     rev_02_meta: "Bạn bè · chuyến đi nhóm",
     
@@ -250,12 +250,12 @@ const translations = {
     rev_03_meta: "Bạn bè · 4N3Đ",
 
     rev_04_title: "Trải nghiệm 10/10 với xe máy!",
-    rev_04_body: "Chúng tôi đã đặt tour 3 ngày 2 đêm. Mọi thứ đều được tổ chức tốt. Các khách sạn nơi chúng tôi ở sạch sẽ và đẹp. Rất cảm ơn đội ngũ hướng dẫn viên AnTravel.",
+    rev_04_body: "Chúng tôi đã đặt tour 3 ngày 2 đêm. Mọi thứ đều được tổ chức tốt. Các khách sạn nơi chúng tôi ở sạch sẽ và đẹp. Rất cảm ơn đội ngũ hướng dẫn viên Horse Loop.",
     rev_04_date: "Thg 3 2026",
     rev_04_meta: "Cặp đôi",
 
     rev_05_title: "Tour tuyệt vời nhất tôi từng tham gia",
-    rev_05_body: "Không còn nghi ngờ gì nữa, đây là tour tuyệt vời nhất tôi từng đi. Hướng dẫn viên đã nỗ lực hết mình để đảm bảo chúng tôi thoải mái. Chỗ ở đẹp, đồ ăn ngon. Rất khuyến khích AnTravel!",
+    rev_05_body: "Không còn nghi ngờ gì nữa, đây là tour tuyệt vời nhất tôi từng đi. Hướng dẫn viên đã nỗ lực hết mình để đảm bảo chúng tôi thoải mái. Chỗ ở đẹp, đồ ăn ngon. Rất khuyến khích Horse Loop!",
     rev_05_date: "Thg 3 2026",
     rev_05_meta: "Bạn bè · Tour 3N2Đ",
 
@@ -274,7 +274,7 @@ const translations = {
     js_route_desc: "Lộ trình đèo núi dành cho người mê trải nghiệm.",
     js_processing: "Đang xử lý...",
     js_success_title: "Đặt thành công!",
-    js_success_msg: "Cảm ơn bạn đã tin tưởng AnTravel. Đội ngũ của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận.",
+    js_success_msg: "Cảm ơn bạn đã tin tưởng Horse Loop. Đội ngũ của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận.",
     js_close: "Đóng",
     js_required: "*",
     js_included_title: "Bao gồm / Không bao gồm",
@@ -447,7 +447,7 @@ const translations = {
     about_pg_sub: "Journey with no distance",
     about_hero_eyebrow: "Journey with no distance",
     about_hero_h1: "Northeast Vietnam<br /><span class='text-primary'>Where Stones Bloom</span>",
-    about_hero_sapo: "Coming to Ha Giang and Cao Bang, you are not just taking a trip, but embarking on an adventure through the most rugged and majestic mountain passes in Vietnam. At <strong>AnTravel</strong>, we believe that every curve of Ma Pi Leng, every splash of white water at Ban Gioc Waterfall carries a story within.",
+    about_hero_sapo: "Coming to Ha Giang and Cao Bang, you are not just taking a trip, but embarking on an adventure through the most rugged and majestic mountain passes in Vietnam. At <strong>Horse Loop</strong>, we believe that every curve of Ma Pi Leng, every splash of white water at Ban Gioc Waterfall carries a story within.",
     about_pg_desc: "Coming to Ha Giang and Cao Bang, you are not just taking a trip, but embarking on an adventure through the most rugged and majestic mountain passes in Vietnam. In the <strong>Northeast</strong>, we believe that every curve of Ma Pi Leng, every splash of white water at Ban Gioc Waterfall carries a story within.",
 
     // Tour detail page
@@ -455,10 +455,10 @@ const translations = {
     detail_hero_label: "Ha Giang Travel",
 
     // Home Sections
-    sec_about_title: "About AnTravel",
+    sec_about_title: "About Horse Loop",
     sec_about_sub: "Northeast Journey — Where stones bloom",
-    sec_about_desc1: "AnTravel was founded by nature lovers passionate about exploring the Northeast highlands. We specialize in organizing Ha Giang and Cao Bang tours with an authentic experience — from self-driving motorbikes conquering Ma Pi Leng pass to Easy Riders with knowledgeable local drivers.",
-    sec_about_desc2: "Every trip is not just sightseeing, but an opportunity to immerse yourself in the culture, cuisine, and life of the highland people. AnTravel is committed to providing safe, high-quality, and inspiring experiences.",
+    sec_about_desc1: "Horse Loop was founded by nature lovers passionate about exploring the Northeast highlands. We specialize in organizing Ha Giang and Cao Bang tours with an authentic experience — from self-driving motorbikes conquering Ma Pi Leng pass to Easy Riders with knowledgeable local drivers.",
+    sec_about_desc2: "Every trip is not just sightseeing, but an opportunity to immerse yourself in the culture, cuisine, and life of the highland people. Horse Loop is committed to providing safe, high-quality, and inspiring experiences.",
     sec_about_btn: "Learn more →",
 
     sec_tours_title: "Featured Tours",
@@ -471,10 +471,10 @@ const translations = {
     sec_bike_sub: "High-quality bikes, ready for every mountain pass",
     sec_bike_btn: "View all bikes",
 
-    // Extra Sections - Travel With AnTravel
-    sec_travel_title: "Travel With AnTravel",
+    // Extra Sections - Travel With Horse Loop
+    sec_travel_title: "Travel With Horse Loop",
     sec_travel_sub: "Authentic, safe and responsible experience",
-    sec_travel_desc: "We don't just organize tours — we deliver meaningful journeys. AnTravel is committed to sustainable tourism, supporting local communities and protecting the Northeast environment for future generations.",
+    sec_travel_desc: "We don't just organize tours — we deliver meaningful journeys. Horse Loop is committed to sustainable tourism, supporting local communities and protecting the Northeast environment for future generations.",
     sec_travel_v1_title: "Authentic Experience",
     sec_travel_v1_desc: "Unique routes, local drivers, staying and eating with highland locals",
     sec_travel_v2_title: "Absolute Safety",
@@ -484,26 +484,26 @@ const translations = {
 
     // FAQ
     sec_faq_title: "Frequently Asked Questions",
-    sec_faq_q1: "What makes AnTravel different from other tour operators?",
-    sec_faq_a1: "AnTravel focuses on authentic experiences — you will travel with local drivers who know every pass, stay in homestays with locals, and eat truly local food. We don't run mass tours but design itineraries suited for each group.",
+    sec_faq_q1: "What makes Horse Loop different from other tour operators?",
+    sec_faq_a1: "Horse Loop focuses on authentic experiences — you will travel with local drivers who know every pass, stay in homestays with locals, and eat truly local food. We don't run mass tours but design itineraries suited for each group.",
     sec_faq_q2: "I can't ride a motorbike, can I still join?",
     sec_faq_a2: "Absolutely! We offer Easy Rider service — an experienced local driver will take you on the entire journey. You just sit back and enjoy the scenery.",
-    sec_faq_q3: "Is renting a motorbike at AnTravel safe?",
-    sec_faq_a3: "All AnTravel bikes are thoroughly maintained before each trip. We include protective armor, quality 3/4 helmets, and 24/7 mountain rescue support. If the bike has an issue, our technical team will be there as quickly as possible.",
+    sec_faq_q3: "Is renting a motorbike at Horse Loop safe?",
+    sec_faq_a3: "All Horse Loop bikes are thoroughly maintained before each trip. We include protective armor, quality 3/4 helmets, and 24/7 mountain rescue support. If the bike has an issue, our technical team will be there as quickly as possible.",
     sec_faq_q4: "What should I prepare when going to Ha Giang?",
-    sec_faq_a4: "You need: ID/passport, driving license (if self-driving), warm clothes (highlands are colder), sunscreen, personal medicine. The rest — bikes, helmets, armor, maps — AnTravel has it covered!",
+    sec_faq_a4: "You need: ID/passport, driving license (if self-driving), warm clothes (highlands are colder), sunscreen, personal medicine. The rest — bikes, helmets, armor, maps — Horse Loop has it covered!",
     sec_faq_q5: "How do I book a tour or rent a bike?",
-    sec_faq_a5: "You can book directly on our website — choose a tour or bike, fill in your information and click book. AnTravel team will confirm within 1 hour. Or call hotline 0357164502 for immediate consultation.",
+    sec_faq_a5: "You can book directly on our website — choose a tour or bike, fill in your information and click book. Horse Loop team will confirm within 1 hour. Or call hotline 0357164502 for immediate consultation.",
     sec_faq_q6: "When is the best time to visit Ha Giang and Cao Bang?",
     sec_faq_a6: "Ha Giang is most beautiful in September-November (rice harvest + buckwheat flowers) and February-April (peach, plum blossoms). Cao Bang with Ban Gioc Waterfall is best from May-September when water is abundant. However, every season has its own beauty!",
 
     // Gallery
-    sec_gallery_eyebrow: "AnTravel x Customers",
+    sec_gallery_eyebrow: "Horse Loop x Customers",
     sec_gallery_title: "Preserve Your Youth",
     sec_gallery_desc: "The most authentic moments of adventurers on the Northeast routes. Let us accompany you.",
 
     // Footer
-    ft_desc: "AnTravel - Authentic, raw, and real Northeast",
+    ft_desc: "Horse Loop - Authentic, raw, and real Northeast",
     ft_sub_title: "Newsletter Signup",
     ft_sub_btn: "Subscribe",
     ft_links: "Quick Links",
@@ -514,7 +514,7 @@ const translations = {
     ft_hotline_val: "+84 357164502",
     ft_email_label: "Email:",
     ft_email_val: "horsetravel23@gmail.com",
-    ft_copyright: "© 2026 All rights reserved. Designed by AnTravel",
+    ft_copyright: "© 2026 All rights reserved. Designed by Horse Loop",
 
     // Destinations
     "dest_dest-01_name": "Ha Giang",
@@ -530,7 +530,7 @@ const translations = {
     sec_reviews_eyebrow: "Customer Reviews",
     sec_reviews_title_prefix: "What customers",
     sec_reviews_title_hl: "say about us",
-    sec_reviews_lead: "Authentic stories from travelers who explored the Northeast with AnTravel.",
+    sec_reviews_lead: "Authentic stories from travelers who explored the Northeast with Horse Loop.",
     sec_reviews_count: "191+ reviews",
     sec_reviews_btn_write: "Write a Review",
 
@@ -540,7 +540,7 @@ const translations = {
     rev_01_meta: "6 contributions",
     
     rev_02_title: "Group of 8 with motorbikes",
-    rev_02_body: "The guide was very friendly and enthusiastic. He showed us the most beautiful routes. We felt really safe throughout the trip. I truly recommend AnTravel to anyone.",
+    rev_02_body: "The guide was very friendly and enthusiastic. He showed us the most beautiful routes. We felt really safe throughout the trip. I truly recommend Horse Loop to anyone.",
     rev_02_date: "Apr 2026",
     rev_02_meta: "Friends · group trip",
     
@@ -550,12 +550,12 @@ const translations = {
     rev_03_meta: "Friends · 4D3N",
 
     rev_04_title: "10/10 experience on motorbike!",
-    rev_04_body: "We booked the 3 days 2 nights tour. Everything was well organized. The hotels we stayed at were clean and beautiful. Thanks to the AnTravel guide team.",
+    rev_04_body: "We booked the 3 days 2 nights tour. Everything was well organized. The hotels we stayed at were clean and beautiful. Thanks to the Horse Loop guide team.",
     rev_04_date: "Mar 2026",
     rev_04_meta: "Couple",
 
     rev_05_title: "The best tour I have ever joined",
-    rev_05_body: "Without a doubt, this is the best tour I've ever been on. The guides went above and beyond to make sure we were comfortable. Beautiful accommodation, delicious food. Highly recommend AnTravel!",
+    rev_05_body: "Without a doubt, this is the best tour I've ever been on. The guides went above and beyond to make sure we were comfortable. Beautiful accommodation, delicious food. Highly recommend Horse Loop!",
     rev_05_date: "Mar 2026",
     rev_05_meta: "Friends · 3D2N Tour",
 
@@ -574,7 +574,7 @@ const translations = {
     js_route_desc: "Mountain pass route for adventure seekers.",
     js_processing: "Processing...",
     js_success_title: "Booking Successful!",
-    js_success_msg: "Thank you for trusting AnTravel. Our team will contact you as soon as possible to confirm.",
+    js_success_msg: "Thank you for trusting Horse Loop. Our team will contact you as soon as possible to confirm.",
     js_close: "Close",
     js_required: "*",
     js_included_title: "Included / Excluded",

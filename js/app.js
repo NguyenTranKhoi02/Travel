@@ -45,7 +45,7 @@ const initialData = {
         rating: 5,
         date: 'Thg 4 2026',
         title: 'Nhóm 8 người với xe máy',
-        content: 'Hướng dẫn viên rất thân thiện và nhiệt tình. Anh ấy cho chúng tôi xem những tuyến đường đẹp nhất. Chúng tôi cảm thấy thực sự an toàn trong suốt chuyến đi. Tôi thực sự giới thiệu AnTravel cho bất kỳ ai.',
+        content: 'Hướng dẫn viên rất thân thiện và nhiệt tình. Anh ấy cho chúng tôi xem những tuyến đường đẹp nhất. Chúng tôi cảm thấy thực sự an toàn trong suốt chuyến đi. Tôi thực sự giới thiệu Horse Loop cho bất kỳ ai.',
         tourType: 'Bạn bè · chuyến đi nhóm',
         status: 'approved'
     },
@@ -67,7 +67,7 @@ const initialData = {
         rating: 5,
         date: 'Thg 3 2026',
         title: 'Trải nghiệm 10/10 với xe máy!',
-        content: 'Chúng tôi đã đặt tour 3 ngày 2 đêm. Mọi thứ đều được tổ chức tốt. Các khách sạn nơi chúng tôi ở sạch sẽ và đẹp. Rất cảm ơn đội ngũ hướng dẫn viên AnTravel.',
+        content: 'Chúng tôi đã đặt tour 3 ngày 2 đêm. Mọi thứ đều được tổ chức tốt. Các khách sạn nơi chúng tôi ở sạch sẽ và đẹp. Rất cảm ơn đội ngũ hướng dẫn viên Horse Loop.',
         tourType: 'Cặp đôi',
         status: 'approved'
     },
@@ -78,7 +78,7 @@ const initialData = {
         rating: 5,
         date: 'Thg 3 2026',
         title: 'Tour tuyệt vời nhất tôi từng tham gia',
-        content: 'Không còn nghi ngờ gì nữa, đây là tour tuyệt vời nhất tôi từng đi. Hướng dẫn viên đã nỗ lực hết mình để đảm bảo chúng tôi thoải mái. Chỗ ở đẹp, đồ ăn ngon. Rất khuyến khích AnTravel!',
+        content: 'Không còn nghi ngờ gì nữa, đây là tour tuyệt vời nhất tôi từng đi. Hướng dẫn viên đã nỗ lực hết mình để đảm bảo chúng tôi thoải mái. Chỗ ở đẹp, đồ ăn ngon. Rất khuyến khích Horse Loop!',
         tourType: 'Bạn bè · Tour 3N2Đ',
         status: 'approved'
     }
