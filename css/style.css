@@ -973,6 +973,10 @@ video {
   line-height: 1.6;
 }
 
+.yen-itinerary-content-inner b {
+  font-weight: 700;
+}
+
 .yen-itinerary-content-inner p {
   margin: 0;
 }
@@ -1284,6 +1288,32 @@ form textarea:focus {
 
   .hero {
     min-height: auto
+  }
+
+  .hero-copy .text-sapo {
+    overflow-y: auto;
+    max-height: 200px;
+    position: relative;
+    padding-right: 10px;
+  }
+
+  .hero-copy .text-sapo {
+    @-moz-document url-prefix() {
+      scrollbar-width: thin;
+    }
+
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 99px;
+      background: var(--nn, #e5e5e5);
+    }
+  }
+
+  .hero-copy--elementor {
+    max-width: 100% !important;
   }
 
   .hero-content {

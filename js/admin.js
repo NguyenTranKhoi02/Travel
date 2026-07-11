@@ -90,6 +90,9 @@
     div.innerHTML = `
       <div class="day-index" style="width:40px;height:40px;background:var(--primary);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:bold;flex-shrink:0;">${idx + 1}</div>
       <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:-4px;">
+           <button type="button" class="btn btn-bold" style="padding:4px 12px; font-size:12px; border:1px solid #e2e8f0; background:#f8fafc; border-radius:4px; cursor:pointer; font-weight:bold;" title="Bôi đen đoạn chữ bên dưới và bấm vào đây để in đậm">B In đậm</button>
+        </div>
         <textarea class="itinerary-day-input" rows="2" style="padding:12px;border:1px solid #e2e8f0;border-radius:8px;font-family:inherit;font-size:0.95rem;resize:vertical;" placeholder="Nội dung ngày ${idx + 1}...">${content}</textarea>
         <div style="display:flex; gap:16px;">
           <div style="flex:1; display:flex; gap:8px;">
@@ -109,6 +112,19 @@
     
     div.querySelector(`#${id1}-file`).addEventListener('change', (e) => handleFileUpload(e.target, `#${id1}`));
     div.querySelector(`#${id2}-file`).addEventListener('change', (e) => handleFileUpload(e.target, `#${id2}`));
+    
+    const boldBtn = div.querySelector('.btn-bold');
+    const textarea = div.querySelector('.itinerary-day-input');
+    boldBtn.addEventListener('click', () => {
+      const start = textarea.selectionStart;
+      const end = textarea.selectionEnd;
+      if (start !== end) {
+        const selectedText = textarea.value.substring(start, end);
+        textarea.setRangeText(`<b>${selectedText}</b>`, start, end, 'select');
+      } else {
+        toast('Vui lòng bôi đen đoạn chữ cần in đậm');
+      }
+    });
     
     div.querySelector('.delete-day-btn').addEventListener('click', () => {
       div.remove();
