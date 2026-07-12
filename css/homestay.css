@@ -2,7 +2,7 @@
 
 /* 1. Hero Section Adjustments */
 .homestay-hero {
-  min-height: 80vh;
+  min-height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
