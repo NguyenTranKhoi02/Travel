@@ -608,28 +608,12 @@
   // Image upload
   if ($('#hsSlideImageUpload')) {
     $('#hsSlideImageUpload').addEventListener('change', async (e) => {
-      const file = e.target.files[0]; if (!file) return;
-      $('#hsSlideImageUploadProgress').textContent = 'Đang tải lên...';
-      try {
-        const url = await uploadToCloudinary(file);
-        $('#hsSlideImageUrl').value = url;
-        $('#hsSlideImageUploadProgress').textContent = 'Tải lên thành công!';
-      } catch (err) {
-        $('#hsSlideImageUploadProgress').textContent = 'Lỗi tải lên!';
-      }
+      await handleFileUpload(e.target, '#hsSlideImageUrl');
     });
   }
   if ($('#hsRoomImageUpload')) {
     $('#hsRoomImageUpload').addEventListener('change', async (e) => {
-      const file = e.target.files[0]; if (!file) return;
-      $('#hsRoomImageUploadProgress').textContent = 'Đang tải lên...';
-      try {
-        const url = await uploadToCloudinary(file);
-        $('#hsRoomImageUrl').value = url;
-        $('#hsRoomImageUploadProgress').textContent = 'Tải lên thành công!';
-      } catch (err) {
-        $('#hsRoomImageUploadProgress').textContent = 'Lỗi tải lên!';
-      }
+      await handleFileUpload(e.target, '#hsRoomImageUrl');
     });
   }
 

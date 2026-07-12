@@ -65,8 +65,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       on: {
         slideChangeTransitionStart: function () {
           // Update the info card text based on the active slide
-          const activeSlide = this.slides[this.activeIndex];
-          const slideText = activeSlide.getAttribute('data-text');
+          const activeSlide = this.slides?.[this.activeIndex];
+          const slideText = activeSlide ? activeSlide.getAttribute('data-text') : null;
           const textCont = document.getElementById('hsSlideText');
           if (textCont && slideText) {
             textCont.style.opacity = 0;

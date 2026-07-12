@@ -316,9 +316,68 @@
   .hs-rooms-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .homestay-title {
+    font-size: 2.2rem;
+  }
+  .hs-section-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
 }
 @media (max-width: 768px) {
   .hs-rooms-grid {
     grid-template-columns: 1fr;
+  }
+  .homestay-hero {
+    min-height: 35vh;
+  }
+  .homestay-title {
+    font-size: 1.8rem;
+  }
+  .homestay-breadcrumbs {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  .hs-section-title {
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+  }
+  .hs-intro-section,
+  .hs-locations-section,
+  .hs-rooms-section {
+    padding: 50px 15px;
+  }
+  .hs-swiper-wrap {
+    height: 280px;
+  }
+  .hs-info-card {
+    padding: 24px;
+  }
+  .hs-slide-content {
+    font-size: 0.9rem;
+  }
+  .hs-locations-card {
+    padding: 24px;
+  }
+  .hs-room-img {
+    height: 200px;
+  }
+  .hs-room-body {
+    padding: 16px;
+  }
+}
+@media (max-width: 480px) {
+  .homestay-title {
+    font-size: 1.4rem;
+  }
+  .hs-section-title {
+    font-size: 1.1rem;
+  }
+  .hs-swiper-wrap {
+    height: 220px;
+  }
+  .hs-nav-btn {
+    width: 34px;
+    height: 34px;
   }
 }
