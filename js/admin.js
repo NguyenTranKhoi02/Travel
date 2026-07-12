@@ -14,7 +14,7 @@
 
   const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2200); };
   const persist = () => window.VibeEast.saveDB(db);
-  const refresh = () => { renderDashboard(); renderProducts(); renderOrders(); renderGallery(); renderSettings(); renderReviews(); };
+  const refresh = () => { renderDashboard(); renderProducts(); renderOrders(); renderGallery(); renderSettings(); renderReviews(); renderHomestay(); };
   const initTabs = () => { const items = $$('.admin-menu-item'); const tabs = $$('.admin-tab'); items.forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); items.forEach(i => i.classList.remove('active')); tabs.forEach(t => t.classList.remove('active')); link.classList.add('active'); $('#' + link.dataset.tab).classList.add('active'); })); };
   const calcRevenue = () => ({ tour: db.bookings_tour.reduce((s, b) => s + (b.total || 0), 0), bike: db.bookings_bike.reduce((s, b) => s + (b.total || 0), 0) });
   const ordersAll = () => [...db.bookings_tour.map(o => ({ ...o, kind: 'Tour', productName: db.tours.find(t => t.id === o.tourId)?.title || o.tourId || '-' })), ...db.bookings_bike.map(o => ({ ...o, kind: 'Xe', productName: db.bikes.find(b => b.id === o.bikeId)?.name || o.bikeId || '-' }))];
@@ -489,6 +489,150 @@
   const checkAuth = () => {
     // Auth handled by Firebase observer
   };
+
+  
+  // --- Homestay Logic ---
+  window.renderHomestay = function() {
+    if (!db.homestay_slides) db.homestay_slides = [];
+    if (!db.homestay_rooms) db.homestay_rooms = [];
+
+    const slideBody = $('#hsSlideTableBody');
+    if (slideBody) {
+      slideBody.innerHTML = db.homestay_slides.map((s, i) => `
+        <tr>
+          <td><img src="${s.image}" style="width:80px;border-radius:4px" /></td>
+          <td><div style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="${s.text}">${s.text}</div></td>
+          <td>
+            <button class="btn btn-secondary btn-sm" onclick="editHsSlide('${s.id}')">Sửa</button>
+            <button class="btn btn-secondary btn-sm" onclick="delHsSlide('${s.id}')" style="color:red">Xoá</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    const roomBody = $('#hsRoomTableBody');
+    if (roomBody) {
+      roomBody.innerHTML = db.homestay_rooms.map((r, i) => `
+        <tr>
+          <td><img src="${r.image}" style="width:80px;border-radius:4px" /></td>
+          <td>${r.title}</td>
+          <td>${r.rates}</td>
+          <td>${r.tour_price}</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" onclick="editHsRoom('${r.id}')">Sửa</button>
+            <button class="btn btn-secondary btn-sm" onclick="delHsRoom('${r.id}')" style="color:red">Xoá</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+  };
+
+  // Slides
+  window.openHsSlideModal = function() { $('#hsSlideForm').reset(); $('#hsSlideId').value = ''; $('#hsSlideModalTitle').textContent = 'Thêm Slide'; $('#hsSlideModal').classList.add('active'); };
+  window.closeHsSlideModal = function() { $('#hsSlideModal').classList.remove('active'); };
+  window.editHsSlide = function(id) {
+    const s = db.homestay_slides.find(x => x.id === id);
+    if (!s) return;
+    $('#hsSlideId').value = s.id;
+    $('#hsSlideText').value = s.text;
+    $('#hsSlideImageUrl').value = s.image;
+    $('#hsSlideModalTitle').textContent = 'Sửa Slide';
+    $('#hsSlideModal').classList.add('active');
+  };
+  window.delHsSlide = function(id) {
+    if (confirm('Xoá slide này?')) {
+      db.homestay_slides = db.homestay_slides.filter(x => x.id !== id);
+      persist().then(() => { refresh(); toast('Đã xoá!'); });
+    }
+  };
+
+  $('#hsSlideForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = $('#hsSlideId').value;
+    const item = {
+      id: id || 'hs-slide-' + Date.now(),
+      text: $('#hsSlideText').value,
+      image: $('#hsSlideImageUrl').value
+    };
+    if (id) {
+      const idx = db.homestay_slides.findIndex(x => x.id === id);
+      if (idx > -1) db.homestay_slides[idx] = item;
+    } else {
+      db.homestay_slides.push(item);
+    }
+    persist().then(() => { closeHsSlideModal(); refresh(); toast('Đã lưu!'); });
+  });
+
+  // Rooms
+  window.openHsRoomModal = function() { $('#hsRoomForm').reset(); $('#hsRoomId').value = ''; $('#hsRoomModalTitle').textContent = 'Thêm Phòng'; $('#hsRoomModal').classList.add('active'); };
+  window.closeHsRoomModal = function() { $('#hsRoomModal').classList.remove('active'); };
+  window.editHsRoom = function(id) {
+    const r = db.homestay_rooms.find(x => x.id === id);
+    if (!r) return;
+    $('#hsRoomId').value = r.id;
+    $('#hsRoomTitle').value = r.title;
+    $('#hsRoomRates').value = r.rates;
+    $('#hsRoomTourPrice').value = r.tour_price;
+    $('#hsRoomDesc').value = r.desc;
+    $('#hsRoomImageUrl').value = r.image;
+    $('#hsRoomModalTitle').textContent = 'Sửa Phòng';
+    $('#hsRoomModal').classList.add('active');
+  };
+  window.delHsRoom = function(id) {
+    if (confirm('Xoá phòng này?')) {
+      db.homestay_rooms = db.homestay_rooms.filter(x => x.id !== id);
+      persist().then(() => { refresh(); toast('Đã xoá!'); });
+    }
+  };
+
+  $('#hsRoomForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = $('#hsRoomId').value;
+    const item = {
+      id: id || 'hs-room-' + Date.now(),
+      title: $('#hsRoomTitle').value,
+      rates: $('#hsRoomRates').value,
+      tour_price: $('#hsRoomTourPrice').value,
+      desc: $('#hsRoomDesc').value,
+      image: $('#hsRoomImageUrl').value
+    };
+    if (id) {
+      const idx = db.homestay_rooms.findIndex(x => x.id === id);
+      if (idx > -1) db.homestay_rooms[idx] = item;
+    } else {
+      db.homestay_rooms.push(item);
+    }
+    persist().then(() => { closeHsRoomModal(); refresh(); toast('Đã lưu!'); });
+  });
+
+  // Image upload
+  if ($('#hsSlideImageUpload')) {
+    $('#hsSlideImageUpload').addEventListener('change', async (e) => {
+      const file = e.target.files[0]; if (!file) return;
+      $('#hsSlideImageUploadProgress').textContent = 'Đang tải lên...';
+      try {
+        const url = await uploadToCloudinary(file);
+        $('#hsSlideImageUrl').value = url;
+        $('#hsSlideImageUploadProgress').textContent = 'Tải lên thành công!';
+      } catch (err) {
+        $('#hsSlideImageUploadProgress').textContent = 'Lỗi tải lên!';
+      }
+    });
+  }
+  if ($('#hsRoomImageUpload')) {
+    $('#hsRoomImageUpload').addEventListener('change', async (e) => {
+      const file = e.target.files[0]; if (!file) return;
+      $('#hsRoomImageUploadProgress').textContent = 'Đang tải lên...';
+      try {
+        const url = await uploadToCloudinary(file);
+        $('#hsRoomImageUrl').value = url;
+        $('#hsRoomImageUploadProgress').textContent = 'Tải lên thành công!';
+      } catch (err) {
+        $('#hsRoomImageUploadProgress').textContent = 'Lỗi tải lên!';
+      }
+    });
+  }
+
 
   $('#loginForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();

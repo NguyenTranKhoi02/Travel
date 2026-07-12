@@ -26,6 +26,15 @@ const initialData = {
     heroVideoUrl: '',
     heroPosterUrl: ''
   },
+  homestay_slides: [
+    { id: 'hs-slide-1', text: "Welcome to Mama's Homestay in the center - 50 beds, where modern comfort meets traditional charm. Our homestay is thoughtfully designed to provide a welcoming and contemporary atmosphere for our guests. Mama’s Homestay offers one free night in the dormitory the day before the tour begins, and you can check in after 2 pm.", image: 'images/tour1.jpg' },
+    { id: 'hs-slide-2', text: "Welcome to Mama's House - 20 beds. Mama’s Homestay offers one free night in the dormitory the day before the tour begins, and you can check in after 2 pm. Our reception is open 24/7. The free night is random and we don't charge any fee for it.", image: 'images/tour2.jpg' }
+  ],
+  homestay_rooms: [
+    { id: 'hs-room-1', title: 'Family room (3-4pp) (2 king beds)', rates: '600.000', tour_price: '550.000', desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', image: 'images/tour1.jpg' },
+    { id: 'hs-room-2', title: 'Private room (1-2pp) (1 king bed)', rates: '600.000', tour_price: '375.000', desc: "Private room for 2 people at Homestay HEAD OFFICE for the night before the loop starts.", image: 'images/tour2.jpg' },
+    { id: 'hs-room-3', title: 'Dorm', rates: '200.000', tour_price: 'No fees', desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', image: 'images/tour1.jpg' }
+  ],
   reviews: [
     {
         id: 'rev-01',

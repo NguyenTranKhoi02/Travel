@@ -60,6 +60,7 @@
         <a href="#" class="admin-menu-item" data-tab="products">Quản lý Sản phẩm</a>
         <a href="#" class="admin-menu-item" data-tab="orders">Quản lý Đơn hàng</a>
         <a href="#" class="admin-menu-item" data-tab="gallery">Thư viện Ảnh</a>
+        <a href="#" class="admin-menu-item" data-tab="homestay">Quản lý Homestay</a>
         <a href="#" class="admin-menu-item" data-tab="reviews">Quản lý Đánh giá</a>
         <a href="#" class="admin-menu-item" data-tab="settings">Cài đặt chung</a>
       </nav>
@@ -293,6 +294,123 @@
           </form>
         </div>
       </section>
+          <section id='homestay' class='admin-tab'>
+        <div class='page-head' style='display:flex;justify-content:space-between;align-items:center'>
+          <div>
+            <h1>Quản lý Homestay</h1>
+            <p>Quản lý các slide giới thiệu và danh sách phòng cho trang Homestay.</p>
+          </div>
+        </div>
+
+        <div class='panel' style='margin-bottom: 24px'>
+          <div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:16px'>
+            <h2>Slides giới thiệu</h2>
+            <button class='btn btn-primary' onclick='openHsSlideModal()'>+ Thêm Slide</button>
+          </div>
+          <table class='admin-table'>
+            <thead>
+              <tr>
+                <th>Hình ảnh</th>
+                <th>Nội dung Text</th>
+                <th width='120'>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id='hsSlideTableBody'></tbody>
+          </table>
+        </div>
+
+        <div class='panel'>
+          <div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:16px'>
+            <h2>Danh sách phòng (Rooms)</h2>
+            <button class='btn btn-primary' onclick='openHsRoomModal()'>+ Thêm Phòng</button>
+          </div>
+          <table class='admin-table'>
+            <thead>
+              <tr>
+                <th>Hình ảnh</th>
+                <th>Tên phòng</th>
+                <th>Giá thường</th>
+                <th>Giá theo tour</th>
+                <th width='120'>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id='hsRoomTableBody'></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Modal Slide -->
+      <div class='modal-overlay' id='hsSlideModal'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h2 id='hsSlideModalTitle'>Thêm Slide</h2>
+            <button class='modal-close' onclick='closeHsSlideModal()'>&times;</button>
+          </div>
+          <form id='hsSlideForm' class='modal-body form-grid'>
+            <input type='hidden' id='hsSlideId' />
+            <div class='form-group' style='grid-column: 1 / -1'>
+              <label>Nội dung Text</label>
+              <textarea id='hsSlideText' rows='4' required></textarea>
+            </div>
+            <div class='form-group' style='grid-column: 1 / -1'>
+              <label>Hình ảnh URL</label>
+              <input type='text' id='hsSlideImageUrl' placeholder='Hoặc upload ảnh bên dưới...' />
+            </div>
+            <div class='form-group' style='grid-column: 1 / -1'>
+              <label>Upload ảnh</label>
+              <input type='file' id='hsSlideImageUpload' accept='image/*'>
+              <div id='hsSlideImageUploadProgress' style='margin-top: 8px; font-size: 0.9em; color: var(--primary);'></div>
+            </div>
+            <div class='form-group' style='grid-column: 1 / -1; display:flex; gap:12px; margin-top:16px;'>
+              <button type='button' class='btn btn-secondary' onclick='closeHsSlideModal()'>Hủy</button>
+              <button type='submit' class='btn btn-primary'>Lưu Slide</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Room -->
+      <div class='modal-overlay' id='hsRoomModal'>
+        <div class='modal-content'>
+          <div class='modal-header'>
+            <h2 id='hsRoomModalTitle'>Thêm Phòng</h2>
+            <button class='modal-close' onclick='closeHsRoomModal()'>&times;</button>
+          </div>
+          <form id='hsRoomForm' class='modal-body form-grid'>
+            <input type='hidden' id='hsRoomId' />
+            <div class='form-group' style='grid-column: 1 / -1'>
+              <label>Tên phòng (Title)</label>
+              <input type='text' id='hsRoomTitle' required />
+            </div>
+            <div class='form-group'>
+              <label>Giá thường (Room Rates)</label>
+              <input type='text' id='hsRoomRates' required />
+            </div>
+            <div class='form-group'>
+              <label>Giá theo tour</label>
+              <input type='text' id='hsRoomTourPrice' required />
+            </div>
+            <div class='form-group' style='grid-column: 1 / -1'>
+              <label>Mô tả (Description)</label>
+              <textarea id='hsRoomDesc' rows='3' required></textarea>
+            </div>
+            <div class='form-group' style='grid-column: 1 / -1'>
+              <label>Hình ảnh URL</label>
+              <input type='text' id='hsRoomImageUrl' placeholder='Hoặc upload ảnh bên dưới...' />
+            </div>
+            <div class='form-group' style='grid-column: 1 / -1'>
+              <label>Upload ảnh</label>
+              <input type='file' id='hsRoomImageUpload' accept='image/*'>
+              <div id='hsRoomImageUploadProgress' style='margin-top: 8px; font-size: 0.9em; color: var(--primary);'></div>
+            </div>
+            <div class='form-group' style='grid-column: 1 / -1; display:flex; gap:12px; margin-top:16px;'>
+              <button type='button' class='btn btn-secondary' onclick='closeHsRoomModal()'>Hủy</button>
+              <button type='submit' class='btn btn-primary'>Lưu Phòng</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </main>
   </div>
 

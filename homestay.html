@@ -4,13 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thuê xe máy | VibeEast</title>
+  <title>Horse Loop | Du lịch trải nghiệm Đông Bắc</title>
   <link rel="icon" type="image/png" href="images/logoHL.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/homestay.css" />
   <script src="js/i18n.js"></script>
 </head>
 
@@ -27,105 +28,98 @@
         <a href="#" class="lang-btn" data-lang="vi">VN</a>
         <a href="#" class="lang-btn" data-lang="en">EN</a>
       </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false"
-        aria-controls="mainNav"><span></span><span></span><span></span></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+
       <nav class="nav" id="mainNav">
         <a href="index.html" data-i18n="nav_home">Trang chủ</a>
         <a href="about.html" data-i18n="nav_about">Giới thiệu</a>
         <a href="tours.html" data-i18n="nav_tours">Tour</a>
-        <a href="rental.html" class="active" data-i18n="nav_rental">Thuê xe</a>
-        <a href="homestay.html" data-i18n="nav_homestay">Homestay</a>
+        <a href="rental.html" data-i18n="nav_rental">Thuê xe</a>
+        <a href="homestay.html" class="active" data-i18n="nav_homestay">Homestay</a>
       </nav>
     </div>
   </header>
+
   <main>
-    <!-- ========== RENTAL HERO ========== -->
-    <section class="yen-tours-hero">
-      <div class="container">
-        <h1 class="yen-tours-hero-title" data-i18n="rental_pg_title">Thuê Xe Máy</h1>
-        <p class="yen-tours-hero-sub" data-i18n="rental_pg_sub">Chọn bạn đồng hành cho những cung đường đèo</p>
+    <!-- 1. Hero Section -->
+    <section class="homestay-hero">
+      <img src="images/mamashomestay_bg.jpg" alt="Homestay Hero" class="hero-bg-img"
+        onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'" />
+      <div class="hero-overlay-dark"></div>
+      <div class="container hero-content">
+        <h1 class="homestay-title">Homestay</h1>
+        <div class="homestay-breadcrumbs">HOME > HOMESTAY</div>
       </div>
     </section>
 
-    <!-- ========== RENTAL CONTENT ========== -->
-    <section class="yen-tours-content">
-      <div class="container yen-tours-layout">
-        <!-- SIDEBAR FILTERS -->
-        <aside class="yen-tours-sidebar" id="bikesSidebar">
-          <button class="yen-sidebar-close" id="bikeSidebarClose" aria-label="Đóng bộ lọc">×</button>
-
-          <div class="yen-filter-group">
-            <h3 class="yen-filter-title" data-i18n="filter_cartype">Loại xe</h3>
-            <label class="yen-filter-item">
-              <input type="checkbox" name="bike_type" value="Xe số" /> <span data-i18n="car_num">Xe số</span>
-            </label>
-            <label class="yen-filter-item">
-              <input type="checkbox" name="bike_type" value="Xe côn tay" /> <span data-i18n="car_manual">Xe côn
-                tay</span>
-            </label>
-            <label class="yen-filter-item">
-              <input type="checkbox" name="bike_type" value="Tay ga" /> <span data-i18n="car_scooter">Xe tay ga</span>
-            </label>
+    <!-- 2. Intro & Slider Section -->
+    <section class="hs-intro-section">
+      <div class="container">
+        <h2 class="hs-section-title">MAMA’S HOMESTAY IS THE LEADING HOMESTAY CHAIN IN HA GIANG</h2>
+        <div class="hs-slider-container">
+          <div class="hs-info-card">
+            <div>
+              <div class="hs-info-subtitle">Comfortable and modern design</div>
+              <div class="hs-slide-content" id="hsSlideText">
+                Welcome to Mama's Homestay in the center - 50 beds, where modern comfort meets traditional charm...
+              </div>
+            </div>
+            <div class="hs-slider-nav">
+              <button class="hs-nav-btn hs-nav-prev"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg></button>
+              <button class="hs-nav-btn hs-nav-next"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg></button>
+            </div>
           </div>
-
-          <button class="yen-clear-filters" id="clearBikeFilters" type="button" data-i18n="filter_clear">Xóa bộ
-            lọc</button>
-        </aside>
-
-        <!-- BIKES GRID -->
-        <div class="yen-tours-main">
-          <!-- Mobile filter toggle -->
-          <button class="yen-filter-toggle" id="bikeFilterToggle" type="button">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="4" y1="6" x2="20" y2="6"></line>
-              <line x1="4" y1="12" x2="16" y2="12"></line>
-              <line x1="4" y1="18" x2="12" y2="18"></line>
-            </svg>
-            <span data-i18n="filter_btn">Bộ lọc</span>
-          </button>
-
-          <div class="yen-tours-grid" id="bikeGrid"></div>
+          <div class="hs-swiper-wrap">
+            <div class="swiper hs-swiper">
+              <div class="swiper-wrapper" id="dynamicSlides"></div></div></div>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- 3. Locations Section -->
+    <section class="hs-locations-section">
+      <div class="container">
+        <h2 class="hs-section-title" style="font-size: 1.5rem; text-transform: none; margin-bottom: 30px;">Located in
+          prime locations, convenient for experiencing Ha Giang tourism</h2>
+        <div class="hs-locations-card">
+          <div class="hs-pin-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="hs-loc-info">
+            <div class="hs-loc-title">Horse Loop Hà Giang</div>
+            <div class="hs-loc-address">24 Nguyễn Trãi, Hà Giang 1, Tuyên Quang, Việt Nam</div>
+          </div>
+          <div class="hs-loc-action">
+            <a href="https://maps.app.goo.gl/bo4vM8nmn2VXXHdm8?g_st=ic" target="_blank" class="hs-btn-direction">
+              Direction <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Room Types Section -->
+    <section class="hs-rooms-section">
+      <div class="container">
+        <h2 class="hs-section-title">KIND OF ROOM</h2>
+        <div class="hs-rooms-grid" id="dynamicRooms"></div></div></section>
   </main>
 
-  <div class="modal" id="bikeBookingModal">
-    <div class="modal-box bike-modal-box">
-      <h2 class="bike-modal-title" data-i18n="modal_rental_title">Xác nhận đặt xe</h2>
-      <form id="bikeBookingForm" class="bike-booking-form">
-        <div class="bike-form-grid-2">
-          <label class="bike-form-label"><span data-i18n="modal_name">Họ tên</span><input id="bikeName"
-              class="bike-form-input" required></label>
-          <label class="bike-form-label"><span data-i18n="modal_phone">SĐT</span><input id="bikePhone"
-              class="bike-form-input" required></label>
-        </div>
-        <div class="bike-form-grid-2">
-          <label class="bike-form-label"><span data-i18n="modal_pickup_date">Ngày nhận</span><input id="rentFrom"
-              type="date" class="bike-form-input" required></label>
-          <label class="bike-form-label"><span data-i18n="modal_drop_date">Ngày trả</span><input id="rentTo" type="date"
-              class="bike-form-input" required></label>
-        </div>
-        <label class="bike-form-label"><span data-i18n="modal_car">Xe muốn thuê</span><select id="bikeSelect"
-            class="bike-form-input"></select></label>
-        <label class="bike-form-label"><span data-i18n="modal_pickup_loc">Nơi nhận xe</span><input id="pickupPlace"
-            class="bike-form-input" placeholder="VD: Bến xe, KS..."
-            data-i18n-placeholder="modal_pickup_loc_placeholder"></label>
-
-        <div class="bike-form-total-wrap">
-          <strong data-i18n="modal_total">Tổng tiền:</strong>
-          <span class="form-total" id="bikeTotal"></span>
-        </div>
-
-        <div class="bike-form-actions">
-          <button class="btn btn-secondary bike-btn-cancel" type="button"
-            onclick="document.getElementById('bikeBookingModal').classList.remove('active')"
-            data-i18n="modal_cancel">Hủy</button>
-          <button class="btn btn-primary bike-btn-submit" type="submit" data-i18n="modal_confirm">Đặt xe ngay</button>
-        </div>
-      </form>
-    </div>
-  </div>
   <footer class="site-footer">
     <div class="container lt-footer-inner">
       <div class="lt-footer-brand">
@@ -181,6 +175,7 @@
       </div>
     </div>
   </footer>
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -188,7 +183,8 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
   <script src="js/firebase-init.js"></script>
   <script src="js/app.js"></script>
-  <script src="js/client.js"></script>
+  <script src="js/client.js?v=2"></script>
+  <script src="js/homestay.js"></script>
 </body>
 
 </html>
