@@ -2,13 +2,14 @@
 
 /* 1. Hero Section Adjustments */
 .homestay-hero {
-  min-height: 50vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
 }
+
 .homestay-hero .hero-bg-img {
   position: absolute;
   top: 0;
@@ -18,28 +19,34 @@
   object-fit: cover;
   z-index: 1;
 }
+
 .homestay-hero .hero-overlay-dark {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 2;
+  background-color: #000;
+  opacity: .4;
+  z-index: 1;
 }
+
 .homestay-hero .hero-content {
   position: relative;
   z-index: 3;
   text-align: center;
   color: #fff;
-  padding-top: 80px; /* Offset header */
+  padding-top: 80px;
+  /* Offset header */
 }
+
 .homestay-title {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
 .homestay-breadcrumbs {
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -52,6 +59,7 @@
   padding: 80px 15px;
   background: #fff;
 }
+
 .hs-section-title {
   text-align: center;
   font-size: 2rem;
@@ -60,6 +68,7 @@
   margin-bottom: 50px;
   text-transform: uppercase;
 }
+
 .hs-slider-container {
   display: flex;
   position: relative;
@@ -67,6 +76,7 @@
   margin: 0 auto;
   min-height: 500px;
 }
+
 .hs-info-card {
   width: 35%;
   background: rgba(30, 30, 30, 0.9);
@@ -80,8 +90,9 @@
   bottom: 40px;
   left: 0;
   z-index: 10;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
+
 .hs-info-subtitle {
   font-size: 1rem;
   text-transform: uppercase;
@@ -90,16 +101,19 @@
   margin-bottom: 20px;
   font-weight: 600;
 }
+
 .hs-slide-content {
   font-size: 1rem;
   line-height: 1.6;
   color: #eee;
 }
+
 .hs-slider-nav {
   display: flex;
   gap: 15px;
   margin-top: 30px;
 }
+
 .hs-nav-btn {
   width: 40px;
   height: 40px;
@@ -113,19 +127,23 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .hs-nav-btn:hover {
   background: #fff;
   color: #222;
 }
+
 .hs-swiper-wrap {
   width: 75%;
   margin-left: auto;
   height: 500px;
 }
+
 .hs-swiper-wrap .swiper {
   width: 100%;
   height: 100%;
 }
+
 .hs-swiper-wrap .swiper-slide img {
   width: 100%;
   height: 100%;
@@ -137,6 +155,7 @@
     flex-direction: column;
     min-height: auto;
   }
+
   .hs-info-card {
     position: relative;
     width: 100%;
@@ -144,6 +163,7 @@
     bottom: 0;
     padding: 30px;
   }
+
   .hs-swiper-wrap {
     width: 100%;
     height: 400px;
@@ -155,6 +175,7 @@
   background: #f8f9fa;
   padding: 80px 15px;
 }
+
 .hs-locations-card {
   max-width: 800px;
   margin: 0 auto;
@@ -164,8 +185,9 @@
   display: flex;
   align-items: center;
   gap: 24px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
+
 .hs-pin-icon {
   width: 60px;
   height: 60px;
@@ -177,23 +199,28 @@
   justify-content: center;
   flex-shrink: 0;
 }
+
 .hs-loc-info {
   flex-grow: 1;
 }
+
 .hs-loc-title {
   font-size: 1.3rem;
   font-weight: 700;
   color: #222;
   margin-bottom: 8px;
 }
+
 .hs-loc-address {
   font-size: 0.95rem;
   color: #666;
   line-height: 1.5;
 }
+
 .hs-loc-action {
   flex-shrink: 0;
 }
+
 .hs-btn-direction {
   display: inline-flex;
   align-items: center;
@@ -206,6 +233,7 @@
   text-decoration: none;
   transition: all 0.3s;
 }
+
 .hs-btn-direction:hover {
   background: var(--primary-color, #e4a853);
   color: #fff;
@@ -216,6 +244,7 @@
     flex-direction: column;
     text-align: center;
   }
+
   .hs-pin-icon {
     margin: 0 auto;
   }
@@ -226,6 +255,7 @@
   padding: 80px 15px;
   background: #fff;
 }
+
 .hs-rooms-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -233,6 +263,7 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .hs-room-card {
   border: 1px solid #eee;
   border-radius: 12px;
@@ -242,21 +273,25 @@
   display: flex;
   flex-direction: column;
 }
+
 .hs-room-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
+
 .hs-room-img {
   width: 100%;
   height: 250px;
   object-fit: cover;
 }
+
 .hs-room-body {
   padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
+
 .hs-room-title {
   font-size: 1.25rem;
   font-weight: 700;
@@ -265,30 +300,37 @@
   text-decoration: none;
   transition: color 0.3s;
 }
+
 .hs-room-title:hover {
   color: var(--primary-color, #e4a853);
 }
+
 .hs-room-pricing {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
 }
+
 .hs-price-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
   font-size: 0.95rem;
 }
+
 .hs-price-label {
   color: #666;
 }
+
 .hs-price-value {
   font-weight: 700;
   color: #222;
 }
+
 .hs-price-value.highlight {
   color: var(--primary-color, #e4a853);
 }
+
 .hs-room-desc {
   color: #555;
   font-size: 0.9rem;
@@ -296,6 +338,7 @@
   margin-bottom: 24px;
   flex-grow: 1;
 }
+
 .hs-btn-book {
   display: block;
   text-align: center;
@@ -307,6 +350,7 @@
   text-decoration: none;
   transition: all 0.3s;
 }
+
 .hs-btn-book:hover {
   background: #222;
   color: #fff;
@@ -316,66 +360,84 @@
   .hs-rooms-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .homestay-title {
     font-size: 2.2rem;
   }
+
   .hs-section-title {
     font-size: 1.5rem;
     margin-bottom: 30px;
   }
 }
+
 @media (max-width: 768px) {
   .hs-rooms-grid {
     grid-template-columns: 1fr;
   }
+
   .homestay-hero {
     min-height: 35vh;
   }
+
   .homestay-title {
     font-size: 1.8rem;
   }
+
   .homestay-breadcrumbs {
     font-size: 0.8rem;
     letter-spacing: 1px;
   }
+
   .hs-section-title {
     font-size: 1.25rem;
     margin-bottom: 24px;
   }
+
   .hs-intro-section,
   .hs-locations-section,
   .hs-rooms-section {
     padding: 50px 15px;
   }
+
   .hs-swiper-wrap {
     height: 280px;
   }
+
   .hs-info-card {
     padding: 24px;
   }
+
   .hs-slide-content {
     font-size: 0.9rem;
   }
+
   .hs-locations-card {
     padding: 24px;
   }
+
   .hs-room-img {
     height: 200px;
   }
+
   .hs-room-body {
     padding: 16px;
   }
 }
+
 @media (max-width: 480px) {
   .homestay-title {
     font-size: 1.4rem;
   }
+
   .hs-section-title {
     font-size: 1.1rem;
   }
+
   .hs-swiper-wrap {
     height: 220px;
   }
+
   .hs-nav-btn {
     width: 34px;
     height: 34px;
