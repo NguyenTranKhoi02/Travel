@@ -296,7 +296,9 @@ const translations = {
     js_exc_6: "Đồ uống có cồn",
     js_note_title: "Bạn có yêu cầu đặc biệt về chế độ ăn uống?",
     js_note_content: "Ăn chay, ăn thuần chay, hay bị dị ứng? Hãy cho chúng tôi biết khi đặt tour và chúng tôi sẽ đáp ứng theo yêu cầu của bạn.",
-    js_ready: "Sẵn sàng"
+    js_ready: "Sẵn sàng",
+    js_detailed_itinerary: "Lịch trình chi tiết",
+    js_detailed_itinerary_empty: "Đang cập nhật lịch trình chi tiết..."
   },
   en: {
     // Nav
@@ -596,7 +598,9 @@ const translations = {
     js_exc_6: "Alcoholic beverages",
     js_note_title: "Do you have special dietary requirements?",
     js_note_content: "Vegetarian, vegan, or allergic? Let us know when booking the tour and we will accommodate your request.",
-    js_ready: "Ready"
+    js_ready: "Ready",
+    js_detailed_itinerary: "Detailed Itinerary",
+    js_detailed_itinerary_empty: "Detailed itinerary is being updated..."
   }
 };
 

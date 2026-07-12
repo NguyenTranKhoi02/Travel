@@ -160,6 +160,10 @@
       $('#pfImage').value = item?.image || '';
       $('#itineraryBuilderWrap').style.display = 'flex';
       renderItineraryBuilder(item?.itinerary || []);
+      $('#pfDetailedItineraryWrap').style.display = 'block';
+      $('#pfDetailedItinerary').value = item?.detailedItinerary || '';
+      $('#pfDetailedImg1').value = item?.detailedItineraryImg1 || '';
+      $('#pfDetailedImg2').value = item?.detailedItineraryImg2 || '';
       $('#pfFeaturedWrap').style.display = 'flex';
       $('#pfFeatured').checked = item?.is_featured || false;
     } else if (mode === 'bike') {
@@ -172,6 +176,7 @@
       $('#pfMeta2').style.display = 'block'; $('#pfMeta2').value = item?.status || '';
       $('#pfImage').value = item?.image || '';
       $('#itineraryBuilderWrap').style.display = 'none';
+      $('#pfDetailedItineraryWrap').style.display = 'none';
       $('#pfFeaturedWrap').style.display = 'none';
     } else if (mode === 'destination') {
       $('#modalTitle').textContent = item ? 'Sửa Điểm Đến' : 'Thêm Điểm Đến';
@@ -183,6 +188,7 @@
       $('#pfMeta2').style.display = 'none'; $('#pfMeta2').value = 'none';
       $('#pfImage').value = item?.image || '';
       $('#itineraryBuilderWrap').style.display = 'none';
+      $('#pfDetailedItineraryWrap').style.display = 'none';
       $('#pfFeaturedWrap').style.display = 'none';
     }
   }
@@ -225,6 +231,8 @@
     $('#pfImageUpload')?.addEventListener('change', (e) => handleFileUpload(e.target, '#pfImage'));
     $('#phImageUpload')?.addEventListener('change', (e) => handleFileUpload(e.target, '#phUrl'));
     $('#setHeroPosterUpload')?.addEventListener('change', (e) => handleFileUpload(e.target, '#setHeroPoster'));
+    $('#pfDetailedImg1Upload')?.addEventListener('change', (e) => handleFileUpload(e.target, '#pfDetailedImg1'));
+    $('#pfDetailedImg2Upload')?.addEventListener('change', (e) => handleFileUpload(e.target, '#pfDetailedImg2'));
 
     // Gallery Modal Bindings
     $('#addPhotoBtn').addEventListener('click', () => { 
@@ -296,14 +304,14 @@
         const imgs = [...row.querySelectorAll('.itinerary-img-input')].map(el => el.value.trim()).filter(Boolean);
         return content ? { content, images: imgs } : null;
       }).filter(Boolean);
-      const payload = { title: $('#pfTitle').value.trim(), meta1: meta1Val, price: Number($('#pfPriceBase').value.replace(/\./g, '')) || 0, surcharge_motorbike: Number($('#pfSurchargeMotorbike').value.replace(/\./g, '')) || 0, discount_selfdrive: Number($('#pfDiscountSelfDrive').value.replace(/\./g, '')) || 0, surcharge_7seat: [Number($('#pfSurcharge7Seat_1').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_2').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_3').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_4').value.replace(/\./g, '')) || 0], surcharge_jeep: [Number($('#pfSurchargeJeep_1').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_2').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_3').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_4').value.replace(/\./g, '')) || 0], meta2: $('#pfMeta2').value.trim(), image: $('#pfImage').value.trim(), itinerary: itineraryValues };
+      const payload = { title: $('#pfTitle').value.trim(), meta1: meta1Val, price: Number($('#pfPriceBase').value.replace(/\./g, '')) || 0, surcharge_motorbike: Number($('#pfSurchargeMotorbike').value.replace(/\./g, '')) || 0, discount_selfdrive: Number($('#pfDiscountSelfDrive').value.replace(/\./g, '')) || 0, surcharge_7seat: [Number($('#pfSurcharge7Seat_1').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_2').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_3').value.replace(/\./g, '')) || 0, Number($('#pfSurcharge7Seat_4').value.replace(/\./g, '')) || 0], surcharge_jeep: [Number($('#pfSurchargeJeep_1').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_2').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_3').value.replace(/\./g, '')) || 0, Number($('#pfSurchargeJeep_4').value.replace(/\./g, '')) || 0], meta2: $('#pfMeta2').value.trim(), image: $('#pfImage').value.trim(), itinerary: itineraryValues, detailedItinerary: $('#pfDetailedItinerary') ? $('#pfDetailedItinerary').value : '', detailedItineraryImg1: $('#pfDetailedImg1') ? $('#pfDetailedImg1').value.trim() : '', detailedItineraryImg2: $('#pfDetailedImg2') ? $('#pfDetailedImg2').value.trim() : '' };
       
       if (editState.type === 'tour') {
         if (!payload.title || !payload.meta1 || !payload.price || !payload.meta2 || !payload.image) return toast('Vui lòng nhập đủ thông tin');
         const isFeatured = $('#pfFeatured').checked;
         const tourItinerary = payload.itinerary.length ? payload.itinerary : ['Ngày 1: Lịch trình đang cập nhật'];
-        if (editState.id) { const found = db.tours.find(x => x.id === editState.id); if (found) { found.title = payload.title; found.location = payload.meta1; found.price_base = payload.price; found.surcharge_motorbike = payload.surcharge_motorbike; found.discount_selfdrive = payload.discount_selfdrive; found.surcharge_7seat = payload.surcharge_7seat; found.surcharge_jeep = payload.surcharge_jeep; found.duration = payload.meta2; found.image = payload.image; found.is_featured = isFeatured; found.itinerary = tourItinerary; if (!found.gallery || !found.gallery.includes(payload.image)) { found.gallery = [payload.image]; } } }
-        else { db.tours.unshift({ id: `tour-${Date.now()}`, title: payload.title, location: payload.meta1, price_base: payload.price, surcharge_motorbike: payload.surcharge_motorbike, discount_selfdrive: payload.discount_selfdrive, surcharge_7seat: payload.surcharge_7seat, surcharge_jeep: payload.surcharge_jeep, duration: payload.meta2, image: payload.image, is_featured: isFeatured, style: 'Self-ride', itinerary: tourItinerary, gallery: [payload.image] }); }
+        if (editState.id) { const found = db.tours.find(x => x.id === editState.id); if (found) { found.title = payload.title; found.location = payload.meta1; found.price_base = payload.price; found.surcharge_motorbike = payload.surcharge_motorbike; found.discount_selfdrive = payload.discount_selfdrive; found.surcharge_7seat = payload.surcharge_7seat; found.surcharge_jeep = payload.surcharge_jeep; found.duration = payload.meta2; found.image = payload.image; found.is_featured = isFeatured; found.itinerary = tourItinerary; found.detailedItinerary = payload.detailedItinerary; found.detailedItineraryImg1 = payload.detailedItineraryImg1; found.detailedItineraryImg2 = payload.detailedItineraryImg2; if (!found.gallery || !found.gallery.includes(payload.image)) { found.gallery = [payload.image]; } } }
+        else { db.tours.unshift({ id: `tour-${Date.now()}`, title: payload.title, location: payload.meta1, price_base: payload.price, surcharge_motorbike: payload.surcharge_motorbike, discount_selfdrive: payload.discount_selfdrive, surcharge_7seat: payload.surcharge_7seat, surcharge_jeep: payload.surcharge_jeep, duration: payload.meta2, image: payload.image, is_featured: isFeatured, style: 'Self-ride', itinerary: tourItinerary, detailedItinerary: payload.detailedItinerary, detailedItineraryImg1: payload.detailedItineraryImg1, detailedItineraryImg2: payload.detailedItineraryImg2, gallery: [payload.image] }); }
       } else if (editState.type === 'bike') {
         if (!payload.title || !payload.meta1 || !payload.price || !payload.meta2 || !payload.image) return toast('Vui lòng nhập đủ thông tin');
         if (editState.id) { const found = db.bikes.find(x => x.id === editState.id); if (found) { found.name = payload.title; found.type = payload.meta1; found.price_per_day = payload.price; found.status = payload.meta2; found.image = payload.image; } }

@@ -460,6 +460,28 @@
         <div class="hgl-tour-itinerary-section">
           <h3 class="title-tt" data-i18n="js_itinerary_title">${t('js_itinerary_title')}</h3>
           <div id="itineraryList" class="yen-itinerary-list"></div>
+          
+          <div class="yen-itinerary-list" id="detailedItineraryWrapper" style="margin-top: 16px;">
+            <div class="yen-itinerary-item">
+              <button class="yen-itinerary-toggle" type="button">
+                <div class="yen-itinerary-toggle-left">
+                  <div class="yen-itinerary-circle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                  </div>
+                  <div class="yen-itinerary-title-wrap">
+                    <h3 class="yen-itinerary-title" data-i18n="js_detailed_itinerary">${t('js_detailed_itinerary') !== 'js_detailed_itinerary' ? t('js_detailed_itinerary') : 'Lịch trình chi tiết'}</h3>
+                  </div>
+                </div>
+                <svg class="yen-itinerary-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </button>
+              <div class="yen-itinerary-content">
+                <div class="yen-itinerary-content-inner" id="detailedItineraryContent">
+                  ${tour.detailedItinerary ? tour.detailedItinerary.replace(/\n/g, '<br>') : '<p data-i18n="js_detailed_itinerary_empty">' + (t('js_detailed_itinerary_empty') !== 'js_detailed_itinerary_empty' ? t('js_detailed_itinerary_empty') : 'Đang cập nhật lịch trình chi tiết...') + '</p>'}
+                  ${(tour.detailedItineraryImg1 || tour.detailedItineraryImg2) ? `<div class="itinerary-images-grid" style="display:flex;gap:8px;margin-top:16px;">${tour.detailedItineraryImg1 ? `<img src="${tour.detailedItineraryImg1}" style="width:100%;max-width:300px;border-radius:8px;object-fit:cover;aspect-ratio:4/3;" alt="detailed itinerary image">` : ''}${tour.detailedItineraryImg2 ? `<img src="${tour.detailedItineraryImg2}" style="width:100%;max-width:300px;border-radius:8px;object-fit:cover;aspect-ratio:4/3;" alt="detailed itinerary image">` : ''}</div>` : ''}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div id="includedSection" class="hgl-tour-included-section">
           <h3 class="title-tt hgl-hidden-title" data-i18n="js_included_title">${t('js_included_title') !== 'js_included_title' ? t('js_included_title') : 'Bao gồm / Không bao gồm'}</h3>
@@ -541,6 +563,17 @@
       qsa('.yen-itinerary-item', itineraryList).forEach(el => el.classList.remove('active'));
       if (!isActive) parent.classList.add('active');
     }));
+
+    const detailedWrapper = qs('#detailedItineraryWrapper');
+    if (detailedWrapper) {
+      const toggleBtn = qs('.yen-itinerary-toggle', detailedWrapper);
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          const parent = toggleBtn.closest('.yen-itinerary-item');
+          parent.classList.toggle('active');
+        });
+      }
+    }
 
   }
 

@@ -349,6 +349,23 @@
           <button type="button" class="btn" id="addItineraryDayBtn"
             style="align-self:flex-start;padding:8px 16px;background:#e2e8f0;border-radius:8px;">+ Thêm ngày</button>
         </div>
+        <div class="full form-group" id="pfDetailedItineraryWrap" style="display:none; margin-top:8px;">
+          <label class="admin-label">Lịch trình chi tiết chung (Văn bản)</label>
+          <textarea id="pfDetailedItinerary" rows="4" placeholder="Nhập lịch trình chi tiết (có thể xuống dòng)..." style="width:100%; padding:14px; border:1px solid #e2e8f0; border-radius:12px; background:#f8fafc; resize:vertical; font-family:inherit; margin-bottom:8px;"></textarea>
+          
+          <label class="admin-label">Ảnh 1 (Tối đa 2 ảnh đính kèm)</label>
+          <div style="display:flex;gap:8px;margin-bottom:8px;">
+            <input id="pfDetailedImg1" placeholder="URL ảnh 1..." readonly style="flex:1;padding:10px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;" />
+            <input type="file" id="pfDetailedImg1Upload" style="display:none" accept="image/*" />
+            <button type="button" class="btn" onclick="document.getElementById('pfDetailedImg1Upload').click()" style="padding:10px 16px;">Tải lên</button>
+          </div>
+          <label class="admin-label">Ảnh 2</label>
+          <div style="display:flex;gap:8px;">
+            <input id="pfDetailedImg2" placeholder="URL ảnh 2..." readonly style="flex:1;padding:10px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc;" />
+            <input type="file" id="pfDetailedImg2Upload" style="display:none" accept="image/*" />
+            <button type="button" class="btn" onclick="document.getElementById('pfDetailedImg2Upload').click()" style="padding:10px 16px;">Tải lên</button>
+          </div>
+        </div>
         <label class="full" id="pfFeaturedWrap" style="display:flex;align-items:center;gap:8px;cursor:pointer">
           <input type="checkbox" id="pfFeatured" /> <strong>Tour Nổi bật (Hiển thị trang chủ)</strong>
         </label>
