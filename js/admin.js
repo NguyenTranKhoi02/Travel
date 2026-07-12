@@ -542,7 +542,7 @@
   window.delHsSlide = function(id) {
     if (confirm('Xoá slide này?')) {
       db.homestay_slides = db.homestay_slides.filter(x => x.id !== id);
-      persist().then(() => { refresh(); toast('Đã xoá!'); });
+      persist(); refresh(); toast('Đã xoá!');
     }
   };
 
@@ -560,7 +560,7 @@
     } else {
       db.homestay_slides.push(item);
     }
-    persist().then(() => { closeHsSlideModal(); refresh(); toast('Đã lưu!'); });
+    persist(); closeHsSlideModal(); refresh(); toast('Đã lưu!');
   });
 
   // Rooms
@@ -581,7 +581,7 @@
   window.delHsRoom = function(id) {
     if (confirm('Xoá phòng này?')) {
       db.homestay_rooms = db.homestay_rooms.filter(x => x.id !== id);
-      persist().then(() => { refresh(); toast('Đã xoá!'); });
+      persist(); refresh(); toast('Đã xoá!');
     }
   };
 
@@ -602,7 +602,7 @@
     } else {
       db.homestay_rooms.push(item);
     }
-    persist().then(() => { closeHsRoomModal(); refresh(); toast('Đã lưu!'); });
+    persist(); closeHsRoomModal(); refresh(); toast('Đã lưu!');
   });
 
   // Image upload
