@@ -441,6 +441,51 @@
 
         location.href = 'index.html?booking=success';
       });
+
+      // Khởi tạo PayPal Button nếu có div paypal-button-container
+      const paypalContainer = document.getElementById('paypal-button-container');
+      if (paypalContainer && window.paypal) {
+        // Xóa nội dung cũ để tránh duplicate nút
+        paypalContainer.innerHTML = '';
+        window.paypal.Buttons({
+          createOrder: function(data, actions) {
+            // Lấy tổng tiền hiện tại từ form
+            const prices = updateTotalPrice();
+            let totalVND = prices.total;
+            
+            // Chuyển đổi VNĐ sang USD (tỷ giá tham khảo: 1 USD = 25000 VNĐ)
+            let totalUSD = (totalVND / 25000).toFixed(2);
+            
+            if (totalUSD <= 0) {
+                alert(t('js_fill_required') || 'Vui lòng chọn đầy đủ thông tin tour trước khi thanh toán.');
+                return false; 
+            }
+
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: totalUSD
+                },
+                description: qs('#tourName') ? qs('#tourName').value : 'Thanh toán đặt tour'
+              }]
+            });
+          },
+          onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+              alert('Thanh toán thành công bởi ' + details.payer.name.given_name);
+              
+              // Tự động submit form
+              const submitBtn = form.querySelector('button[type="submit"]');
+              if (submitBtn) submitBtn.click();
+            });
+          },
+          onError: function(err) {
+            console.error('Lỗi thanh toán PayPal:', err);
+            alert('Đã có lỗi xảy ra trong quá trình thanh toán PayPal.');
+          }
+        }).render('#paypal-button-container');
+      }
+
     }
 
     const detailHeroBg = qs('#detailHeroBg');
