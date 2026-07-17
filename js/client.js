@@ -370,6 +370,15 @@
         const total = targetTourCost + accCost + pickupCost + returnCost;
         qs('#tourTotal').textContent = money(total);
 
+        // Cập nhật mã QR động nếu có
+        const qrImgs = document.querySelectorAll('#vietqr-img');
+        qrImgs.forEach(img => {
+            const customerName = qs('#tourName') ? qs('#tourName').value.trim() : '';
+            // Sử dụng encodeURIComponent để xử lý khoảng trắng và dấu tiếng Việt (nếu có)
+            const addInfo = customerName ? encodeURIComponent(`Thanh toan tour ${customerName}`) : 'ThanhToanTour';
+            img.src = `https://img.vietqr.io/image/vietinbank-105872077144-compact2.png?amount=${total}&addInfo=${addInfo}&accountName=PHUNG%20NGOC%20AN`;
+        });
+
         return { total, tourCost: actualBaseTourCost, vehicleCost, discount, accCost, pickupCost, returnCost };
       };
       ['input', 'change'].forEach(evt => form.addEventListener(evt, updateTotalPrice));
