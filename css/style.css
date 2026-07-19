@@ -796,6 +796,11 @@ video {
   .hgl-tour-included-section {
     min-width: 0;
   }
+
+  #includedSection {
+    position: sticky;
+    top: 70px;
+  }
 }
 
 .hgl-note-spacing {
@@ -982,7 +987,7 @@ video {
 }
 
 .yen-itinerary-item.active .yen-itinerary-content {
-  max-height: 1000px;
+  max-height: 100%;
 }
 
 .form-total {
