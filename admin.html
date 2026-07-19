@@ -319,7 +319,7 @@
           </table>
         </div>
 
-        <div class='panel'>
+        <div class='panel' style='margin-bottom: 24px'>
           <div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:16px'>
             <h2>Danh sách phòng (Rooms)</h2>
             <button class='btn btn-primary' onclick='openHsRoomModal()'>+ Thêm Phòng</button>
@@ -335,6 +335,25 @@
               </tr>
             </thead>
             <tbody id='hsRoomTableBody'></tbody>
+          </table>
+        </div>
+
+        <div class='panel'>
+          <div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:16px'>
+            <h2>Danh sách Sleeper Bus (Buses)</h2>
+            <button class='btn btn-primary' onclick='openHsBusModal()'>+ Thêm Bus</button>
+          </div>
+          <table class='admin-table'>
+            <thead>
+              <tr>
+                <th>Hình ảnh</th>
+                <th>Tên xe</th>
+                <th>Giá thường</th>
+                <th>Giá theo tour</th>
+                <th width='120'>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id='hsBusTableBody'></tbody>
           </table>
         </div>
       </section>
@@ -406,6 +425,48 @@
             <div class='modal-actions'>
               <button type='button' class='btn btn-secondary' onclick='closeHsRoomModal()'>Hủy</button>
               <button type='submit' class='btn btn-primary'>Lưu Phòng</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Bus -->
+      <div class='modal' id='hsBusModal'>
+        <div class='modal-box'>
+          <h2 id='hsBusModalTitle'>Thêm Bus</h2>
+          <form id='hsBusForm' class='grid-2'>
+            <input type='hidden' id='hsBusId' />
+            <div class='form-group full'>
+              <label class='admin-label'>Tên xe (Title)</label>
+              <input type='text' id='hsBusTitle' required />
+            </div>
+            <div class='form-group'>
+              <label class='admin-label'>Giá thường (Rates)</label>
+              <input type='text' id='hsBusRates' required />
+            </div>
+            <div class='form-group'>
+              <label class='admin-label'>Giá theo tour</label>
+              <input type='text' id='hsBusTourPrice' required />
+            </div>
+            <div class='form-group full'>
+              <label class='admin-label'>Mô tả (Description)</label>
+              <textarea id='hsBusDesc' rows='3' required style='width:100%; padding:14px; border:1px solid #e2e8f0; border-radius:12px; background:#f8fafc; resize:vertical; font-family:inherit;'></textarea>
+            </div>
+            <div class='form-group full'>
+              <label class='admin-label'>Hình ảnh URL</label>
+              <input type='text' id='hsBusImageUrl' placeholder='Hoặc upload ảnh bên dưới...' />
+            </div>
+            <div class='form-group full'>
+              <label class='admin-label'>Upload ảnh</label>
+              <div style='display:flex;gap:8px;'>
+                <input type='file' id='hsBusImageUpload' accept='image/*' style='display:none'>
+                <button type='button' class='btn' onclick='document.getElementById("hsBusImageUpload").click()' style='padding:10px 16px; white-space:nowrap;'>Tải lên</button>
+                <div id='hsBusImageUploadProgress' style='margin-top: 8px; font-size: 0.9em; color: var(--primary);'></div>
+              </div>
+            </div>
+            <div class='modal-actions'>
+              <button type='button' class='btn btn-secondary' onclick='closeHsBusModal()'>Hủy</button>
+              <button type='submit' class='btn btn-primary'>Lưu Bus</button>
             </div>
           </form>
         </div>

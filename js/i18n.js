@@ -5,7 +5,7 @@ const translations = {
     nav_about: "Giới thiệu",
     nav_tours: "Tour",
     nav_rental: "Thuê xe",
-    nav_homestay: "Homestay",
+    nav_homestay: "Homestay&Bus",
 
     // Brand subtitles
     brand_slogan: "Đông Bắc bụi, chất, thật",
@@ -307,7 +307,7 @@ const translations = {
     nav_about: "About Us",
     nav_tours: "Tours",
     nav_rental: "Rental",
-    nav_homestay: "Homestay",
+    nav_homestay: "Homestay&Bus",
 
     // Brand subtitles
     brand_slogan: "Authentic, raw, and real Northeast",

@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     `).join('');
   }
 
+  const formatPrice = (val) => {
+    if (!val || String(val).toLowerCase().includes('no fee') || String(val).toLowerCase() === 'miễn phí') return val;
+    let cleanVal = String(val).replace(/\D/g, '');
+    if (cleanVal) {
+      return cleanVal.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + 'VND';
+    }
+    return val;
+  };
+
   // Render Rooms
   const roomsContainer = document.getElementById('dynamicRooms');
   if (roomsContainer && db.homestay_rooms && db.homestay_rooms.length > 0) {
@@ -23,11 +32,38 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="hs-room-pricing">
             <div class="hs-price-row">
               <span class="hs-price-label">Room Rates:</span>
-              <span class="hs-price-value">${r.rates}</span>
+              <span class="hs-price-value">${formatPrice(r.rates)}</span>
             </div>
             <div class="hs-price-row">
               <span class="hs-price-label">Price according to tour:</span>
-              <span class="hs-price-value highlight">${r.tour_price}</span>
+              <span class="hs-price-value highlight">${formatPrice(r.tour_price)}</span>
+            </div>
+          </div>
+          <div class="hs-room-desc">
+            ${r.desc}
+          </div>
+          <a href="#bookingSection" class="hs-btn-book">Book Now</a>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Render Buses
+  const busesContainer = document.getElementById('dynamicBuses');
+  if (busesContainer && db.homestay_buses && db.homestay_buses.length > 0) {
+    busesContainer.innerHTML = db.homestay_buses.map(r => `
+      <div class="hs-room-card">
+        <img src="${r.image}" alt="${r.title.replace(/"/g, '&quot;')}" class="hs-room-img" />
+        <div class="hs-room-body">
+          <a href="#" class="hs-room-title">${r.title}</a>
+          <div class="hs-room-pricing">
+            <div class="hs-price-row">
+              <span class="hs-price-label">Rates:</span>
+              <span class="hs-price-value">${formatPrice(r.rates)}</span>
+            </div>
+            <div class="hs-price-row">
+              <span class="hs-price-label">Price according to tour:</span>
+              <span class="hs-price-value highlight">${formatPrice(r.tour_price)}</span>
             </div>
           </div>
           <div class="hs-room-desc">

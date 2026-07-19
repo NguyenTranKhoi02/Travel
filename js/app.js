@@ -35,6 +35,9 @@ const initialData = {
     { id: 'hs-room-2', title: 'Private room (1-2pp) (1 king bed)', rates: '600.000', tour_price: '375.000', desc: "Private room for 2 people at Homestay HEAD OFFICE for the night before the loop starts.", image: 'images/tour2.jpg' },
     { id: 'hs-room-3', title: 'Dorm', rates: '200.000', tour_price: 'No fees', desc: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', image: 'images/tour1.jpg' }
   ],
+  homestay_buses: [
+    { id: 'hs-bus-1', title: 'Sleeper bus Ha Giang - Hanoi', rates: '350.000', tour_price: '300.000', desc: 'Comfortable sleeper bus from Ha Giang to Hanoi.', image: 'images/tour1.jpg' }
+  ],
   reviews: [
     {
         id: 'rev-01',
@@ -118,7 +121,7 @@ async function loadDBAsync() {
           }
         }
         
-        ['tours', 'bikes', 'bookings_tour', 'bookings_bike', 'booking_logs', 'destinations', 'customer_gallery', 'reviews'].forEach(k => {
+        ['tours', 'bikes', 'bookings_tour', 'bookings_bike', 'booking_logs', 'destinations', 'customer_gallery', 'reviews', 'homestay_slides', 'homestay_rooms', 'homestay_buses'].forEach(k => {
           if (!Array.isArray(window.db[k])) window.db[k] = initialData[k] || [];
         });
         if (!window.db.settings) window.db.settings = initialData.settings;

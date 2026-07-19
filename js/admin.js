@@ -495,6 +495,7 @@
   window.renderHomestay = function() {
     if (!db.homestay_slides) db.homestay_slides = [];
     if (!db.homestay_rooms) db.homestay_rooms = [];
+    if (!db.homestay_buses) db.homestay_buses = [];
 
     const slideBody = $('#hsSlideTableBody');
     if (slideBody) {
@@ -521,6 +522,22 @@
           <td>
             <button class="btn btn-secondary btn-sm" onclick="editHsRoom('${r.id}')">Sửa</button>
             <button class="btn btn-secondary btn-sm" onclick="delHsRoom('${r.id}')" style="color:red">Xoá</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    const busBody = $('#hsBusTableBody');
+    if (busBody) {
+      busBody.innerHTML = db.homestay_buses.map((r, i) => `
+        <tr>
+          <td><img src="${r.image}" style="width:80px;border-radius:4px" /></td>
+          <td>${r.title}</td>
+          <td>${r.rates}</td>
+          <td>${r.tour_price}</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" onclick="editHsBus('${r.id}')">Sửa</button>
+            <button class="btn btn-secondary btn-sm" onclick="delHsBus('${r.id}')" style="color:red">Xoá</button>
           </td>
         </tr>
       `).join('');
@@ -605,6 +622,48 @@
     persist(); closeHsRoomModal(); refresh(); toast('Đã lưu!');
   });
 
+  // Buses
+  window.openHsBusModal = function() { $('#hsBusForm').reset(); $('#hsBusId').value = ''; $('#hsBusModalTitle').textContent = 'Thêm Bus'; $('#hsBusModal').classList.add('active'); };
+  window.closeHsBusModal = function() { $('#hsBusModal').classList.remove('active'); };
+  window.editHsBus = function(id) {
+    const r = db.homestay_buses.find(x => x.id === id);
+    if (!r) return;
+    $('#hsBusId').value = r.id;
+    $('#hsBusTitle').value = r.title;
+    $('#hsBusRates').value = r.rates;
+    $('#hsBusTourPrice').value = r.tour_price;
+    $('#hsBusDesc').value = r.desc;
+    $('#hsBusImageUrl').value = r.image;
+    $('#hsBusModalTitle').textContent = 'Sửa Bus';
+    $('#hsBusModal').classList.add('active');
+  };
+  window.delHsBus = function(id) {
+    if (confirm('Xoá bus này?')) {
+      db.homestay_buses = db.homestay_buses.filter(x => x.id !== id);
+      persist(); refresh(); toast('Đã xoá!');
+    }
+  };
+
+  $('#hsBusForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const id = $('#hsBusId').value;
+    const item = {
+      id: id || 'hs-bus-' + Date.now(),
+      title: $('#hsBusTitle').value,
+      rates: $('#hsBusRates').value,
+      tour_price: $('#hsBusTourPrice').value,
+      desc: $('#hsBusDesc').value,
+      image: $('#hsBusImageUrl').value
+    };
+    if (id) {
+      const idx = db.homestay_buses.findIndex(x => x.id === id);
+      if (idx > -1) db.homestay_buses[idx] = item;
+    } else {
+      db.homestay_buses.push(item);
+    }
+    persist(); closeHsBusModal(); refresh(); toast('Đã lưu!');
+  });
+
   // Image upload
   if ($('#hsSlideImageUpload')) {
     $('#hsSlideImageUpload').addEventListener('change', async (e) => {
@@ -614,6 +673,11 @@
   if ($('#hsRoomImageUpload')) {
     $('#hsRoomImageUpload').addEventListener('change', async (e) => {
       await handleFileUpload(e.target, '#hsRoomImageUrl');
+    });
+  }
+  if ($('#hsBusImageUpload')) {
+    $('#hsBusImageUpload').addEventListener('change', async (e) => {
+      await handleFileUpload(e.target, '#hsBusImageUrl');
     });
   }
 
