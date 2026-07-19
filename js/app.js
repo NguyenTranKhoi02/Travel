@@ -12,7 +12,7 @@ const initialData = {
   ],
   bookings_tour: [],
   bookings_bike: [],
-  booking_logs: [],
+  booking_logs: [], // Reserved for future audit logging
   destinations: [
     { id: 'dest-01', name: 'Hà Giang', image: 'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80', description: 'Điểm đến lý tưởng cho chuyến đi của bạn.' },
     { id: 'dest-02', name: 'Cao Bằng', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT31qU9EKSVAqmOz-XuKmkvjx4Llq22B5Ino33hXRud0EBn0ZfkQqJ4O4k&s=10', description: 'Điểm đến lý tưởng cho chuyến đi của bạn.' }
@@ -177,6 +177,7 @@ function downloadJSON(filename, data) {
 }
 
 window.VibeEast = {
+  STORAGE_KEY,
   loadDBAsync,
   saveDB,
   sendTelegramNotification,

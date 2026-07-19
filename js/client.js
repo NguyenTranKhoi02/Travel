@@ -3,6 +3,9 @@
   const money = (value) => new Intl.NumberFormat('vi-VN').format(value) + ' đ';
   const qs = (s, el = document) => el.querySelector(s);
   const qsa = (s, el = document) => [...el.querySelectorAll(s)];
+  const escapeHtml = (str) => String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const genId = () => typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+  const VND_TO_USD_RATE = 25500; // Tỉ giá VND/USD — cập nhật khi cần
   const getBookedCount = (tid) => db.bookings_tour.filter(b => b.tourId === tid && b.status !== 'Chờ xác nhận').reduce((sum, b) => sum + (b.people || 0), 0);
 
   window.showCustomAlert = function(message, type = 'error') {
@@ -28,7 +31,7 @@
     const alertItem = document.createElement('div');
     alertItem.className = `hgl-alert-item ${type}`;
     let icon = type === 'error' ? '🚨' : type === 'success' ? '✅' : '⚠️';
-    alertItem.innerHTML = `<span class="hgl-alert-icon">${icon}</span><span class="hgl-alert-msg">${message}</span><span class="hgl-alert-close">&times;</span>`;
+    alertItem.innerHTML = `<span class="hgl-alert-icon">${icon}</span><span class="hgl-alert-msg">${escapeHtml(message)}</span><span class="hgl-alert-close">&times;</span>`;
     alertBox.appendChild(alertItem);
     setTimeout(() => alertItem.classList.add('show'), 10);
     const closeAlert = () => { alertItem.classList.remove('show'); setTimeout(() => alertItem.remove(), 400); };
@@ -269,6 +272,7 @@
   }
 
   function renderTourDetail() {
+    if (!db.tours || db.tours.length === 0) return;
     const id = new URLSearchParams(location.search).get('id') || db.tours[0].id;
     let tour = db.tours.find(t => t.id === id) || db.tours[0];
 
@@ -437,7 +441,7 @@
 
         const prices = updateTotalPrice();
         const orderData = {
-          id: Date.now(),
+          id: genId(),
           tourId: tour.id,
           name: qs('#tourName').value,
           email: qs('#tourEmail') ? qs('#tourEmail').value : '',
@@ -493,7 +497,7 @@
           window.paypal.Buttons({
             createOrder: function (data, actions) {
               const prices = updateTotalPrice();
-              let totalUSD = (prices.total / 25000).toFixed(2);
+              let totalUSD = (prices.total / VND_TO_USD_RATE).toFixed(2);
               if (totalUSD <= 0) {
                 window.showCustomAlert(t('js_fill_required') !== 'js_fill_required' ? t('js_fill_required') : 'Vui lòng chọn đầy đủ thông tin tour trước khi thanh toán.', 'warning');
                 return false;
@@ -623,15 +627,18 @@
     const sliderImgs = qsa('#tourSlider img', mount);
     if (sliderImgs.length > 1) {
       let curIdx = 0;
-      setInterval(() => {
+      const sliderId = setInterval(() => {
         sliderImgs[curIdx].classList.remove('active');
         curIdx = (curIdx + 1) % sliderImgs.length;
         sliderImgs[curIdx].classList.add('active');
       }, 3500);
+      // Cleanup interval khi user rời trang
+      window.addEventListener('beforeunload', () => clearInterval(sliderId));
     }
 
     const itineraryList = qs('#itineraryList');
-    itineraryList.innerHTML = tour.itinerary.map((item, idx) => {
+    const itinerary = tour.itinerary || [];
+    itineraryList.innerHTML = itinerary.map((item, idx) => {
       let content = typeof item === 'string' ? item : (item.content || '');
       let images = (typeof item === 'object' && item.images) ? item.images : [];
       let imagesHtml = images.length ? `<div class="itinerary-images-grid" style="display:flex;gap:8px;margin-top:12px;">${images.map(img => `<img src="${img}" style="width:100%;max-width:200px;border-radius:8px;object-fit:cover;aspect-ratio:4/3;" alt="itinerary image">`).join('')}</div>` : '';
@@ -757,7 +764,7 @@
       btn.textContent = t('js_processing'); btn.disabled = true;
 
       const { bike, days, total } = calc();
-      const orderData = { id: Date.now(), bikeId: bike.id, name: qs('#bikeName').value, phone: qs('#bikePhone').value, from: qs('#rentFrom').value, to: qs('#rentTo').value, pickup: qs('#pickupPlace').value, days, total, status: 'Chờ xác nhận' };
+      const orderData = { id: genId(), bikeId: bike.id, name: qs('#bikeName').value, phone: qs('#bikePhone').value, from: qs('#rentFrom').value, to: qs('#rentTo').value, pickup: qs('#pickupPlace').value, days, total, status: 'Chờ xác nhận' };
       db.bookings_bike.push(orderData);
       window.VibeEast.saveDB(db);
 

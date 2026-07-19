@@ -1,7 +1,7 @@
 (async () => {
   const db = await window.VibeEast.loadDBAsync();
-  const qs = (s, el = document) => el.querySelector(s);
-  const qsa = (s, el = document) => [...el.querySelectorAll(s)];
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const formatPriceInput = (val) => String(val).replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   const money = (v) => new Intl.NumberFormat('vi-VN').format(v) + ' đ';
   const statusClasses = { 'Chờ xác nhận': 'status-yellow', 'Đã đặt cọc': 'status-blue', 'Đang đi tour': 'status-green', 'Đã hoàn thành': 'status-gray' };
@@ -9,8 +9,7 @@
   let productScope = 'all';
   let orderScope = 'all';
 
-  const $ = (s, el = document) => el.querySelector(s);
-  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
 
   const toast = (msg) => { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2200); };
   const persist = () => window.VibeEast.saveDB(db);
@@ -467,7 +466,7 @@
   }
 
   function bindDataTools() {
-    $('#exportDataBtn').addEventListener('click', () => window.VibeEast.downloadJSON('vibeeast-backup.json', window.VibeEast.loadDB()));
+    $('#exportDataBtn').addEventListener('click', () => window.VibeEast.downloadJSON('vibeeast-backup.json', db));
     $('#importDataInput').addEventListener('change', async (e) => {
       const file = e.target.files?.[0]; if (!file) return;
       try { const text = await file.text(); const parsed = JSON.parse(text); localStorage.setItem(window.VibeEast.STORAGE_KEY, JSON.stringify(parsed)); location.reload(); }
@@ -486,9 +485,7 @@
 
   $('#quickExit').addEventListener('click', () => location.href = 'index.html');
   
-  const checkAuth = () => {
-    // Auth handled by Firebase observer
-  };
+
 
   
   // --- Homestay Logic ---
@@ -715,7 +712,7 @@
         logoutBtn.innerHTML = '<i>🚪</i><span>Đăng xuất</span>';
         logoutBtn.style.color = '#ff5252';
         logoutBtn.onclick = (e) => { e.preventDefault(); window.FirebaseAPI.auth.signOut(); location.reload(); };
-        qs('.admin-sidebar nav').appendChild(logoutBtn);
+        $('.admin-sidebar nav').appendChild(logoutBtn);
       }
     } else {
       $('#loginScreen').style.display = 'flex';

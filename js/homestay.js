@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Initialize Swiper for Homestay Intro Section
-  if (document.querySelector('.hs-swiper')) {
+  if (document.querySelector('.hs-swiper') && typeof Swiper !== 'undefined') {
     const homestaySwiper = new Swiper('.hs-swiper', {
       loop: true,
       autoplay: {
