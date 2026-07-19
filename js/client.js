@@ -5,6 +5,37 @@
   const qsa = (s, el = document) => [...el.querySelectorAll(s)];
   const getBookedCount = (tid) => db.bookings_tour.filter(b => b.tourId === tid && b.status !== 'Chờ xác nhận').reduce((sum, b) => sum + (b.people || 0), 0);
 
+  window.showCustomAlert = function(message, type = 'error') {
+    let alertBox = document.getElementById('hgl-custom-alert');
+    if (!alertBox) {
+      alertBox = document.createElement('div');
+      alertBox.id = 'hgl-custom-alert';
+      document.body.appendChild(alertBox);
+      const style = document.createElement('style');
+      style.innerHTML = `
+        #hgl-custom-alert { position: fixed; top: 20px; right: 20px; z-index: 99999; display: flex; flex-direction: column; gap: 10px; }
+        .hgl-alert-item { background: #fff; color: #333; padding: 16px 24px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 12px; transform: translateX(120%); transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500; border-left: 6px solid #e74c3c; min-width: 300px; max-width: 400px;}
+        .hgl-alert-item.show { transform: translateX(0); }
+        .hgl-alert-item.success { border-left-color: #2ecc71; }
+        .hgl-alert-item.error { border-left-color: #e74c3c; }
+        .hgl-alert-item.warning { border-left-color: #f1c40f; }
+        .hgl-alert-icon { font-size: 24px; }
+        .hgl-alert-close { margin-left: auto; cursor: pointer; color: #999; font-weight: bold; font-size: 20px; transition: 0.2s; padding: 0 5px; }
+        .hgl-alert-close:hover { color: #333; }
+      `;
+      document.head.appendChild(style);
+    }
+    const alertItem = document.createElement('div');
+    alertItem.className = `hgl-alert-item ${type}`;
+    let icon = type === 'error' ? '🚨' : type === 'success' ? '✅' : '⚠️';
+    alertItem.innerHTML = `<span class="hgl-alert-icon">${icon}</span><span class="hgl-alert-msg">${message}</span><span class="hgl-alert-close">&times;</span>`;
+    alertBox.appendChild(alertItem);
+    setTimeout(() => alertItem.classList.add('show'), 10);
+    const closeAlert = () => { alertItem.classList.remove('show'); setTimeout(() => alertItem.remove(), 400); };
+    alertItem.querySelector('.hgl-alert-close').onclick = closeAlert;
+    setTimeout(closeAlert, 5000);
+  };
+
   function sendEmailJSNotification(orderType, data) {
     return new Promise((resolve) => {
       // BƯỚC 1: BẠN HÃY TẠO TÀI KHOẢN TẠI EMAILJS.COM VÀ ĐIỀN 3 MÃ CỦA BẠN VÀO ĐÂY:
@@ -373,10 +404,10 @@
         // Cập nhật mã QR động nếu có
         const qrImgs = document.querySelectorAll('#vietqr-img');
         qrImgs.forEach(img => {
-            const customerName = qs('#tourName') ? qs('#tourName').value.trim() : '';
-            // Sử dụng encodeURIComponent để xử lý khoảng trắng và dấu tiếng Việt (nếu có)
-            const addInfo = customerName ? encodeURIComponent(`Thanh toan tour ${customerName}`) : 'ThanhToanTour';
-            img.src = `https://img.vietqr.io/image/vietinbank-105872077144-compact2.png?amount=${total}&addInfo=${addInfo}&accountName=PHUNG%20NGOC%20AN`;
+          const customerName = qs('#tourName') ? qs('#tourName').value.trim() : '';
+          // Sử dụng encodeURIComponent để xử lý khoảng trắng và dấu tiếng Việt (nếu có)
+          const addInfo = customerName ? encodeURIComponent(`Thanh toan tour ${customerName}`) : 'ThanhToanTour';
+          img.src = `https://img.vietqr.io/image/vietinbank-105872077144-compact2.png?amount=${total}&addInfo=${addInfo}&accountName=PHUNG%20NGOC%20AN`;
         });
 
         return { total, tourCost: actualBaseTourCost, vehicleCost, discount, accCost, pickupCost, returnCost };
@@ -394,7 +425,7 @@
       if (submitBtn) {
         submitBtn.addEventListener('click', () => {
           if (!form.checkValidity()) {
-            alert(t('js_fill_required') || 'Vui lòng điền đầy đủ các thông tin bắt buộc (Họ tên, Email, SĐT, Ngày khởi hành)!');
+            window.showCustomAlert(t('js_fill_required') !== 'js_fill_required' ? t('js_fill_required') : 'Vui lòng điền đầy đủ các thông tin bắt buộc!', 'warning');
           }
         });
       }
@@ -452,48 +483,65 @@
       });
 
       // Khởi tạo PayPal Button nếu có div paypal-button-container
-      const paypalContainer = document.getElementById('paypal-button-container');
-      if (paypalContainer && window.paypal) {
-        // Xóa nội dung cũ để tránh duplicate nút
-        paypalContainer.innerHTML = '';
-        window.paypal.Buttons({
-          createOrder: function(data, actions) {
-            // Lấy tổng tiền hiện tại từ form
-            const prices = updateTotalPrice();
-            let totalVND = prices.total;
-            
-            // Chuyển đổi VNĐ sang USD (tỷ giá tham khảo: 1 USD = 25000 VNĐ)
-            let totalUSD = (totalVND / 25000).toFixed(2);
-            
-            if (totalUSD <= 0) {
-                alert(t('js_fill_required') || 'Vui lòng chọn đầy đủ thông tin tour trước khi thanh toán.');
-                return false; 
-            }
+      window.reloadPayPalSDK = function (lang) {
+        const paypalContainer = document.getElementById('paypal-button-container');
+        if (!paypalContainer) return;
 
-            return actions.order.create({
-              purchase_units: [{
-                amount: {
-                  value: totalUSD
-                },
-                description: qs('#tourName') ? qs('#tourName').value : 'Thanh toán đặt tour'
-              }]
-            });
-          },
-          onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-              alert('Thanh toán thành công bởi ' + details.payer.name.given_name);
-              
-              // Tự động submit form
-              const submitBtn = form.querySelector('button[type="submit"]');
-              if (submitBtn) submitBtn.click();
-            });
-          },
-          onError: function(err) {
-            console.error('Lỗi thanh toán PayPal:', err);
-            alert('Đã có lỗi xảy ra trong quá trình thanh toán PayPal.');
+        // Hàm render lại nút PayPal
+        const renderPayPalButtons = () => {
+          paypalContainer.innerHTML = ''; // Xóa iframe cũ
+          window.paypal.Buttons({
+            createOrder: function (data, actions) {
+              const prices = updateTotalPrice();
+              let totalUSD = (prices.total / 25000).toFixed(2);
+              if (totalUSD <= 0) {
+                window.showCustomAlert(t('js_fill_required') !== 'js_fill_required' ? t('js_fill_required') : 'Vui lòng chọn đầy đủ thông tin tour trước khi thanh toán.', 'warning');
+                return false;
+              }
+              return actions.order.create({
+                purchase_units: [{
+                  amount: { value: totalUSD },
+                  description: qs('#tourName') ? qs('#tourName').value : 'Thanh toán đặt tour'
+                }]
+              });
+            },
+            onApprove: function (data, actions) {
+              return actions.order.capture().then(function (details) {
+                window.showCustomAlert((t('js_payment_success') !== 'js_payment_success' ? t('js_payment_success') : 'Thanh toán thành công bởi ') + details.payer.name.given_name, 'success');
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (submitBtn) submitBtn.click();
+              });
+            },
+            onError: function (err) {
+              console.error('Lỗi thanh toán PayPal:', err);
+              window.showCustomAlert(t('js_payment_error') !== 'js_payment_error' ? t('js_payment_error') : 'Đã có lỗi xảy ra trong quá trình thanh toán PayPal.', 'error');
+            }
+          }).render('#paypal-button-container');
+        };
+
+        // Bỏ qua bước tải lại script nếu window.paypal đã tồn tại (để tránh lỗi Zoid)
+        if (window.paypal) {
+          renderPayPalButtons();
+          return;
+        }
+
+        let locale = lang === 'vi' ? 'vi_VN' : 'en_US';
+
+        // Thêm script mới
+        const script = document.createElement('script');
+        script.id = 'paypal-sdk-script';
+        script.src = `https://www.paypal.com/sdk/js?client-id=BAA5S47F1VJeboR6PvmJQp1U_JI8Yz3d6QRla_pBbNxcQ8cMxKP_J6kJAx1sUnzYDktcS5uJ4g8cBB9H4k&currency=USD&locale=${locale}`;
+        script.onload = () => {
+          if (window.paypal) {
+            renderPayPalButtons();
           }
-        }).render('#paypal-button-container');
-      }
+        };
+        document.head.appendChild(script);
+      };
+
+      // Chạy lần đầu
+      const currentLang = localStorage.getItem('lang') || 'vi';
+      window.reloadPayPalSDK(currentLang);
 
     }
 
@@ -587,7 +635,7 @@
       let content = typeof item === 'string' ? item : (item.content || '');
       let images = (typeof item === 'object' && item.images) ? item.images : [];
       let imagesHtml = images.length ? `<div class="itinerary-images-grid" style="display:flex;gap:8px;margin-top:12px;">${images.map(img => `<img src="${img}" style="width:100%;max-width:200px;border-radius:8px;object-fit:cover;aspect-ratio:4/3;" alt="itinerary image">`).join('')}</div>` : '';
-      
+
       return `
       <div class="yen-itinerary-item ${idx === 0 ? 'active' : ''}">
         <button class="yen-itinerary-toggle">

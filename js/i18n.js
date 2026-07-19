@@ -278,6 +278,9 @@ const translations = {
     js_success_msg: "Cảm ơn bạn đã tin tưởng Horse Loop. Đội ngũ của chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất để xác nhận.",
     js_close: "Đóng",
     js_required: "*",
+    js_fill_required: "Vui lòng điền đầy đủ các thông tin bắt buộc!",
+    js_payment_success: "Thanh toán thành công bởi ",
+    js_payment_error: "Đã có lỗi xảy ra trong quá trình thanh toán PayPal.",
     js_included_title: "Bao gồm / Không bao gồm",
     js_included_heading: "Bao gồm",
     js_excluded_heading: "Không bao gồm",
@@ -581,6 +584,9 @@ const translations = {
     js_success_msg: "Thank you for trusting Horse Loop. Our team will contact you as soon as possible to confirm.",
     js_close: "Close",
     js_required: "*",
+    js_fill_required: "Please fill in all required information!",
+    js_payment_success: "Payment successful by ",
+    js_payment_error: "An error occurred during PayPal payment.",
     js_included_title: "Included / Excluded",
     js_included_heading: "Included",
     js_excluded_heading: "Excluded",
@@ -653,6 +659,11 @@ function changeLanguage(lang) {
       btn.classList.remove('active');
     }
   });
+
+  // Reload PayPal SDK if function exists
+  if (window.reloadPayPalSDK) {
+    window.reloadPayPalSDK(lang);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
