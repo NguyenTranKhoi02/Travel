@@ -405,15 +405,6 @@
         const total = targetTourCost + accCost + pickupCost + returnCost;
         qs('#tourTotal').textContent = money(total);
 
-        // Cập nhật mã QR động nếu có
-        const qrImgs = document.querySelectorAll('#vietqr-img');
-        qrImgs.forEach(img => {
-          const customerName = qs('#tourName') ? qs('#tourName').value.trim() : '';
-          // Sử dụng encodeURIComponent để xử lý khoảng trắng và dấu tiếng Việt (nếu có)
-          const addInfo = customerName ? encodeURIComponent(`Thanh toan tour ${customerName}`) : 'ThanhToanTour';
-          img.src = `https://img.vietqr.io/image/vietinbank-105872077144-compact2.png?amount=${total}&addInfo=${addInfo}&accountName=PHUNG%20NGOC%20AN`;
-        });
-
         return { total, tourCost: actualBaseTourCost, vehicleCost, discount, accCost, pickupCost, returnCost };
       };
       ['input', 'change'].forEach(evt => form.addEventListener(evt, updateTotalPrice));
@@ -425,19 +416,135 @@
 
 
 
-      const submitBtn = form.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.addEventListener('click', () => {
-          if (!form.checkValidity()) {
-            window.showCustomAlert(t('js_fill_required') !== 'js_fill_required' ? t('js_fill_required') : 'Vui lòng điền đầy đủ các thông tin bắt buộc!', 'warning');
-          }
+      // ===== DEPOSIT MODAL LOGIC =====
+      const DEPOSIT_AMOUNT = 500000;
+      const depositOverlay = qs('#depositOverlay');
+      const depositClose = qs('#depositClose');
+      const depositConfirmBtn = qs('#depositConfirmBtn');
+      const depositUploadArea = qs('#depositUploadArea');
+      const depositFileInput = qs('#depositFileInput');
+      const depositPreview = qs('#depositPreview');
+      const depositPreviewImg = qs('#depositPreviewImg');
+      const depositRemoveFile = qs('#depositRemoveFile');
+      const depositConfirmCheck = qs('#depositConfirmCheck');
+      const depositPaypalSuccess = qs('#depositPaypalSuccess');
+      const depositTransferNote = qs('#depositTransferNote');
+
+      let depositReceiptBase64 = null;
+      let depositPaidViaPaypal = false;
+
+      // Helper: Open/close deposit modal
+      const openDepositModal = () => {
+        // Update QR code with customer name
+        const customerName = qs('#tourName') ? qs('#tourName').value.trim() : '';
+        const transferNote = customerName ? `DatCocTour ${customerName}` : 'DatCocTour';
+        if (depositTransferNote) depositTransferNote.textContent = transferNote;
+        const depositQrImg = qs('#deposit-vietqr-img');
+        if (depositQrImg) {
+          depositQrImg.src = `https://img.vietqr.io/image/vietinbank-105872077144-compact2.png?amount=${DEPOSIT_AMOUNT}&addInfo=${encodeURIComponent(transferNote)}&accountName=PHUNG%20NGOC%20AN`;
+        }
+        depositOverlay.classList.add('active');
+      };
+
+      const closeDepositModal = () => {
+        depositOverlay.classList.remove('active');
+      };
+
+      // Close modal handlers
+      if (depositClose) depositClose.addEventListener('click', closeDepositModal);
+      if (depositOverlay) depositOverlay.addEventListener('click', (e) => {
+        if (e.target === depositOverlay) closeDepositModal();
+      });
+
+      // Tab switching
+      const depositTabs = document.querySelectorAll('.hgl-deposit-tab');
+      depositTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          depositTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const tabName = tab.dataset.tab;
+          document.querySelectorAll('.hgl-deposit-panel').forEach(p => p.classList.remove('active'));
+          const panel = qs(`#depositPanel${tabName.charAt(0).toUpperCase() + tabName.slice(1)}`);
+          if (panel) panel.classList.add('active');
+        });
+      });
+
+      // File upload logic
+      const handleFileSelect = (file) => {
+        if (!file || !file.type.startsWith('image/')) {
+          window.showCustomAlert(t('deposit_invalid_file') !== 'deposit_invalid_file' ? t('deposit_invalid_file') : 'Vui lòng chọn file ảnh (PNG, JPG)', 'warning');
+          return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          window.showCustomAlert(t('deposit_file_too_large') !== 'deposit_file_too_large' ? t('deposit_file_too_large') : 'File quá lớn, vui lòng chọn ảnh dưới 5MB', 'warning');
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          depositReceiptBase64 = e.target.result;
+          if (depositPreviewImg) depositPreviewImg.src = depositReceiptBase64;
+          if (depositPreview) depositPreview.classList.add('show');
+          if (depositUploadArea) depositUploadArea.classList.add('has-file');
+          updateDepositConfirmState();
+        };
+        reader.readAsDataURL(file);
+      };
+
+      if (depositUploadArea) {
+        depositUploadArea.addEventListener('click', () => depositFileInput && depositFileInput.click());
+        depositUploadArea.addEventListener('dragover', (e) => { e.preventDefault(); depositUploadArea.classList.add('dragover'); });
+        depositUploadArea.addEventListener('dragleave', () => depositUploadArea.classList.remove('dragover'));
+        depositUploadArea.addEventListener('drop', (e) => {
+          e.preventDefault();
+          depositUploadArea.classList.remove('dragover');
+          if (e.dataTransfer.files.length) handleFileSelect(e.dataTransfer.files[0]);
+        });
+      }
+      if (depositFileInput) depositFileInput.addEventListener('change', (e) => { if (e.target.files.length) handleFileSelect(e.target.files[0]); });
+
+      if (depositRemoveFile) {
+        depositRemoveFile.addEventListener('click', () => {
+          depositReceiptBase64 = null;
+          if (depositPreview) depositPreview.classList.remove('show');
+          if (depositUploadArea) depositUploadArea.classList.remove('has-file');
+          if (depositFileInput) depositFileInput.value = '';
+          updateDepositConfirmState();
         });
       }
 
-      form.addEventListener('submit', async (e) => {
+      // Checkbox change
+      if (depositConfirmCheck) depositConfirmCheck.addEventListener('change', updateDepositConfirmState);
+
+      function updateDepositConfirmState() {
+        if (!depositConfirmBtn) return;
+        const vietqrReady = depositReceiptBase64 && depositConfirmCheck && depositConfirmCheck.checked;
+        depositConfirmBtn.disabled = !(vietqrReady || depositPaidViaPaypal);
+      }
+
+      // Submit button => open deposit modal instead of direct submit
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.addEventListener('click', (e) => {
+          if (!form.checkValidity()) {
+            window.showCustomAlert(t('js_fill_required') !== 'js_fill_required' ? t('js_fill_required') : 'Vui lòng điền đầy đủ các thông tin bắt buộc!', 'warning');
+            return;
+          }
+          // Prevent default form submission, open deposit modal instead
+          e.preventDefault();
+          openDepositModal();
+        });
+      }
+
+      // Prevent native form submit (always go through deposit)
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
+      });
+
+      // Actual booking submit (called after deposit confirmed)
+      const performBookingSubmit = async (depositMethod) => {
         const btn = form.querySelector('button[type="submit"]');
-        btn.textContent = t('js_processing'); btn.disabled = true;
+        if (btn) { btn.textContent = t('js_processing'); btn.disabled = true; }
+        closeDepositModal();
 
         const prices = updateTotalPrice();
         const orderData = {
@@ -456,12 +563,16 @@
           specialRequest: qs('#specialRequest').value,
           discount: prices.discount || 0,
           total: prices.total,
-          status: 'Chờ xác nhận'
+          deposit: DEPOSIT_AMOUNT,
+          depositMethod: depositMethod,
+          depositReceipt: depositMethod === 'VietQR' ? depositReceiptBase64 : null,
+          status: 'Đã cọc - Chờ xác nhận'
         };
 
         db.bookings_tour.push(orderData);
         window.VibeEast.saveDB(db);
 
+        const depositMethodLabel = depositMethod === 'PayPal' ? '💳 PayPal' : '🏦 VietQR (có biên lai)';
         const msg = `🚨 <b>CÓ KHÁCH ĐẶT TOUR MỚI!</b>
 👤 Tên: ${orderData.name}
 📧 Email: ${orderData.email || 'Không có'}
@@ -475,7 +586,9 @@
 🚌 Bus về: ${orderData.returnBus}
 📝 Yêu cầu: ${orderData.specialRequest || 'Không có'}
 🎁 Giảm giá: ${orderData.discount > 0 ? '-' + money(orderData.discount) : '0 đ'}
-💰 Tổng: ${money(orderData.total)}`;
+💰 Tổng: ${money(orderData.total)}
+💵 Đã cọc: ${money(DEPOSIT_AMOUNT)} (${depositMethodLabel})
+✅ Trạng thái: Đã cọc - Chờ xác nhận`;
 
         await window.VibeEast.sendTelegramNotification(msg);
 
@@ -484,46 +597,50 @@
         await sendEmailJSNotification('tour', orderData);
 
         location.href = 'index.html?booking=success';
-      });
+      };
 
-      // Khởi tạo PayPal Button nếu có div paypal-button-container
+      // Deposit confirm button click
+      if (depositConfirmBtn) {
+        depositConfirmBtn.addEventListener('click', () => {
+          const method = depositPaidViaPaypal ? 'PayPal' : 'VietQR';
+          performBookingSubmit(method);
+        });
+      }
+
+      // ===== PayPal Button for DEPOSIT =====
       window.reloadPayPalSDK = function (lang) {
-        const paypalContainer = document.getElementById('paypal-button-container');
+        const paypalContainer = document.getElementById('deposit-paypal-button-container');
         if (!paypalContainer) return;
 
-        // Hàm render lại nút PayPal
         const renderPayPalButtons = () => {
-          paypalContainer.innerHTML = ''; // Xóa iframe cũ
+          paypalContainer.innerHTML = '';
           window.paypal.Buttons({
             createOrder: function (data, actions) {
-              const prices = updateTotalPrice();
-              let totalUSD = (prices.total / VND_TO_USD_RATE).toFixed(2);
-              if (totalUSD <= 0) {
-                window.showCustomAlert(t('js_fill_required') !== 'js_fill_required' ? t('js_fill_required') : 'Vui lòng chọn đầy đủ thông tin tour trước khi thanh toán.', 'warning');
-                return false;
-              }
+              let depositUSD = (DEPOSIT_AMOUNT / VND_TO_USD_RATE).toFixed(2);
+              if (depositUSD <= 0) depositUSD = '1.00';
+              const customerName = qs('#tourName') ? qs('#tourName').value.trim() : 'Tour Deposit';
               return actions.order.create({
                 purchase_units: [{
-                  amount: { value: totalUSD },
-                  description: qs('#tourName') ? qs('#tourName').value : 'Thanh toán đặt tour'
+                  amount: { value: depositUSD },
+                  description: `Dat coc tour - ${customerName}`
                 }]
               });
             },
             onApprove: function (data, actions) {
               return actions.order.capture().then(function (details) {
-                window.showCustomAlert((t('js_payment_success') !== 'js_payment_success' ? t('js_payment_success') : 'Thanh toán thành công bởi ') + details.payer.name.given_name, 'success');
-                const submitBtn = form.querySelector('button[type="submit"]');
-                if (submitBtn) submitBtn.click();
+                depositPaidViaPaypal = true;
+                if (depositPaypalSuccess) depositPaypalSuccess.classList.add('show');
+                window.showCustomAlert((t('js_payment_success') !== 'js_payment_success' ? t('js_payment_success') : 'Thanh toán cọc thành công bởi ') + details.payer.name.given_name, 'success');
+                updateDepositConfirmState();
               });
             },
             onError: function (err) {
               console.error('Lỗi thanh toán PayPal:', err);
               window.showCustomAlert(t('js_payment_error') !== 'js_payment_error' ? t('js_payment_error') : 'Đã có lỗi xảy ra trong quá trình thanh toán PayPal.', 'error');
             }
-          }).render('#paypal-button-container');
+          }).render('#deposit-paypal-button-container');
         };
 
-        // Bỏ qua bước tải lại script nếu window.paypal đã tồn tại (để tránh lỗi Zoid)
         if (window.paypal) {
           renderPayPalButtons();
           return;
@@ -531,7 +648,6 @@
 
         let locale = lang === 'vi' ? 'vi_VN' : 'en_US';
 
-        // Thêm script mới
         const script = document.createElement('script');
         script.id = 'paypal-sdk-script';
         script.src = `https://www.paypal.com/sdk/js?client-id=BAA5S47F1VJeboR6PvmJQp1U_JI8Yz3d6QRla_pBbNxcQ8cMxKP_J6kJAx1sUnzYDktcS5uJ4g8cBB9H4k&currency=USD&locale=${locale}`;

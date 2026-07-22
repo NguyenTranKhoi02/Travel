@@ -3693,6 +3693,546 @@ body .elementor-widget .hgl-booking .hgl-label,
   color: var(--success);
 }
 
+/* ===== DEPOSIT MODAL ===== */
+.hgl-deposit-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hgl-deposit-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.hgl-deposit-modal {
+  background: var(--card-bg, #fff);
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  max-width: 750px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 2px solid var(--border-light, #e5e7eb);
+}
+
+.hgl-deposit-overlay.active .hgl-deposit-modal {
+  transform: translateY(0) scale(1);
+}
+
+.hgl-deposit-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-soft, #f3f4f6);
+  color: var(--text-muted, #6b7280);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.hgl-deposit-close:hover {
+  background: var(--border, #d1d5db);
+  color: var(--text, #111);
+  transform: rotate(90deg);
+}
+
+.hgl-deposit-header {
+  position: relative;
+  padding: 28px 28px 20px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-light, #e5e7eb);
+}
+
+.hgl-deposit-header-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary, #f97316), #f59e0b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+}
+
+.hgl-deposit-header-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hgl-deposit-header h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text, #111);
+  margin: 0 0 6px;
+}
+
+.hgl-deposit-header p {
+  font-size: 0.88rem;
+  color: var(--text-muted, #6b7280);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.hgl-deposit-body {
+  padding: 24px 28px 28px;
+}
+
+/* Amount display */
+.hgl-deposit-amount-card {
+  background: linear-gradient(135deg, #fef3c7, #fff7ed);
+  border: 2px solid #f59e0b;
+  border-radius: 14px;
+  padding: 18px 20px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+[data-theme="dark"] .hgl-deposit-amount-card {
+  background: linear-gradient(135deg, #451a03, #78350f);
+  border-color: #d97706;
+}
+
+.hgl-deposit-amount-label {
+  font-size: 0.85rem;
+  color: #92400e;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+[data-theme="dark"] .hgl-deposit-amount-label {
+  color: #fbbf24;
+}
+
+.hgl-deposit-amount-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #b45309;
+  letter-spacing: -0.5px;
+}
+
+[data-theme="dark"] .hgl-deposit-amount-value {
+  color: #fcd34d;
+}
+
+.hgl-deposit-amount-note {
+  font-size: 0.78rem;
+  color: #a16207;
+  margin-top: 6px;
+}
+
+[data-theme="dark"] .hgl-deposit-amount-note {
+  color: #fbbf24;
+}
+
+/* Payment methods */
+.hgl-deposit-methods-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text, #111);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hgl-deposit-methods-title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--primary, #f97316);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+.hgl-deposit-tabs {
+  display: flex;
+  gap: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--border-light, #e5e7eb);
+  margin-bottom: 20px;
+}
+
+.hgl-deposit-tab {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: var(--bg-soft, #f9fafb);
+  color: var(--text-muted, #6b7280);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font, inherit);
+}
+
+.hgl-deposit-tab:not(:last-child) {
+  border-right: 2px solid var(--border-light, #e5e7eb);
+}
+
+.hgl-deposit-tab.active {
+  background: var(--primary, #f97316);
+  color: #fff;
+}
+
+.hgl-deposit-tab:hover:not(.active) {
+  background: var(--border-light, #e5e7eb);
+}
+
+.hgl-deposit-tab-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Tab panels */
+.hgl-deposit-panel {
+  display: none;
+}
+
+.hgl-deposit-panel.active {
+  display: block;
+  animation: hglFadeIn 0.3s ease;
+}
+
+@keyframes hglFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* VietQR panel */
+.hgl-deposit-qr-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--bg-soft, #f8f9fa);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.hgl-deposit-qr-wrap img {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.hgl-deposit-bank-info {
+  font-size: 0.85rem;
+  color: var(--text, #333);
+  line-height: 1.6;
+  text-align: center;
+  display: inline-block;
+}
+
+.hgl-deposit-bank-info strong {
+  color: var(--text, #111);
+}
+
+/* Upload area */
+.hgl-deposit-upload-area {
+  border: 2px dashed var(--border, #d1d5db);
+  border-radius: 14px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 16px;
+  background: var(--bg-soft, #fafafa);
+  position: relative;
+}
+
+.hgl-deposit-upload-area:hover,
+.hgl-deposit-upload-area.dragover {
+  border-color: var(--primary, #f97316);
+  background: #fff7ed;
+}
+
+[data-theme="dark"] .hgl-deposit-upload-area:hover,
+[data-theme="dark"] .hgl-deposit-upload-area.dragover {
+  background: #451a03;
+}
+
+.hgl-deposit-upload-area.has-file {
+  border-color: #10b981;
+  background: #ecfdf5;
+}
+
+[data-theme="dark"] .hgl-deposit-upload-area.has-file {
+  border-color: #10b981;
+  background: #064e3b;
+}
+
+.hgl-deposit-upload-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--text-muted, #9ca3af);
+  margin-bottom: 8px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.hgl-deposit-upload-area.has-file .hgl-deposit-upload-icon {
+  color: #10b981;
+}
+
+.hgl-deposit-upload-text {
+  font-size: 0.88rem;
+  color: var(--text-muted, #6b7280);
+  font-weight: 500;
+}
+
+.hgl-deposit-upload-text strong {
+  color: var(--primary, #f97316);
+}
+
+.hgl-deposit-upload-hint {
+  font-size: 0.76rem;
+  color: var(--text-muted, #9ca3af);
+  margin-top: 4px;
+}
+
+.hgl-deposit-upload-input {
+  display: none;
+}
+
+.hgl-deposit-preview {
+  margin-top: 12px;
+  display: none;
+}
+
+.hgl-deposit-preview.show {
+  display: block;
+}
+
+.hgl-deposit-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 10px;
+  border: 2px solid #10b981;
+  object-fit: contain;
+}
+
+.hgl-deposit-preview-remove {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid #ef4444;
+  background: transparent;
+  color: #ef4444;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font, inherit);
+}
+
+.hgl-deposit-preview-remove:hover {
+  background: #fef2f2;
+}
+
+/* Checkbox confirm */
+.hgl-deposit-checkbox-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--bg-soft, #f9fafb);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.hgl-deposit-checkbox-wrap input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  accent-color: var(--primary, #f97316);
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.hgl-deposit-checkbox-label {
+  font-size: 0.85rem;
+  color: var(--text, #333);
+  line-height: 1.5;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* PayPal success badge */
+.hgl-deposit-paypal-success {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 20px;
+  background: #ecfdf5;
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  color: #065f46;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+[data-theme="dark"] .hgl-deposit-paypal-success {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+
+.hgl-deposit-paypal-success.show {
+  display: flex;
+}
+
+.hgl-deposit-paypal-success svg {
+  width: 24px;
+  height: 24px;
+  stroke: #10b981;
+  fill: none;
+  stroke-width: 2.5;
+}
+
+/* Confirm button */
+.hgl-deposit-confirm-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 24px;
+  background: var(--primary, #f97316);
+  color: #fff;
+  border: 2px solid var(--text, #111);
+  border-radius: 12px;
+  font-family: var(--font, inherit);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 4px 4px 0 var(--text, #111);
+}
+
+.hgl-deposit-confirm-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--text, #111);
+}
+
+.hgl-deposit-confirm-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--text, #111);
+}
+
+.hgl-deposit-confirm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 2px 2px 0 var(--text, #111);
+}
+
+.hgl-deposit-confirm-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Divider */
+.hgl-deposit-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: var(--text-muted, #9ca3af);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.hgl-deposit-divider::before,
+.hgl-deposit-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light, #e5e7eb);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .hgl-deposit-modal {
+    max-width: 100%;
+    border-radius: 16px;
+    max-height: 95vh;
+  }
+
+  .hgl-deposit-header {
+    padding: 22px 20px 16px;
+  }
+
+  .hgl-deposit-body {
+    padding: 20px;
+  }
+
+  .hgl-deposit-amount-value {
+    font-size: 1.5rem;
+  }
+
+  .hgl-deposit-tabs {
+    flex-direction: column;
+  }
+
+  .hgl-deposit-tab:not(:last-child) {
+    border-right: none;
+    border-bottom: 2px solid var(--border-light, #e5e7eb);
+  }
+}
+
 /* ===== TOAST ===== */
 .hgl-toast-wrapper {
   position: fixed;
