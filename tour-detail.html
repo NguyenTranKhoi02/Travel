@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tour Detail | Ha Giang Loop Tour</title>
-  <meta name="description" content="Chi tiết tour Hà Giang Loop, lịch trình, giá và đặt tour ngay. Horse Loop - Easy Rider, Jeep, xe máy." />
+  <meta name="description"
+    content="Chi tiết tour Hà Giang Loop, lịch trình, giá và đặt tour ngay. Horse Loop - Easy Rider, Jeep, xe máy." />
   <link rel="icon" type="image/png" href="images/logoHL.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -482,19 +483,29 @@
       <button class="hgl-deposit-close" id="depositClose" type="button" aria-label="Đóng">&times;</button>
       <div class="hgl-deposit-header">
         <div class="hgl-deposit-header-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
         </div>
         <h3 data-i18n="deposit_title">Đặt cọc để xác nhận tour</h3>
-        <p data-i18n="deposit_desc">Vui lòng thanh toán tiền cọc để hoàn tất đặt tour. Số tiền còn lại sẽ thanh toán khi bắt đầu tour.</p>
+        <p data-i18n="deposit_desc">
+          Vui lòng thanh toán tiền cọc để hoàn tất đặt tour. Số tiền còn lại sẽ thanh toán khi bắt đầu tour.
+          Để đảm bảo giữ chỗ và sắp xếp dịch vụ tốt nhất, chúng tôi áp dụng chính sách đặt cọc trước. Rất mong Quý khách
+          thông cảm và cảm ơn Quý khách đã hợp tác.
+        </p>
       </div>
       <div class="hgl-deposit-body">
         <div class="hgl-deposit-amount-card">
           <div class="hgl-deposit-amount-label" data-i18n="deposit_amount_label">Số tiền cọc</div>
           <div class="hgl-deposit-amount-value" id="depositAmountDisplay">500.000 đ</div>
-          <div class="hgl-deposit-amount-note" data-i18n="deposit_amount_note">Số tiền còn lại thanh toán khi bắt đầu tour</div>
+          <div class="hgl-deposit-amount-note" data-i18n="deposit_amount_note">Số tiền còn lại thanh toán khi bắt đầu
+            tour</div>
         </div>
         <div class="hgl-deposit-methods-title">
-          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <svg viewBox="0 0 24 24">
+            <rect x="1" y="4" width="22" height="16" rx="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
           <span data-i18n="deposit_method_title">Chọn phương thức thanh toán</span>
         </div>
         <div class="hgl-deposit-tabs">
@@ -514,13 +525,20 @@
               <strong>Ngân hàng:</strong> VietinBank<br>
               <strong>STK:</strong> 105872077144<br>
               <strong>Chủ TK:</strong> PHUNG NGOC AN<br>
-              <strong data-i18n="deposit_transfer_content">Nội dung CK:</strong> <span id="depositTransferNote">DatCocTour</span>
+              <strong data-i18n="deposit_transfer_content">Nội dung CK:</strong> <span
+                id="depositTransferNote">DatCocTour</span>
             </div>
           </div>
           <div class="hgl-deposit-upload-area" id="depositUploadArea">
-            <svg class="hgl-deposit-upload-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <div class="hgl-deposit-upload-text" data-i18n="deposit_upload_text"><strong>Nhấn để tải ảnh</strong> hoặc kéo thả vào đây</div>
-            <div class="hgl-deposit-upload-hint" data-i18n="deposit_upload_hint">Chụp màn hình biên lai chuyển khoản (PNG, JPG)</div>
+            <svg class="hgl-deposit-upload-icon" viewBox="0 0 24 24">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <polyline points="17 8 12 3 7 8" />
+              <line x1="12" y1="3" x2="12" y2="15" />
+            </svg>
+            <div class="hgl-deposit-upload-text" data-i18n="deposit_upload_text"><strong>Nhấn để tải ảnh</strong> hoặc
+              kéo thả vào đây</div>
+            <div class="hgl-deposit-upload-hint" data-i18n="deposit_upload_hint">Chụp màn hình biên lai chuyển khoản
+              (PNG, JPG)</div>
             <input type="file" class="hgl-deposit-upload-input" id="depositFileInput" accept="image/*">
           </div>
           <div class="hgl-deposit-preview" id="depositPreview">
@@ -530,18 +548,25 @@
           </div>
           <label class="hgl-deposit-checkbox-wrap">
             <input type="checkbox" id="depositConfirmCheck">
-            <span class="hgl-deposit-checkbox-label" data-i18n="deposit_confirm_check">Tôi xác nhận đã chuyển khoản đúng số tiền cọc và nội dung chuyển khoản như trên.</span>
+            <span class="hgl-deposit-checkbox-label" data-i18n="deposit_confirm_check">Tôi xác nhận đã chuyển khoản đúng
+              số tiền cọc và nội dung chuyển khoản như trên.</span>
           </label>
         </div>
         <div class="hgl-deposit-panel" id="depositPanelPaypal">
           <div id="deposit-paypal-button-container"></div>
           <div class="hgl-deposit-paypal-success" id="depositPaypalSuccess">
-            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg viewBox="0 0 24 24">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
             <span data-i18n="deposit_paypal_success">Thanh toán PayPal thành công!</span>
           </div>
         </div>
         <button type="button" class="hgl-deposit-confirm-btn" id="depositConfirmBtn" disabled>
-          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <svg viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
           <span data-i18n="deposit_confirm_btn">Xác nhận đã thanh toán cọc</span>
         </button>
       </div>

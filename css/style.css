@@ -1822,14 +1822,43 @@ form textarea:focus {
 }
 
 .yen-tour-card {
+  position: relative;
   background: #fff;
   border-radius: 20px;
-  overflow: hidden;
+  overflow: hidden; /* Keep hidden to round corners */
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+}
+
+.yen-hot-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: linear-gradient(45deg, #ff3300, #ff8800);
+  color: #fff;
+  padding: 4px 12px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  border-radius: 20px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(255, 51, 0, 0.3);
+  animation: pulse-hot 2s infinite;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.yen-hot-badge::before {
+  content: '🔥';
+}
+
+@keyframes pulse-hot {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 51, 0, 0.7); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 51, 0, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 51, 0, 0); }
 }
 
 .yen-tour-card:hover {
@@ -1925,19 +1954,6 @@ form textarea:focus {
   box-shadow: 0 4px 12px rgba(212, 129, 107, 0.4);
 }
 
-.yen-tour-card-badge {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  padding: 5px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  color: var(--secondary);
-  font-size: 0.78rem;
-  font-weight: 700;
-  z-index: 2;
-}
 
 /* ===================================================================
    EXPLORE BY DESTINATION (Refined)

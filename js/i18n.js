@@ -302,7 +302,20 @@ const translations = {
     js_note_content: "Ăn chay, ăn thuần chay, hay bị dị ứng? Hãy cho chúng tôi biết khi đặt tour và chúng tôi sẽ đáp ứng theo yêu cầu của bạn.",
     js_ready: "Sẵn sàng",
     js_detailed_itinerary: "Lịch trình chi tiết",
-    js_detailed_itinerary_empty: "Đang cập nhật lịch trình chi tiết..."
+    js_detailed_itinerary_empty: "Đang cập nhật lịch trình chi tiết...",
+
+    // Deposit Modal
+    deposit_title: "Đặt cọc để xác nhận tour",
+    deposit_desc: "Vui lòng thanh toán tiền cọc để hoàn tất đặt tour. Số tiền còn lại sẽ thanh toán khi bắt đầu tour. Để đảm bảo giữ chỗ và sắp xếp dịch vụ tốt nhất, chúng tôi áp dụng chính sách đặt cọc trước. Rất mong Quý khách thông cảm và cảm ơn Quý khách đã hợp tác.",
+    deposit_amount_label: "Số tiền cọc",
+    deposit_amount_note: "Số tiền còn lại thanh toán khi bắt đầu tour",
+    deposit_method_title: "Chọn phương thức thanh toán",
+    deposit_transfer_content: "Nội dung CK:",
+    deposit_upload_text: "<strong>Nhấn để tải ảnh</strong> hoặc kéo thả vào đây",
+    deposit_upload_hint: "Chụp màn hình biên lai chuyển khoản (PNG, JPG)",
+    deposit_confirm_check: "Tôi xác nhận đã chuyển khoản đúng số tiền cọc và nội dung chuyển khoản như trên.",
+    deposit_paypal_success: "Thanh toán PayPal thành công!",
+    deposit_confirm_btn: "Xác nhận đã thanh toán cọc"
   },
   en: {
     // Nav
@@ -608,7 +621,20 @@ const translations = {
     js_note_content: "Vegetarian, vegan, or allergic? Let us know when booking the tour and we will accommodate your request.",
     js_ready: "Ready",
     js_detailed_itinerary: "Detailed Itinerary",
-    js_detailed_itinerary_empty: "Detailed itinerary is being updated..."
+    js_detailed_itinerary_empty: "Detailed itinerary is being updated...",
+
+    // Deposit Modal
+    deposit_title: "Deposit to confirm tour",
+    deposit_desc: "Please pay the deposit to complete your tour booking. The remaining balance will be paid upon starting the tour. To ensure your reservation and arrange the best services, we apply an advance deposit policy. We appreciate your understanding and thank you for your cooperation.",
+    deposit_amount_label: "Deposit amount",
+    deposit_amount_note: "Remaining balance paid upon starting the tour",
+    deposit_method_title: "Select payment method",
+    deposit_transfer_content: "Transfer content:",
+    deposit_upload_text: "<strong>Click to upload</strong> or drag and drop here",
+    deposit_upload_hint: "Screenshot of transfer receipt (PNG, JPG)",
+    deposit_confirm_check: "I confirm that I have transferred the correct deposit amount and transfer content as above.",
+    deposit_paypal_success: "PayPal payment successful!",
+    deposit_confirm_btn: "Confirm deposit paid"
   }
 };
 
