@@ -152,7 +152,7 @@
       <article class="yen-tour-card">
         <div class="yen-tour-card-img-wrap">
           <img class="yen-tour-card-img" src="${tour.image}" alt="${tour.title}" loading="lazy" />
-          <div class="yen-hot-badge">HOT</div>
+          <div class="yen-hot-badge">BEST SELLER</div>
         </div>
         <div class="yen-tour-card-body">
           <h3 class="yen-tour-card-title" data-i18n="tour_${tour.id}_title">${t(`tour_${tour.id}_title`) !== `tour_${tour.id}_title` ? t(`tour_${tour.id}_title`) : tour.title}</h3>
@@ -232,7 +232,7 @@
       <article class="yen-tour-card">
         <div class="yen-tour-card-img-wrap">
           <img class="yen-tour-card-img" src="${tour.image}" alt="${tour.title}" loading="lazy" />
-          <div class="yen-hot-badge">HOT</div>
+          <div class="yen-hot-badge">BEST SELLER</div>
           <span class="yen-tour-card-price-badge">${money(tour.price_base)}</span>
         </div>
         <div class="yen-tour-card-body">
@@ -824,7 +824,7 @@
       <article class="yen-tour-card bike-rental-card">
         <div class="yen-tour-card-img-wrap bike-rental-img-wrap">
           <img class="yen-tour-card-img" src="${b.image}" alt="${b.name}" loading="lazy" />
-          <div class="yen-hot-badge">HOT</div>
+          <div class="yen-hot-badge">BEST SELLER</div>
           <span class="yen-tour-card-price-badge">${money(b.price_per_day)}/ngày</span>
         </div>
         <div class="yen-tour-card-body">

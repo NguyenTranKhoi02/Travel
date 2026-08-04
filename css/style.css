@@ -1825,7 +1825,8 @@ form textarea:focus {
   position: relative;
   background: #fff;
   border-radius: 20px;
-  overflow: hidden; /* Keep hidden to round corners */
+  overflow: hidden;
+  /* Keep hidden to round corners */
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
   border: 1px solid rgba(0, 0, 0, 0.04);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1837,28 +1838,23 @@ form textarea:focus {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: linear-gradient(45deg, #ff3300, #ff8800);
+  background: linear-gradient(to right, #f2a621, #e17513);
   color: #fff;
-  padding: 4px 12px;
+  padding: 6px 14px;
   font-weight: bold;
   font-size: 0.85rem;
   border-radius: 20px;
   z-index: 10;
-  box-shadow: 0 4px 10px rgba(255, 51, 0, 0.3);
-  animation: pulse-hot 2s infinite;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid #fff;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  text-transform: uppercase;
 }
 
 .yen-hot-badge::before {
-  content: '🔥';
-}
-
-@keyframes pulse-hot {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 51, 0, 0.7); }
-  70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 51, 0, 0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 51, 0, 0); }
+  content: '⭐';
 }
 
 .yen-tour-card:hover {
