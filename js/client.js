@@ -293,11 +293,19 @@
         const peopleInput = qs('#peopleCount');
 
         let days = 3;
+        let nights = 2;
         if (tour.duration) {
           const dMatch = tour.duration.match(/(\d+)\s*(ngày|day)/i);
           if (dMatch) days = parseInt(dMatch[1]);
+          const nMatch = tour.duration.match(/(\d+)\s*(đêm|night)/i);
+          if (nMatch) {
+            nights = parseInt(nMatch[1]);
+          } else {
+            nights = Math.max(days - 1, 1);
+          }
         } else if (tour.itinerary) {
           days = tour.itinerary.length;
+          nights = Math.max(days - 1, 1);
         }
 
         const vehicle = qs('input[name="vehicle"]:checked');
@@ -392,8 +400,10 @@
         }
 
         const accOpt = qs('#accommodation').options[qs('#accommodation').selectedIndex];
-        const accCost = Number(accOpt.dataset.price || 0) * people;
+        const accCost = Number(accOpt.dataset.price || 0) * nights;
         qs('#sumAccommodation').textContent = money(accCost);
+        const accLabel = qs('#sumAccommodation').previousElementSibling;
+        if (accLabel) accLabel.textContent = isEn ? `Accommodation (${nights} night${nights > 1 ? 's' : ''}):` : `Chỗ ở (${nights} đêm):`;
 
         const pickupOpt = qs('#pickupBus').options[qs('#pickupBus').selectedIndex];
         const pickupCost = Number(pickupOpt.dataset.price || 0) * people;
